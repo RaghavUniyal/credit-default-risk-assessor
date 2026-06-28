@@ -1,10 +1,12 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useStore } from '@/store/useStore';
 import { useTheme } from '@/components/theme-provider';
 import { supabase } from '@/lib/supabase';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LayoutDashboard, 
   UsersRound, 
@@ -15,19 +17,48 @@ import {
   Moon, 
   Search, 
   UserCircle2,
-  Lock
+  Lock,
+  X,
+  Sparkles
 } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { profile, clearAuth, setSearchQuery, searchQuery } = useStore();
+  const { profile, clearAuth, setSelectedCustomerId } = useStore();
   const { theme, toggleTheme } = useTheme();
+
+  // Command Palette State
+  const [isOpen, setIsOpen] = useState(false);
+  const [cmdInput, setCmdInput] = useState('');
+
+  // Handle Ctrl+K / Cmd+K listener
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     clearAuth();
     router.replace('/login');
+  };
+
+  const handleCommandSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (cmdInput.trim()) {
+      const targetId = cmdInput.trim().toUpperCase();
+      setSelectedCustomerId(targetId);
+      setIsOpen(false);
+      setCmdInput('');
+      router.push('/dashboard/customer-360');
+    }
   };
 
   const navLinks = [
@@ -38,22 +69,23 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   ];
 
   return (
-    <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden font-sans">
+    <div className="flex h-screen bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC] overflow-hidden font-sans">
+      
       {/* Sidebar Navigation */}
-      <aside className="hidden md:flex md:w-64 md:flex-col shrink-0 border-r border-slate-900 bg-slate-950/80 backdrop-blur-xl">
+      <aside className="hidden md:flex md:w-60 md:flex-col shrink-0 border-r border-[#E2E8F0] dark:border-[#334155] bg-[#FFFFFF] dark:bg-[#0F172A]">
         {/* Brand Logo */}
-        <div className="flex h-16 items-center px-6 border-b border-slate-900 space-x-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20">
-            <span className="text-xs">CR</span>
+        <div className="flex h-14 items-center px-4 border-b border-[#E2E8F0] dark:border-[#334155] space-x-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#2563EB] dark:bg-[#3B82F6] text-white font-black shadow-md shadow-blue-500/20">
+            <span className="text-[10px] tracking-tighter">CD</span>
           </div>
           <div>
-            <h1 className="text-sm font-bold tracking-wider uppercase text-white">Risk Assessor</h1>
-            <p className="text-[9px] tracking-widest text-emerald-400 font-semibold uppercase">Command Center</p>
+            <h1 className="text-xs font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Risk Assessor</h1>
+            <p className="text-[8px] tracking-widest text-[#2563EB] dark:text-[#3B82F6] font-bold uppercase">B2B Command Center</p>
           </div>
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex-1 space-y-1.5 px-4 py-6 overflow-y-auto">
+        <nav className="flex-1 space-y-1 px-3 py-4 overflow-y-auto">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             const Icon = link.icon;
@@ -61,86 +93,142 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <Link
                 key={link.name}
                 href={link.href}
-                className={`flex items-center space-x-3 rounded-lg px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors ${
-                  isActive 
-                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-inner' 
-                    : 'text-slate-400 hover:bg-slate-900/60 hover:text-slate-200'
+                className={`flex items-center space-x-2.5 px-3 py-2 text-xs font-bold transition-all border rounded-sm cursor-pointer ${
+                  isActive
+                    ? 'bg-[#2563EB]/10 dark:bg-[#3B82F6]/10 text-[#2563EB] dark:text-[#3B82F6] border-[#2563EB]/20 dark:border-[#3B82F6]/20'
+                    : 'text-[#64748B] dark:text-[#94A3B8] border-transparent hover:bg-slate-100 dark:hover:bg-[#1E293B] hover:text-[#0F172A] dark:hover:text-white'
                 }`}
               >
-                <Icon className={`h-4.5 w-4.5 ${isActive ? 'text-emerald-400' : 'text-slate-500'}`} />
+                <Icon className="h-4 w-4 shrink-0" />
                 <span>{link.name}</span>
               </Link>
             );
           })}
         </nav>
 
-        {/* User Status Profile */}
-        <div className="border-t border-slate-900 p-4 bg-slate-950/60">
-          <div className="flex items-center space-x-3.5 mb-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-slate-400">
-              <UserCircle2 className="h-6 w-6" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-bold text-slate-200 truncate leading-tight">
-                {profile?.full_name || 'Risk Analyst'}
+        {/* User Account Info Footer */}
+        <div className="border-t border-[#E2E8F0] dark:border-[#334155] p-3 space-y-2 bg-[#F8FAFC]/50 dark:bg-[#1E293B]/20">
+          <div className="flex items-center space-x-2">
+            <UserCircle2 className="h-7 w-7 text-[#64748B] dark:text-[#94A3B8]" />
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-bold truncate text-[#0F172A] dark:text-white">
+                {profile?.full_name || 'Risk Manager'}
               </p>
-              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-900 text-emerald-400 border border-emerald-500/15 uppercase tracking-wide mt-0.5">
-                {profile?.role === 'risk_officer' ? 'Risk Officer' : 'Analyst'}
-              </span>
+              <p className="text-[8px] truncate text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wider">
+                {profile?.role?.replace('_', ' ') || 'analyst'}
+              </p>
             </div>
           </div>
           <button
             onClick={handleSignOut}
-            className="flex w-full items-center justify-center space-x-2 rounded-lg bg-slate-900 hover:bg-rose-950/40 hover:text-rose-400 hover:border-rose-900/20 border border-slate-800 py-2 text-xs font-semibold text-slate-400 transition-all uppercase cursor-pointer"
+            className="flex w-full items-center justify-center space-x-1.5 rounded-sm border border-[#E2E8F0] dark:border-[#334155] hover:border-[#EF4444]/30 bg-white dark:bg-[#1E293B] hover:bg-rose-500/10 hover:text-rose-400 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] transition-all cursor-pointer"
           >
-            <LogOut className="h-3.5 w-3.5" />
+            <LogOut className="h-3 w-3" />
             <span>Sign Out</span>
           </button>
         </div>
       </aside>
 
-      {/* Main Panel Content Area */}
-      <div className="flex flex-1 flex-col overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900/20 via-slate-950 to-slate-950">
-        {/* Top Navbar */}
-        <header className="flex h-16 items-center justify-between border-b border-slate-900 px-6 backdrop-blur-md bg-slate-950/30">
-          {/* Header Left (Search bar / Title) */}
-          <div className="flex items-center space-x-4 flex-1 max-w-md">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
-              <input
-                type="text"
-                placeholder="Global Search (e.g. Customer ID IND100054)"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg bg-slate-900/60 border border-slate-800/80 pl-9 pr-4 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-              />
-            </div>
+      {/* Main Content Pane */}
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        {/* Top Header Bar */}
+        <header className="flex h-14 items-center justify-between px-6 border-b border-[#E2E8F0] dark:border-[#334155] bg-[#FFFFFF] dark:bg-[#1E293B]/40 backdrop-blur-md z-10 shrink-0">
+          {/* Cmd+K Search trigger input */}
+          <div 
+            onClick={() => setIsOpen(true)}
+            className="flex items-center space-x-2.5 w-64 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] px-3 py-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] cursor-pointer hover:border-[#2563EB] dark:hover:border-[#3B82F6] transition-colors"
+          >
+            <Search className="h-3.5 w-3.5" />
+            <span className="flex-1 text-[10px] font-semibold">Search Cardholder ID...</span>
+            <kbd className="hidden sm:inline-block rounded bg-[#E2E8F0] dark:bg-[#1E293B] px-1.5 py-0.5 font-mono text-[8px] font-bold border border-slate-300 dark:border-slate-800 uppercase tracking-widest text-[#0F172A] dark:text-slate-400">
+              Ctrl+K
+            </kbd>
           </div>
 
-          {/* Header Right */}
-          <div className="flex items-center space-x-4">
+          {/* Right Header items */}
+          <div className="flex items-center space-x-3">
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="rounded-lg p-2 text-slate-400 hover:bg-slate-900 hover:text-slate-200 border border-transparent hover:border-slate-800 transition-colors cursor-pointer"
+              className="rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] p-1.5 text-[#64748B] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-white transition-colors cursor-pointer"
               title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {theme === 'dark' ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
             </button>
-
-            {/* Compliance Badge */}
-            <div className="hidden sm:flex items-center space-x-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
-              <Lock className="h-3 w-3" />
-              <span>RLS Secured</span>
-            </div>
           </div>
         </header>
 
-        {/* Content Box */}
-        <main className="flex-1 overflow-y-auto p-6 focus:outline-none">
-          {children}
+        {/* Content Wrapper */}
+        <main className="flex-1 overflow-y-auto bg-[#F8FAFC] dark:bg-[#0F172A] p-4 lg:p-6 min-h-0">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={pathname}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="h-full"
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
         </main>
       </div>
+
+      {/* Global Cmd+K Command Palette Modal */}
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-50 flex items-start justify-center pt-24">
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="absolute inset-0 bg-[#0F172A]/70 backdrop-blur-xs"
+            ></motion.div>
+
+            {/* Modal Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              transition={{ duration: 0.15, ease: 'easeOut' }}
+              className="relative w-full max-w-lg rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] shadow-2xl p-4 mx-4"
+            >
+              <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-[#334155] pb-2 mb-3">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-[#3B82F6]">
+                  Global Command Portal
+                </span>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="rounded p-1 text-[#64748B] dark:text-[#94A3B8] hover:bg-slate-100 dark:hover:bg-[#0F172A] cursor-pointer"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              </div>
+
+              <form onSubmit={handleCommandSearch} className="relative">
+                <Search className="absolute left-3 top-3 h-4.5 w-4.5 text-[#64748B] dark:text-[#94A3B8]" />
+                <input
+                  type="text"
+                  placeholder="Type Cardholder ID (e.g. IND100002) and hit Enter..."
+                  value={cmdInput}
+                  onChange={(e) => setCmdInput(e.target.value)}
+                  className="w-full rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] pl-10 pr-4 py-2.5 text-xs text-[#0F172A] dark:text-white placeholder-[#64748B] dark:placeholder-[#64748B] focus:outline-none focus:border-[#2563EB] dark:focus:border-[#3B82F6]"
+                  autoFocus
+                />
+              </form>
+
+              <div className="mt-3 text-[9px] text-[#64748B] dark:text-[#94A3B8] flex items-center space-x-1 font-semibold uppercase">
+                <Sparkles className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#3B82F6]" />
+                <span>Quick Tip: Enter customer ID sequence to jump directly to their 360 Risk timeline.</span>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }

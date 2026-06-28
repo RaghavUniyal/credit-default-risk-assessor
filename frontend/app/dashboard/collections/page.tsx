@@ -4,20 +4,21 @@ import { useState, useEffect, useRef } from 'react';
 import { useStore } from '@/store/useStore';
 import { supabase } from '@/lib/supabase';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   BrainCircuit, 
   Send, 
   HelpCircle, 
   RefreshCw, 
-  TrendingUp, 
   ShieldAlert,
-  ShieldCheck,
   User,
   ArrowRight,
   Bot
 } from 'lucide-react';
 
 export default function CollectionsPage() {
+  const router = useRouter();
   const { user, selectedCustomerId, setSelectedCustomerId } = useStore();
   const [activeTab, setActiveTab] = useState<'strategist' | 'simulator'>('strategist');
 
@@ -31,44 +32,40 @@ export default function CollectionsPage() {
   const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant', content: string }>>([
     { 
       role: 'assistant', 
-      content: "Welcome to the **Regulatory Simulation Console**. I am pre-injected with the latest **Reserve Bank of India (RBI)** risk weight guidelines and your aggregated portfolio statistics. Ask me compliance or capital impact questions."
+      content: "Regulatory Simulation Portal active. Pre-loaded with latest Reserve Bank of India (RBI) risk weights directives (including the 25% credit card receivables hike). Query capital ratios or portfolio segmentations below."
     }
   ]);
   const [isStreamingChat, setIsStreamingChat] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll chat window
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isStreamingChat]);
 
-  // Sync selectedCustomerId from store
   useEffect(() => {
     if (selectedCustomerId) {
       setSelectedId(selectedCustomerId);
     }
   }, [selectedCustomerId]);
 
-  // Fetch list of high-risk customers for selection dropdown
+  // Fetch list of high-risk customers
   const { data: highRiskCustomers } = useQuery({
     queryKey: ['highRiskList', user?.id],
     queryFn: async () => {
       if (!user) return [];
       
-      // Fetch high risk customers from predictions
       const { data: predData } = await supabase
         .from('predictions')
         .select('customer_id, risk_score, verdict')
         .eq('user_id', user.id)
         .eq('verdict', 'High Risk')
         .order('risk_score', { ascending: false })
-        .limit(20);
+        .limit(15);
 
       if (!predData || predData.length === 0) return [];
       
       const ids = predData.map(p => p.customer_id);
       
-      // Fetch names from customers
       const { data: custData } = await supabase
         .from('customers')
         .select('customer_id, customer_name, cibil_score')
@@ -105,7 +102,6 @@ export default function CollectionsPage() {
     enabled: !!selectedId
   });
 
-  // 1. Run AI Collections Strategist Fetch Stream
   const handleRunStrategy = async () => {
     if (!selectedId) return;
     
@@ -155,17 +151,14 @@ export default function CollectionsPage() {
     }
   };
 
-  // 2. Run Regulatory Simulator Chat Fetch Stream
   const handleSendSimulatorQuery = async (queryText: string) => {
     const textToSend = queryText || chatInput;
     if (!textToSend.trim() || isStreamingChat) return;
 
     setChatInput('');
-    // Append user message
     setMessages(prev => [...prev, { role: 'user', content: textToSend }]);
     setIsStreamingChat(true);
 
-    // Placeholder for stream response
     let streamReply = '';
     setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
 
@@ -201,7 +194,6 @@ export default function CollectionsPage() {
               break;
             }
             streamReply += chunk;
-            // Update the last message in state
             setMessages(prev => {
               const updated = [...prev];
               updated[updated.length - 1] = { role: 'assistant', content: streamReply };
@@ -229,34 +221,34 @@ export default function CollectionsPage() {
   ];
 
   return (
-    <div className="space-y-6 text-slate-100 h-[calc(100vh-8rem)] flex flex-col">
+    <div className="space-y-6 text-[#0F172A] dark:text-[#F8FAFC] h-[calc(100vh-8rem)] flex flex-col">
       {/* Title */}
-      <div className="shrink-0">
-        <h2 className="text-2xl font-bold tracking-tight text-white uppercase">Collections & Compliance Command</h2>
-        <p className="text-xs text-slate-400">Stream dynamic collections advice and run capital weight "What-If" regulatory simulation chats.</p>
+      <div className="shrink-0 pb-2 border-b border-[#E2E8F0] dark:border-[#334155]">
+        <h2 className="text-lg font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Collections & Compliance Command</h2>
+        <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Stream targeted collection actions and simulate RBI compliance stress tests.</p>
       </div>
 
       {/* Tabs Menu */}
-      <div className="shrink-0 flex space-x-2 border-b border-slate-900 pb-2">
+      <div className="shrink-0 flex space-x-2 border-b border-[#E2E8F0] dark:border-slate-800 pb-1.5">
         <button
           onClick={() => setActiveTab('strategist')}
-          className={`px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all border cursor-pointer ${
+          className={`px-4 py-1.5 rounded-sm text-[10px] font-black uppercase tracking-wider transition-all border cursor-pointer ${
             activeTab === 'strategist'
-              ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25 shadow-inner'
-              : 'text-slate-400 border-transparent hover:bg-slate-900/60'
+              ? 'bg-[#2563EB]/10 text-[#2563EB] dark:text-[#3B82F6] border-[#2563EB]/25'
+              : 'text-[#64748B] dark:text-[#94A3B8] border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/60'
           }`}
         >
           Collections Strategist
         </button>
         <button
           onClick={() => setActiveTab('simulator')}
-          className={`px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all border cursor-pointer ${
+          className={`px-4 py-1.5 rounded-sm text-[10px] font-black uppercase tracking-wider transition-all border cursor-pointer ${
             activeTab === 'simulator'
-              ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25 shadow-inner'
-              : 'text-slate-400 border-transparent hover:bg-slate-900/60'
+              ? 'bg-[#2563EB]/10 text-[#2563EB] dark:text-[#3B82F6] border-[#2563EB]/25'
+              : 'text-[#64748B] dark:text-[#94A3B8] border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/60'
           }`}
         >
-          Regulatory Simulator Chat
+          Regulatory Simulator
         </button>
       </div>
 
@@ -266,16 +258,16 @@ export default function CollectionsPage() {
         {/* Tab 1: Collections Strategist */}
         {activeTab === 'strategist' && (
           <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-hidden">
-            {/* Left: Input Selection */}
-            <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel flex flex-col space-y-4 overflow-y-auto max-h-full">
-              <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Select High-Risk Debtor</h3>
+            {/* Left selector */}
+            <div className="terminal-card flex flex-col space-y-4 overflow-y-auto max-h-full">
+              <h3 className="text-[10px] font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider">Select High-Risk Debtor</h3>
               
-              <div className="space-y-2">
-                <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wide">Cardholder ID</label>
+              <div className="space-y-1.5">
+                <label className="text-[8px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase tracking-wide">Cardholder ID</label>
                 <select
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
-                  className="w-full rounded-lg bg-slate-950 border border-slate-800 px-3.5 py-2.5 text-xs text-white focus:outline-none"
+                  className="w-full rounded-sm bg-[#F8FAFC] dark:bg-slate-950 border border-[#E2E8F0] dark:border-slate-800 px-3 py-2 text-xs text-[#0F172A] dark:text-slate-200 focus:outline-none"
                 >
                   <option value="">-- Choose High-Risk Customer --</option>
                   {highRiskCustomers?.map(c => (
@@ -287,66 +279,69 @@ export default function CollectionsPage() {
               </div>
 
               {selectedCustomerDetails ? (
-                <div className="rounded-lg bg-slate-950 border border-slate-900 p-4 space-y-3.5 text-xs">
-                  <div className="flex items-center space-x-2 pb-2 border-b border-slate-900">
-                    <User className="h-4 w-4 text-emerald-400" />
-                    <span className="font-bold text-slate-200">{selectedCustomerDetails.customer_name}</span>
+                <div className="rounded-sm bg-[#F8FAFC] dark:bg-slate-950 border border-[#E2E8F0] dark:border-slate-900 p-4 space-y-3.5 text-[10px] flex-1 flex flex-col justify-between max-h-[220px]">
+                  <div className="flex items-center space-x-2 pb-1.5 border-b border-[#E2E8F0] dark:border-slate-900">
+                    <User className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+                    <span className="font-bold text-[#0F172A] dark:text-slate-200">{selectedCustomerDetails.customer_name}</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-[11px]">
+                  <div className="grid grid-cols-2 gap-2 text-[10px]">
                     <div>
-                      <span className="text-[9px] text-slate-500 font-bold block">CIBIL</span>
-                      <span className="text-slate-300 font-semibold">{selectedCustomerDetails.cibil_score}</span>
+                      <span className="text-[8px] text-slate-500 font-bold block">CIBIL</span>
+                      <span className="font-semibold terminal-text-mono">{selectedCustomerDetails.cibil_score}</span>
                     </div>
                     <div>
-                      <span className="text-[9px] text-slate-500 font-bold block">Utilization</span>
-                      <span className="text-slate-300 font-semibold">{selectedCustomerDetails.current_utilization_pct}%</span>
+                      <span className="text-[8px] text-slate-500 font-bold block">Utilization</span>
+                      <span className="font-semibold terminal-text-mono">{selectedCustomerDetails.current_utilization_pct}%</span>
                     </div>
                     <div>
-                      <span className="text-[9px] text-slate-500 font-bold block">Credit Limit</span>
-                      <span className="text-slate-300 font-semibold">INR {selectedCustomerDetails.total_credit_limit.toLocaleString()}</span>
+                      <span className="text-[8px] text-slate-500 font-bold block">Credit Limit</span>
+                      <span className="font-semibold terminal-text-mono">INR {selectedCustomerDetails.total_credit_limit.toLocaleString()}</span>
                     </div>
                     <div>
-                      <span className="text-[9px] text-slate-500 font-bold block">Spend Avg</span>
-                      <span className="text-slate-300 font-semibold">INR {selectedCustomerDetails.avg_monthly_spend.toLocaleString()}</span>
+                      <span className="text-[8px] text-slate-500 font-bold block">Spend Avg</span>
+                      <span className="font-semibold terminal-text-mono">INR {selectedCustomerDetails.avg_monthly_spend.toLocaleString()}</span>
                     </div>
                   </div>
                   <button
                     onClick={handleRunStrategy}
                     disabled={isStreamingStrategy}
-                    className="mt-3 flex w-full items-center justify-between rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:bg-emerald-800 px-4 py-2.5 text-xs font-bold text-slate-950 uppercase tracking-widest transition-colors cursor-pointer"
+                    className="flex w-full items-center justify-between rounded-sm bg-[#2563EB] hover:bg-blue-600 disabled:bg-blue-800 px-4 py-2 text-[9px] font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
                   >
                     <span>Run Strategist</span>
-                    <ArrowRight className="h-4 w-4 text-slate-950" />
+                    <ArrowRight className="h-4 w-4 text-white" />
                   </button>
                 </div>
               ) : (
-                <div className="flex-1 flex flex-col items-center justify-center text-center p-8 rounded-lg border border-dashed border-slate-900 text-slate-500 text-xs">
-                  <ShieldAlert className="h-8 w-8 text-slate-700 mb-2" />
-                  <span>Choose a customer to analyze risk and construct action strategies.</span>
+                <div className="flex-1 flex flex-col items-center justify-center text-center p-8 border border-dashed border-[#E2E8F0] dark:border-slate-800 text-slate-500 text-xs rounded-sm">
+                  <ShieldAlert className="h-8 w-8 text-slate-300 dark:text-slate-700 mb-2" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Choose debtor to run advice strategists</span>
                 </div>
               )}
             </div>
 
-            {/* Right: Output Strategy text stream */}
-            <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel lg:col-span-2 flex flex-col overflow-hidden max-h-full">
-              <h3 className="shrink-0 text-xs font-bold text-slate-300 uppercase tracking-wider mb-4 flex items-center space-x-2">
-                <BrainCircuit className="h-4.5 w-4.5 text-emerald-400" />
-                <span>Actionable Strategy Output</span>
+            {/* Right: Output text stream */}
+            <div className="terminal-card lg:col-span-2 flex flex-col overflow-hidden max-h-full">
+              <h3 className="shrink-0 text-[10px] font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-3 flex items-center space-x-2">
+                <BrainCircuit className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+                <span>AI Collection Strategy Console</span>
               </h3>
               
-              <div className="flex-1 overflow-y-auto bg-slate-950/60 border border-slate-900 rounded-lg p-5 font-mono text-xs text-slate-300 leading-relaxed max-h-full">
+              <div className="flex-1 overflow-y-auto bg-[#F8FAFC] dark:bg-slate-950/60 border border-[#E2E8F0] dark:border-slate-900 p-4 font-mono text-[10px] text-[#0F172A] dark:text-slate-300 leading-relaxed max-h-full">
                 {isStreamingStrategy && !strategyText && (
-                  <div className="flex space-x-2 items-center text-slate-500">
-                    <RefreshCw className="h-4 w-4 animate-spin text-emerald-400" />
-                    <span>Connecting GenAI collections console...</span>
+                  <div className="flex space-x-1.5 items-center text-slate-500">
+                    <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#2563EB] dark:text-[#3B82F6]" />
+                    <span>Establishing GenAI collection streams...</span>
                   </div>
                 )}
                 {strategyText ? (
-                  <div className="space-y-4 whitespace-pre-wrap">
+                  <div className="space-y-4 whitespace-pre-wrap relative">
                     {strategyText}
+                    {isStreamingStrategy && (
+                      <span className="inline-block h-3.5 w-1.5 bg-[#2563EB] dark:bg-[#3B82F6] ml-1 animate-pulse"></span>
+                    )}
                   </div>
                 ) : (
-                  !isStreamingStrategy && <span className="text-slate-600 italic">Strategy report is empty. Select a customer and click Run.</span>
+                  !isStreamingStrategy && <span className="text-slate-400 dark:text-slate-650 italic">Terminal output is currently empty. Run client strategist.</span>
                 )}
               </div>
             </div>
@@ -357,51 +352,62 @@ export default function CollectionsPage() {
         {activeTab === 'simulator' && (
           <div className="flex-1 flex flex-col overflow-hidden">
             {/* Messages box */}
-            <div className="flex-1 overflow-y-auto bg-slate-900/10 border border-slate-900 rounded-t-xl p-5 space-y-4 min-h-0">
-              {messages.map((msg, idx) => (
-                <div 
-                  key={idx} 
-                  className={`flex items-start space-x-3.5 max-w-3xl ${
-                    msg.role === 'user' ? 'ml-auto justify-end' : ''
-                  }`}
-                >
-                  {msg.role !== 'user' && (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500 text-slate-950 font-bold shrink-0 shadow shadow-emerald-500/10">
-                      <Bot className="h-4 w-4" />
+            <div className="flex-1 overflow-y-auto bg-[#F8FAFC]/50 dark:bg-slate-950/20 border border-[#E2E8F0] dark:border-slate-800 rounded-t-sm p-4 space-y-4 min-h-0">
+              <AnimatePresence>
+                {messages.map((msg, idx) => (
+                  <motion.div 
+                    key={idx} 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className={`flex items-start space-x-3.5 max-w-2xl ${
+                      msg.role === 'user' ? 'ml-auto justify-end' : ''
+                    }`}
+                  >
+                    {msg.role !== 'user' && (
+                      <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#2563EB] text-white font-bold shrink-0 shadow shadow-blue-500/10">
+                        <Bot className="h-4 w-4" />
+                      </div>
+                    )}
+                    <div className={`border p-3.5 text-[10px] leading-relaxed rounded-sm ${
+                      msg.role === 'user'
+                        ? 'bg-[#FFFFFF] dark:bg-[#1E293B] border-[#2563EB]/25 text-[#0F172A] dark:text-slate-200'
+                        : 'bg-[#FFFFFF] dark:bg-slate-950/60 border-[#E2E8F0] dark:border-slate-900 text-[#64748B] dark:text-slate-350'
+                    }`}>
+                      <div className="whitespace-pre-wrap font-sans relative">
+                        {msg.content || (
+                          <div className="flex items-center space-x-1.5 text-slate-500">
+                            <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#2563EB] dark:text-[#3B82F6]" />
+                            <span>Computing capital adequacy impacts...</span>
+                          </div>
+                        )}
+                        {/* Blinking Cursor block on active stream */}
+                        {msg.role === 'assistant' && !msg.content && isStreamingChat && (
+                          <span className="inline-block h-3.5 w-1.5 bg-[#2563EB] dark:bg-[#3B82F6] ml-1 animate-pulse"></span>
+                        )}
+                        {msg.role === 'assistant' && msg.content && idx === messages.length - 1 && isStreamingChat && (
+                          <span className="inline-block h-3.5 w-1.5 bg-[#2563EB] dark:bg-[#3B82F6] ml-1 animate-pulse"></span>
+                        )}
+                      </div>
                     </div>
-                  )}
-                  <div className={`rounded-xl border p-4 text-xs leading-relaxed ${
-                    msg.role === 'user'
-                      ? 'bg-slate-900 border-slate-800 text-slate-200 shadow-md'
-                      : 'bg-slate-950/60 border-slate-900 text-slate-300'
-                  }`}>
-                    {/* Render markdown helpers simply */}
-                    <div className="whitespace-pre-wrap font-sans">
-                      {msg.content || (
-                        <div className="flex items-center space-x-2 text-slate-500">
-                          <RefreshCw className="h-3.5 w-3.5 animate-spin text-emerald-400" />
-                          <span>Generating compliance report...</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  </motion.div>
+                ))}
+              </AnimatePresence>
               <div ref={chatEndRef} />
             </div>
 
-            {/* Input & Presets Section */}
-            <div className="shrink-0 bg-slate-950/80 border border-t-0 border-slate-900 p-4 rounded-b-xl space-y-3.5">
+            {/* Input & Presets */}
+            <div className="shrink-0 bg-[#FFFFFF] dark:bg-slate-950 border border-t-0 border-[#E2E8F0] dark:border-slate-800 p-3.5 rounded-b-sm space-y-3">
               {/* Presets suggestions */}
-              <div className="hidden sm:flex flex-wrap gap-2">
+              <div className="hidden sm:flex flex-wrap gap-1.5">
                 {presetQueries.map((q, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSendSimulatorQuery(q)}
                     disabled={isStreamingChat}
-                    className="flex items-center space-x-1.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 px-3 py-1.5 text-[10px] font-semibold text-slate-400 hover:text-slate-200 transition-all cursor-pointer text-left"
+                    className="flex items-center space-x-1 rounded-sm bg-[#F8FAFC] dark:bg-slate-900 hover:bg-[#E2E8F0] dark:hover:bg-slate-800 border border-[#E2E8F0] dark:border-slate-800 px-2 py-1 text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] transition-all cursor-pointer text-left uppercase"
                   >
-                    <HelpCircle className="h-3 w-3 text-slate-500" />
+                    <HelpCircle className="h-3 w-3 text-slate-400" />
                     <span>{q}</span>
                   </button>
                 ))}
@@ -413,22 +419,22 @@ export default function CollectionsPage() {
                   e.preventDefault();
                   handleSendSimulatorQuery(chatInput);
                 }} 
-                className="flex space-x-3"
+                className="flex space-x-2"
               >
                 <input
                   type="text"
-                  placeholder="Ask compliance simulator (e.g. capital weight ratios or stress exposures)..."
+                  placeholder="Query compliance weights (e.g. 25% risk weight hike CAR effects)..."
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   disabled={isStreamingChat}
-                  className="w-full rounded-lg bg-slate-900 border border-slate-800 px-4 py-3 text-xs text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full terminal-input"
                 />
                 <button
                   type="submit"
                   disabled={isStreamingChat}
-                  className="rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:bg-emerald-800 px-5 text-slate-950 flex items-center justify-center cursor-pointer shadow-md shadow-emerald-500/10"
+                  className="rounded-sm bg-[#2563EB] hover:bg-blue-600 disabled:bg-blue-800 px-4 text-white flex items-center justify-center cursor-pointer shadow-md"
                 >
-                  <Send className="h-4.5 w-4.5" />
+                  <Send className="h-3.5 w-3.5" />
                 </button>
               </form>
             </div>

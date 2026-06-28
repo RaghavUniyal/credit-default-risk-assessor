@@ -31,7 +31,6 @@ export default function LoginPage() {
 
       if (error) throw error;
       
-      // AuthProvider will detect the change and redirect
       router.replace('/dashboard');
     } catch (err: any) {
       console.error(err);
@@ -64,10 +63,8 @@ export default function LoginPage() {
       if (error) throw error;
       
       if (data?.session) {
-        // Automatically signed in
         router.replace('/dashboard');
       } else {
-        // Confirmation email required
         setErrorMsg('Registration successful! Please check your email for confirmation link.');
         setLoading(false);
       }
@@ -79,85 +76,86 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-950 text-slate-100 font-sans">
+    <div className="flex min-h-screen bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC] font-sans transition-colors duration-200">
+      
       {/* Left Panel: Auth Form */}
-      <div className="flex w-full flex-col justify-center px-6 py-12 md:w-[450px] lg:w-[500px] lg:px-12 bg-slate-900/40 border-r border-slate-900">
+      <div className="flex w-full flex-col justify-center px-6 py-12 md:w-[450px] lg:w-[480px] lg:px-12 bg-white dark:bg-[#0F172A] border-r border-[#E2E8F0] dark:border-[#334155]">
         <div className="mx-auto w-full max-w-sm">
           {/* Logo header */}
-          <div className="flex items-center space-x-3 mb-8">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20">
-              <ShieldCheck className="h-6 w-6" />
+          <div className="flex items-center space-x-2.5 mb-8">
+            <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-[#2563EB] dark:bg-[#3B82F6] text-white font-bold shadow-md shadow-blue-500/20">
+              <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="text-lg font-bold tracking-tight text-white uppercase">ANTIGRAVITY</h1>
-              <p className="text-[10px] tracking-wider text-slate-400 font-semibold uppercase">Risk Analytics Division</p>
+              <h1 className="text-sm font-black tracking-wider text-[#0F172A] dark:text-white uppercase">Risk Assessor</h1>
+              <p className="text-[8px] tracking-widest text-[#2563EB] dark:text-[#3B82F6] font-bold uppercase">Credit Default Console</p>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <h2 className="text-2xl font-bold tracking-tight text-white">
-              {isRegistering ? 'Register Officer Account' : 'Analyst Command Center'}
+          <div className="space-y-1.5">
+            <h2 className="text-xl font-black tracking-wider uppercase text-[#0F172A] dark:text-white">
+              {isRegistering ? 'Register Analyst Profile' : 'Secured Access Console'}
             </h2>
-            <p className="text-sm text-slate-400">
+            <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-semibold uppercase">
               {isRegistering 
-                ? 'Request credentials for the Indian Banking Default risk assessor.' 
-                : 'Access default risk probability matrix and collections engine.'}
+                ? 'Request credentials for portfolio default probability assessments.' 
+                : 'Access CIBIL score dynamics and credit risk models.'}
             </p>
           </div>
 
           {errorMsg && (
-            <div className="mt-6 flex items-start space-x-2.5 rounded-lg bg-red-950/40 border border-red-900/50 p-3.5 text-xs text-red-300">
-              <AlertCircle className="h-4.5 w-4.5 shrink-0 mt-0.5" />
+            <div className="mt-5 flex items-start space-x-2 rounded bg-rose-500/10 border border-rose-500/20 p-3 text-[11px] font-semibold text-rose-500">
+              <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
               <span>{errorMsg}</span>
             </div>
           )}
 
-          <form onSubmit={isRegistering ? handleRegister : handleLogin} className="mt-8 space-y-4">
+          <form onSubmit={isRegistering ? handleRegister : handleLogin} className="mt-6 space-y-4">
             {isRegistering && (
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Full Name</label>
+                <label className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest">Full Name</label>
                 <input
                   type="text"
                   required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Rahul Sharma"
-                  className="mt-1.5 w-full rounded-lg bg-slate-900 border border-slate-800 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="mt-1.5 w-full terminal-input"
                 />
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Email Address</label>
+              <label className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest">Email Address</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="analyst@bank.in"
-                className="mt-1.5 w-full rounded-lg bg-slate-900 border border-slate-800 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                className="mt-1.5 w-full terminal-input"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Secure Password</label>
+              <label className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest">Secure Password</label>
               <input
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="mt-1.5 w-full rounded-lg bg-slate-900 border border-slate-800 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                className="mt-1.5 w-full terminal-input"
               />
             </div>
 
             {isRegistering && (
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Departmental Role</label>
+                <label className="block text-[8px] font-bold text-slate-500 uppercase tracking-widest">Departmental Role</label>
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value as any)}
-                  className="mt-1.5 w-full rounded-lg bg-slate-900 border border-slate-800 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="mt-1.5 w-full terminal-input"
                 >
                   <option value="analyst">Risk Analyst (Read/Write)</option>
                   <option value="risk_officer">Risk Officer (Approve Strategy)</option>
@@ -168,32 +166,32 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-6 flex w-full items-center justify-center space-x-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:bg-emerald-800 py-3 text-sm font-semibold text-slate-950 transition-colors shadow-lg shadow-emerald-500/10 cursor-pointer"
+              className="mt-6 flex w-full items-center justify-center space-x-1.5 rounded-sm bg-[#2563EB] dark:bg-[#3B82F6] hover:brightness-110 disabled:bg-blue-800 py-2.5 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
             >
               {loading ? (
-                <div className="h-5 w-5 animate-spin rounded-full border-2 border-slate-950 border-t-transparent"></div>
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
               ) : isRegistering ? (
                 <>
                   <UserPlus className="h-4 w-4" />
-                  <span>Request Account</span>
+                  <span>Register</span>
                 </>
               ) : (
                 <>
                   <LogIn className="h-4 w-4" />
-                  <span>Secure Access</span>
+                  <span>Secure Sign In</span>
                 </>
               )}
             </button>
           </form>
 
-          <div className="mt-8 text-center">
+          <div className="mt-6 text-center">
             <button
               type="button"
               onClick={() => {
                 setIsRegistering(!isRegistering);
                 setErrorMsg('');
               }}
-              className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold tracking-wide transition-colors uppercase cursor-pointer"
+              className="text-[10px] text-[#2563EB] dark:text-[#3B82F6] hover:underline font-black tracking-widest transition-colors uppercase cursor-pointer"
             >
               {isRegistering ? 'Already have an account? Log In' : 'New here? Create an account'}
             </button>
@@ -202,37 +200,37 @@ export default function LoginPage() {
       </div>
 
       {/* Right Panel: Hero Graphic Panel */}
-      <div className="hidden flex-1 flex-col items-center justify-center p-12 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black lg:flex">
-        <div className="max-w-md text-center space-y-6">
-          <div className="relative inline-flex items-center justify-center rounded-2xl border border-slate-800 bg-slate-950/60 p-8 shadow-2xl glass-panel">
+      <div className="hidden flex-1 flex-col items-center justify-center p-12 bg-slate-100 dark:bg-slate-950 lg:flex">
+        <div className="max-w-sm text-center space-y-6">
+          <div className="relative inline-flex items-center justify-center rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B]/70 p-6 shadow-2xl">
             <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-                <span className="text-xs text-slate-400 uppercase tracking-widest font-semibold">Active Portfolio Analysis</span>
-                <span className="text-[10px] rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400 font-bold border border-emerald-500/20">LIVE</span>
+              <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-slate-800 pb-2">
+                <span className="text-[10px] text-slate-500 uppercase tracking-widest font-black">Active Portfolio Statistics</span>
+                <span className="text-[8px] rounded-sm bg-emerald-500/10 px-2 py-0.5 text-emerald-400 font-bold border border-emerald-500/20">STABLE</span>
               </div>
               <div className="grid grid-cols-2 gap-6 pt-2">
-                <div className="space-y-1">
-                  <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Total Exposure</p>
-                  <p className="text-lg font-extrabold text-white">INR 254.9 Cr</p>
+                <div className="space-y-1 text-left">
+                  <p className="text-[8px] text-slate-500 uppercase tracking-widest font-bold">Total Exposure</p>
+                  <p className="text-base font-extrabold terminal-text-mono text-[#0F172A] dark:text-white">INR 254.9 Cr</p>
                 </div>
-                <div className="space-y-1">
-                  <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Avg Portfolio PD</p>
-                  <p className="text-lg font-extrabold text-rose-400">32.75%</p>
+                <div className="space-y-1 text-left">
+                  <p className="text-[8px] text-slate-500 uppercase tracking-widest font-bold">Weighted Portfolio PD</p>
+                  <p className="text-base font-extrabold terminal-text-mono text-rose-500">32.75%</p>
                 </div>
               </div>
-              <div className="h-1.5 w-full rounded-full bg-slate-900 overflow-hidden">
-                <div className="h-full w-[32%] bg-gradient-to-r from-emerald-500 to-rose-500"></div>
+              <div className="h-1.5 w-full bg-[#E2E8F0] dark:bg-slate-900 rounded-none overflow-hidden">
+                <div className="h-full w-[32%] bg-[#3B82F6]"></div>
               </div>
-              <p className="text-[10px] text-slate-500 text-left">
-                Secured via Row Level Security (RLS) on PostgreSQL. Integrated with XGBoost predictive scoring engine.
+              <p className="text-[9px] text-[#64748B] dark:text-[#94A3B8] text-left leading-relaxed">
+                Secured via Row Level Security (RLS) policies. Linked with an XGBoost ML predictive engine and SHAP explainability.
               </p>
             </div>
           </div>
           
           <div className="space-y-2">
-            <h3 className="text-xl font-bold tracking-tight text-white">Credit Default Risk Assessor</h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Predicting 6-month default risks with CIBIL trajectories, SHAP explainable features, and automated collection strategies powered by Gemini.
+            <h3 className="text-base font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Credit Default Risk Assessor</h3>
+            <p className="text-xs text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
+              Predicting 6-month credit card defaults using CIBIL trajectories, SHAP feature metrics, and automated collection strategies.
             </p>
           </div>
         </div>

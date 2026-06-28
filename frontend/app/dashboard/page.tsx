@@ -1,19 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useStore } from '@/store/useStore';
 import { useQuery } from '@tanstack/react-query';
+import { motion } from 'framer-motion';
 import { 
   TrendingUp, 
   TrendingDown, 
-  AlertTriangle, 
   ShieldAlert, 
   Building,
   CreditCard,
   Users,
   Activity,
-  Layers
+  Layers,
+  Sparkles
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -32,8 +33,12 @@ import {
 export default function OverviewPage() {
   const { user } = useStore();
 
+  // Heatmap highlights state
+  const [hoveredBank, setHoveredBank] = useState<string | null>(null);
+  const [hoveredNetwork, setHoveredNetwork] = useState<string | null>(null);
+
   // React Query to fetch portfolio data
-  const { data: portfolioData, isLoading, error } = useQuery({
+  const { data: portfolioData, isLoading } = useQuery({
     queryKey: ['portfolioData', user?.id],
     queryFn: async () => {
       if (!user) return null;
@@ -57,7 +62,6 @@ export default function OverviewPage() {
       // Merge data by customer_id (latest prediction)
       const latestPreds: Record<string, any> = {};
       predictions.forEach(p => {
-        // Since we want the latest, we overwrite. If there are duplicates, we keep the last one.
         latestPreds[p.customer_id] = p;
       });
 
@@ -70,7 +74,7 @@ export default function OverviewPage() {
         };
       });
 
-      // 1. Calculations
+      // calculations
       const totalSize = merged.length;
       const avgPD = merged.reduce((acc, curr) => acc + curr.risk_score, 0) / totalSize;
       const avgCibil = merged.reduce((acc, curr) => acc + curr.cibil_score, 0) / totalSize;
@@ -115,6 +119,33 @@ export default function OverviewPage() {
         'Avg PD %': parseFloat((networkStats[n].totalPD / networkStats[n].count * 100).toFixed(2))
       }));
 
+      // Dynamic Heatmap Data (Bank x Network)
+      const banksList = ['HDFC', 'ICICI', 'SBI', 'Axis', 'Yes Bank'];
+      const networksList = ['Visa', 'Mastercard', 'RuPay', 'RuPay_UPI'];
+      const heatmap: Record<string, Record<string, { totalPD: number, count: number }>> = {};
+      banksList.forEach(b => {
+        heatmap[b] = {};
+        networksList.forEach(n => {
+          heatmap[b][n] = { totalPD: 0, count: 0 };
+        });
+      });
+      merged.forEach(c => {
+        const b = c.primary_bank;
+        const n = c.card_network;
+        if (heatmap[b] && heatmap[b][n]) {
+          heatmap[b][n].totalPD += c.risk_score;
+          heatmap[b][n].count += 1;
+        }
+      });
+      const heatmapGrid = banksList.map(b => {
+        const row: Record<string, any> = { bank: b };
+        networksList.forEach(n => {
+          const stats = heatmap[b][n];
+          row[n] = stats.count > 0 ? parseFloat((stats.totalPD / stats.count * 100).toFixed(1)) : 15.0; // default safe fallback
+        });
+        return row;
+      });
+
       // Top High-Risk Customers
       const topStressed = [...merged]
         .sort((a, b) => b.risk_score - a.risk_score)
@@ -129,6 +160,7 @@ export default function OverviewPage() {
         counts: { lowCount, medCount, highCount },
         bankChartData,
         networkChartData,
+        heatmapGrid,
         topStressed
       };
     },
@@ -139,17 +171,17 @@ export default function OverviewPage() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <div className="h-8 w-48 rounded bg-slate-900 animate-pulse"></div>
-          <div className="h-4 w-32 rounded bg-slate-900 animate-pulse"></div>
+          <div className="h-6 w-48 rounded bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
+          <div className="h-4 w-32 rounded bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
         </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-28 rounded-xl bg-slate-900/60 border border-slate-900 animate-pulse"></div>
+            <div key={i} className="h-20 rounded bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
           ))}
         </div>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <div className="h-80 rounded-xl bg-slate-900/60 border border-slate-900 lg:col-span-2 animate-pulse"></div>
-          <div className="h-80 rounded-xl bg-slate-900/60 border border-slate-900 animate-pulse"></div>
+          <div className="h-72 rounded bg-slate-200 dark:bg-slate-800 lg:col-span-2 animate-pulse"></div>
+          <div className="h-72 rounded bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
         </div>
       </div>
     );
@@ -157,192 +189,291 @@ export default function OverviewPage() {
 
   const data = portfolioData?.empty ? getMockPortfolioData() : portfolioData;
 
+  const getHeatmapColor = (val: number) => {
+    if (val < 25) return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/10';
+    if (val < 35) return 'bg-amber-500/10 text-amber-400 border border-amber-500/10';
+    return 'bg-rose-500/10 text-rose-400 border border-rose-500/10';
+  };
+
+  const getVerdictStyle = (verdict: string) => {
+    switch (verdict) {
+      case 'Low Risk':
+        return 'text-emerald-400 border border-emerald-500/15 bg-emerald-500/5';
+      case 'Medium Risk':
+        return 'text-amber-400 border border-amber-500/15 bg-amber-500/5';
+      case 'High Risk':
+      default:
+        return 'text-rose-400 border border-rose-500/15 bg-rose-500/5';
+    }
+  };
+
+  // Stagger animation rules
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.05 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 5 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div className="space-y-6 text-slate-100">
+    <div className="space-y-6 text-[#0F172A] dark:text-[#F8FAFC]">
       {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 pb-2 border-b border-[#E2E8F0] dark:border-[#334155]">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-white uppercase">Portfolio Risk Overview</h2>
-          <p className="text-xs text-slate-400">Indian Credit Cards default risk analytics & capital adequacy impact dashboard.</p>
+          <h2 className="text-lg font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Portfolio Risk Command Center</h2>
+          <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Indian credit cards exposures and dynamic default matrix.</p>
         </div>
         {portfolioData?.empty && (
-          <span className="inline-flex items-center rounded-md bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 text-xs font-semibold text-amber-400 uppercase tracking-widest animate-pulse">
-            DEMO MODE (No Portfolio Uploaded)
+          <span className="inline-flex items-center rounded-sm bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[9px] font-black text-amber-400 uppercase tracking-widest animate-pulse">
+            DEMO MODE (Using Fallback Aggregates)
           </span>
         )}
       </div>
 
-      {/* 4 Cards Grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {/* 4 Cards Grid - Staggered Motion */}
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+      >
         {/* Metric 1 */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel">
+        <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ingested Accounts</span>
-            <Users className="h-4 w-4 text-emerald-400" />
+            <span className="text-[9px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Ingested Accounts</span>
+            <Users className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
           </div>
-          <div className="mt-3 flex items-baseline justify-between">
-            <h3 className="text-2xl font-black text-white">{data?.totalSize?.toLocaleString() ?? "0"}</h3>
-            <span className="text-[9px] font-bold text-slate-500 uppercase">Accounts</span>
+          <div className="mt-2.5 flex items-baseline justify-between">
+            <h3 className="text-xl font-black terminal-text-mono tracking-tight text-[#0F172A] dark:text-white">
+              {data?.totalSize?.toLocaleString() ?? "0"}
+            </h3>
+            <span className="text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">Cardholders</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Metric 2 */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel">
+        <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Weighted PD</span>
-            <Activity className="h-4 w-4 text-rose-400" />
+            <span className="text-[9px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Weighted PD</span>
+            <Activity className="h-4 w-4 text-rose-500" />
           </div>
-          <div className="mt-3 flex items-baseline justify-between">
-            <h3 className="text-2xl font-black text-rose-400">{((data?.avgPD ?? 0) * 100).toFixed(2)}%</h3>
-            <span className="inline-flex items-center text-[10px] font-semibold text-rose-400">
-              <TrendingUp className="mr-0.5 h-3 w-3" />
-              Stress level
+          <div className="mt-2.5 flex items-baseline justify-between">
+            <h3 className="text-xl font-black terminal-text-mono text-rose-500">
+              {((data?.avgPD ?? 0) * 100).toFixed(2)}%
+            </h3>
+            <span className="inline-flex items-center text-[8px] font-bold text-rose-400 uppercase">
+              Stress Factor
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Metric 3 */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel">
+        <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Avg CIBIL Score</span>
-            <Layers className="h-4 w-4 text-cyan-400" />
+            <span className="text-[9px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Avg CIBIL Score</span>
+            <Layers className="h-4 w-4 text-cyan-500" />
           </div>
-          <div className="mt-3 flex items-baseline justify-between">
-            <h3 className="text-2xl font-black text-white">{Math.round(data?.avgCibil ?? 0)}</h3>
-            <span className="inline-flex items-center text-[10px] font-semibold text-emerald-400">
-              <TrendingUp className="mr-0.5 h-3 w-3" />
+          <div className="mt-2.5 flex items-baseline justify-between">
+            <h3 className="text-xl font-black terminal-text-mono text-[#0F172A] dark:text-white">
+              {Math.round(data?.avgCibil ?? 0)}
+            </h3>
+            <span className="inline-flex items-center text-[8px] font-bold text-emerald-400 uppercase">
               Prime Avg
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Metric 4 */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel">
+        <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Outstanding Limit</span>
-            <Building className="h-4 w-4 text-indigo-400" />
+            <span className="text-[9px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Outstanding Limit</span>
+            <Building className="h-4 w-4 text-indigo-500" />
           </div>
-          <div className="mt-3 flex items-baseline justify-between">
-            <h3 className="text-xl font-black text-white">
+          <div className="mt-2.5 flex items-baseline justify-between">
+            <h3 className="text-xl font-black terminal-text-mono text-[#0F172A] dark:text-white">
               INR {((data?.totalLimit ?? 0) / 10000000).toFixed(2)} Cr
             </h3>
-            <span className="text-[9px] font-bold text-slate-500 uppercase">Limit Exposure</span>
+            <span className="text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">Exposure</span>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Main Charts Area */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Left Chart: Bank Segmentation */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel lg:col-span-2">
-          <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-4">Bank Exposure and Average PD %</h3>
-          <div className="h-72 w-full text-xs">
+        {/* Left Chart: Bank Exposure */}
+        <div className="terminal-card lg:col-span-2 !p-4">
+          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-4">Bank Exposure and Average PD %</h3>
+          <div className="h-64 w-full text-[10px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data?.bankChartData ?? []}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                <XAxis dataKey="bank" stroke="#64748b" />
-                <YAxis yAxisId="left" stroke="#64748b" label={{ value: 'PD %', angle: -90, position: 'insideLeft', fill: '#64748b' }} />
-                <YAxis yAxisId="right" orientation="right" stroke="#818cf8" label={{ value: 'Limit Exposure (Cr)', angle: 90, position: 'insideRight', fill: '#818cf8' }} />
-                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b' }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" className="dark:stroke-slate-800" />
+                <XAxis dataKey="bank" stroke="#94A3B8" />
+                <YAxis yAxisId="left" stroke="#94A3B8" />
+                <YAxis yAxisId="right" orientation="right" stroke="#3B82F6" />
+                <Tooltip contentStyle={{ backgroundColor: '#1E293B', borderColor: '#334155', borderRadius: '0.125rem' }} />
                 <Legend />
-                <Bar yAxisId="left" dataKey="Avg PD %" fill="#f87171" name="Avg PD %" radius={[4, 4, 0, 0]} />
-                <Bar yAxisId="right" dataKey="Limit exposure (Cr)" fill="#818cf8" name="Exposure (Cr)" radius={[4, 4, 0, 0]} />
+                <Bar yAxisId="left" dataKey="Avg PD %" fill="#EF4444" name="Avg PD %" radius={[1, 1, 0, 0]} isAnimationActive={true} />
+                <Bar yAxisId="right" dataKey="Limit exposure (Cr)" fill="#3B82F6" name="Exposure (Cr)" radius={[1, 1, 0, 0]} isAnimationActive={true} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Right Chart: Risk segment distribution */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel flex flex-col">
-          <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-4">Risk Distribution</h3>
-          <div className="flex-1 flex items-center justify-center h-60">
+        <div className="terminal-card flex flex-col !p-4">
+          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-4">Risk Distribution</h3>
+          <div className="flex-1 flex items-center justify-center h-48">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={[
-                    { name: 'Low Risk (<15%)', value: data?.counts?.lowCount ?? 0, color: '#10b981' },
-                    { name: 'Medium Risk (15-40%)', value: data?.counts?.medCount ?? 0, color: '#eab308' },
-                    { name: 'High Risk (>=40%)', value: data?.counts?.highCount ?? 0, color: '#ef4444' }
+                    { name: 'Low Risk (<15%)', value: data?.counts?.lowCount ?? 0, color: '#10B981' },
+                    { name: 'Medium Risk (15-40%)', value: data?.counts?.medCount ?? 0, color: '#F59E0B' },
+                    { name: 'High Risk (>=40%)', value: data?.counts?.highCount ?? 0, color: '#EF4444' }
                   ]}
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
-                  outerRadius={80}
+                  innerRadius={50}
+                  outerRadius={65}
                   paddingAngle={5}
                   dataKey="value"
+                  isAnimationActive={true}
                 >
-                  <Cell fill="#10b981" />
-                  <Cell fill="#eab308" />
-                  <Cell fill="#ef4444" />
+                  <Cell fill="#10B981" />
+                  <Cell fill="#F59E0B" />
+                  <Cell fill="#EF4444" />
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#1E293B', borderColor: '#334155', borderRadius: '0.125rem' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-bold border-t border-slate-900 pt-3">
+          <div className="grid grid-cols-3 gap-2 text-center text-[9px] font-bold border-t border-[#E2E8F0] dark:border-slate-800 pt-3">
             <div>
               <span className="text-emerald-400 block">LOW</span>
-              <span className="text-slate-400 text-[9px]">{data?.counts?.lowCount ?? 0} Accts</span>
+              <span className="text-slate-400 terminal-text-mono">{data?.counts?.lowCount} Accts</span>
             </div>
             <div>
               <span className="text-yellow-400 block">MEDIUM</span>
-              <span className="text-slate-400 text-[9px]">{data?.counts?.medCount ?? 0} Accts</span>
+              <span className="text-slate-400 terminal-text-mono">{data?.counts?.medCount} Accts</span>
             </div>
             <div>
               <span className="text-rose-400 block">HIGH</span>
-              <span className="text-slate-400 text-[9px]">{data?.counts?.highCount ?? 0} Accts</span>
+              <span className="text-slate-400 terminal-text-mono">{data?.counts?.highCount} Accts</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Lower Row: Network PD and High-Risk Table */}
+      {/* Row 3: Interactive Heatmap + High-Risk table */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Network Chart */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel">
-          <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-4">PD % by Card Network</h3>
-          <div className="h-64 w-full text-xs">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data?.networkChartData ?? []} layout="vertical">
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                <XAxis type="number" stroke="#64748b" />
-                <YAxis dataKey="network" type="category" stroke="#64748b" />
-                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b' }} />
-                <Bar dataKey="Avg PD %" fill="#fbbf24" radius={[0, 4, 4, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+        
+        {/* Heatmap Card */}
+        <div className="terminal-card !p-4 flex flex-col">
+          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-2 flex items-center space-x-1.5">
+            <Sparkles className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+            <span>Bank x Network Risk Heatmap</span>
+          </h3>
+          <p className="text-[8px] text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wide mb-4">
+            Cross-hair highlights on hover. Cell indicates avg PD %.
+          </p>
+
+          <div className="flex-1 flex flex-col justify-between">
+            <table className="w-full text-[10px] text-center border-collapse">
+              <thead>
+                <tr className="border-b border-[#E2E8F0] dark:border-slate-800">
+                  <th className="py-2 text-[#64748B] dark:text-[#94A3B8] text-left uppercase text-[8px] font-bold">Bank</th>
+                  {['Visa', 'Mastercard', 'RuPay', 'RuPay_UPI'].map(net => (
+                    <th 
+                      key={net} 
+                      className={`py-2 uppercase text-[8px] font-bold transition-all ${
+                        hoveredNetwork === net ? 'text-[#2563EB] dark:text-[#3B82F6] bg-blue-500/5' : 'text-[#64748B] dark:text-[#94A3B8]'
+                      }`}
+                    >
+                      {net.replace('_', ' ')}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {data?.heatmapGrid?.map((row: any) => (
+                  <tr 
+                    key={row.bank} 
+                    className={`transition-all ${
+                      hoveredBank === row.bank ? 'bg-blue-500/5' : ''
+                    }`}
+                  >
+                    <td className={`py-2 text-left font-bold border-r border-[#E2E8F0] dark:border-slate-800 text-[9px] uppercase ${
+                      hoveredBank === row.bank ? 'text-[#2563EB] dark:text-[#3B82F6]' : 'text-slate-400'
+                    }`}>
+                      {row.bank}
+                    </td>
+                    {['Visa', 'Mastercard', 'RuPay', 'RuPay_UPI'].map(net => {
+                      const val = row[net] || 15.0;
+                      return (
+                        <td
+                          key={net}
+                          onMouseEnter={() => {
+                            setHoveredBank(row.bank);
+                            setHoveredNetwork(net);
+                          }}
+                          onMouseLeave={() => {
+                            setHoveredBank(null);
+                            setHoveredNetwork(null);
+                          }}
+                          className={`p-1 font-bold terminal-text-mono transition-all duration-150 cursor-crosshair border ${
+                            hoveredBank === row.bank && hoveredNetwork === net 
+                              ? 'scale-105 border-[#2563EB] dark:border-[#3B82F6] shadow-sm z-10' 
+                              : 'border-transparent'
+                          }`}
+                        >
+                          <div className={`py-1.5 rounded-sm ${getHeatmapColor(val)}`}>
+                            {val.toFixed(1)}%
+                          </div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
         {/* High Risk Table */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel lg:col-span-2">
-          <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Stressed Assets - Highest Default Risk</h3>
+        <div className="terminal-card lg:col-span-2 !p-4">
+          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-4 flex items-center space-x-1.5">
+            <ShieldAlert className="h-4.5 w-4.5 text-rose-500" />
+            <span>High Stressed Receivables (Highest default PD)</span>
+          </h3>
+
           <div className="overflow-x-auto">
-            <table className="w-full text-[11px] text-left text-slate-300">
-              <thead className="bg-slate-950/80 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-800">
+            <table className="w-full text-[10px] text-left">
+              <thead className="bg-[#F8FAFC]/80 dark:bg-slate-950/80 text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest border-b border-[#E2E8F0] dark:border-slate-800">
                 <tr>
-                  <th className="px-4 py-2.5">Cust ID</th>
-                  <th className="px-4 py-2.5">Name</th>
-                  <th className="px-4 py-2.5">CIBIL</th>
-                  <th className="px-4 py-2.5">Bank</th>
-                  <th className="px-4 py-2.5">Limit</th>
-                  <th className="px-4 py-2.5 text-right">Continuous PD</th>
+                  <th className="px-3 py-2">Cust ID</th>
+                  <th className="px-3 py-2">Name</th>
+                  <th className="px-3 py-2">CIBIL</th>
+                  <th className="px-3 py-2">Bank</th>
+                  <th className="px-3 py-2">Limit</th>
+                  <th className="px-3 py-2 text-right">Probability of Default</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-900">
+              <tbody className="divide-y divide-[#E2E8F0] dark:divide-slate-900">
                 {data?.topStressed?.map((cust: any) => (
-                  <tr key={cust.customer_id} className="hover:bg-slate-900/40 transition-colors">
-                    <td className="px-4 py-3 font-mono font-bold text-emerald-400">{cust.customer_id}</td>
-                    <td className="px-4 py-3 text-slate-200">{cust.customer_name}</td>
-                    <td className="px-4 py-3">
-                      <span className={`font-bold ${cust.cibil_score < 600 ? 'text-red-400' : 'text-slate-300'}`}>
-                        {cust.cibil_score}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3">{cust.primary_bank}</td>
-                    <td className="px-4 py-3">INR {cust.total_credit_limit.toLocaleString()}</td>
-                    <td className="px-4 py-3 text-right">
-                      <span className="inline-flex rounded-full bg-rose-950/50 border border-rose-800/30 px-2 py-0.5 font-black text-rose-400">
+                  <tr key={cust.customer_id} className="terminal-table-row">
+                    <td className="px-3 py-2 font-mono font-bold text-[#2563EB] dark:text-[#3B82F6]">{cust.customer_id}</td>
+                    <td className="px-3 py-2 font-bold text-[#0F172A] dark:text-slate-200">{cust.customer_name}</td>
+                    <td className="px-3 py-2 font-bold terminal-text-mono">{cust.cibil_score}</td>
+                    <td className="px-3 py-2 font-bold">{cust.primary_bank}</td>
+                    <td className="px-3 py-2 font-semibold terminal-text-mono">INR {cust.total_credit_limit.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-right font-black">
+                      <span className={`inline-flex rounded-sm px-2 py-0.5 text-[9px] font-extrabold ${getVerdictStyle(cust.risk_score >= 0.4 ? 'High Risk' : cust.risk_score >= 0.15 ? 'Medium Risk' : 'Low Risk')}`}>
                         {(cust.risk_score * 100).toFixed(1)}%
                       </span>
                     </td>
@@ -352,6 +483,7 @@ export default function OverviewPage() {
             </table>
           </div>
         </div>
+
       </div>
     </div>
   );
@@ -381,6 +513,13 @@ function getMockPortfolioData() {
       { network: 'Mastercard', 'Avg PD %': 33.5 },
       { network: 'RuPay', 'Avg PD %': 35.1 },
       { network: 'RuPay UPI', 'Avg PD %': 34.0 }
+    ],
+    heatmapGrid: [
+      { bank: 'HDFC', Visa: 26.2, Mastercard: 28.1, RuPay: 31.0, RuPay_UPI: 29.5 },
+      { bank: 'ICICI', Visa: 29.5, Mastercard: 32.0, RuPay: 33.4, RuPay_UPI: 31.2 },
+      { bank: 'SBI', Visa: 36.4, Mastercard: 39.0, RuPay: 41.2, RuPay_UPI: 39.5 },
+      { bank: 'Axis', Visa: 32.1, Mastercard: 34.5, RuPay: 36.0, RuPay_UPI: 35.1 },
+      { bank: 'Yes Bank', Visa: 34.0, Mastercard: 36.5, RuPay: 39.2, RuPay_UPI: 37.8 }
     ],
     topStressed: [
       { customer_id: 'IND100561', customer_name: 'Amit Sharma', cibil_score: 412, primary_bank: 'SBI', total_credit_limit: 150000, risk_score: 0.945 },

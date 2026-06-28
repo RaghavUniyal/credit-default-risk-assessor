@@ -31,6 +31,7 @@ export default function PortfolioPage() {
   const [isMapping, setIsMapping] = useState(false);
   const [isIngesting, setIsIngesting] = useState(false);
   const [activeJob, setActiveJob] = useState<any>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   // Data Table States
   const [tableSearch, setTableSearch] = useState('');
@@ -67,7 +68,6 @@ export default function PortfolioPage() {
     queryFn: async () => {
       if (!user) return [];
       
-      // Fetch customers and predictions in parallel
       const [custRes, predRes] = await Promise.all([
         supabase.from('customers').select('*').eq('user_id', user.id),
         supabase.from('predictions').select('customer_id, risk_score, verdict').eq('user_id', user.id)
@@ -77,14 +77,13 @@ export default function PortfolioPage() {
       const customers = custRes.data || [];
       const predictions = predRes.data || [];
 
-      // Map predictions to customers
       const predMap: Record<string, any> = {};
       predictions.forEach(p => {
         predMap[p.customer_id] = p;
       });
 
       return customers.map(c => {
-        const pred = predMap[c.customer_id] || { risk_score: 0.1, verdict: 'Low Risk' };
+        const pred = predMap[c.customer_id] || { risk_score: 0.12, verdict: 'Low Risk' };
         return {
           ...c,
           risk_score: parseFloat(pred.risk_score),
@@ -95,11 +94,36 @@ export default function PortfolioPage() {
     enabled: !!user?.id
   });
 
-  // Handle CSV file selection
+  // Handle Drag and Drop
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    
+    const droppedFile = e.dataTransfer.files?.[0];
+    if (droppedFile && droppedFile.name.endsWith('.csv')) {
+      processFile(droppedFile);
+    } else {
+      alert("Please upload a valid CSV file.");
+    }
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
-    if (!selectedFile) return;
-    
+    if (selectedFile) {
+      processFile(selectedFile);
+    }
+  };
+
+  const processFile = (selectedFile: File) => {
     setFile(selectedFile);
     const reader = new FileReader();
     
@@ -107,7 +131,6 @@ export default function PortfolioPage() {
       const text = event.target?.result as string;
       setCsvContent(text);
       
-      // Extract headers from first line
       const lines = text.split('\n');
       if (lines.length > 0) {
         const parsedHeaders = lines[0]
@@ -139,7 +162,6 @@ export default function PortfolioPage() {
     reader.readAsText(selectedFile);
   };
 
-  // Submit Ingestion Job
   const handleStartIngestion = async () => {
     if (!user) return;
     
@@ -147,7 +169,6 @@ export default function PortfolioPage() {
     const batchJobId = self.crypto.randomUUID();
     
     try {
-      // 1. Create a Pending Job Record in Supabase
       const { error: jobErr } = await supabase.from('batch_jobs').insert({
         id: batchJobId,
         user_id: user.id,
@@ -159,7 +180,6 @@ export default function PortfolioPage() {
 
       if (jobErr) throw jobErr;
 
-      // 2. Call FastAPI Start Ingest endpoint
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
       const token = (await supabase.auth.getSession()).data.session?.access_token;
       
@@ -180,14 +200,13 @@ export default function PortfolioPage() {
 
       if (!res.ok) throw new Error('API failed to enqueue job');
 
-      // 3. Close Mapping UI & start Polling active job
       setIsMapping(false);
       setActiveJob({
         id: batchJobId,
         filename: file?.name,
         status: 'processing',
         processed_rows: 0,
-        total_rows: 10000 // placeholder till API updates
+        total_rows: 10000 
       });
       
     } catch (err: any) {
@@ -197,12 +216,11 @@ export default function PortfolioPage() {
     }
   };
 
-  // Polling Ingestion Job Status
   useEffect(() => {
     if (!activeJob) return;
 
     const interval = setInterval(async () => {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('batch_jobs')
         .select('*')
         .eq('id', activeJob.id)
@@ -214,7 +232,6 @@ export default function PortfolioPage() {
           clearInterval(interval);
           setIsIngesting(false);
           setFile(null);
-          // Wait briefly then refresh table
           setTimeout(() => {
             refetchCustomers();
             setActiveJob(null);
@@ -226,7 +243,7 @@ export default function PortfolioPage() {
     return () => clearInterval(interval);
   }, [activeJob, refetchCustomers]);
 
-  // Sort and Filter Logic
+  // Sorting / Filtering
   const filteredCustomers = (customerList || []).filter(c => {
     const searchLower = tableSearch.toLowerCase();
     return (
@@ -241,17 +258,12 @@ export default function PortfolioPage() {
     let bVal = b[sortField];
     
     if (typeof aVal === 'string') {
-      return sortDirection === 'asc' 
-        ? aVal.localeCompare(bVal) 
-        : bVal.localeCompare(aVal);
+      return sortDirection === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
     } else {
-      return sortDirection === 'asc' 
-        ? aVal - bVal 
-        : bVal - aVal;
+      return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
     }
   });
 
-  // Pagination Logic
   const totalItems = sortedCustomers.length;
   const totalPages = Math.ceil(totalItems / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
@@ -269,104 +281,111 @@ export default function PortfolioPage() {
   const getVerdictBadge = (verdict: string) => {
     switch (verdict) {
       case 'Low Risk':
-        return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+        return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/15';
       case 'Medium Risk':
-        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+        return 'bg-amber-500/10 text-amber-400 border-amber-500/15';
       case 'High Risk':
       default:
-        return 'bg-rose-500/10 text-rose-400 border-rose-500/20';
+        return 'bg-rose-500/10 text-rose-400 border-rose-500/15';
     }
   };
 
   return (
-    <div className="space-y-6 text-slate-100">
+    <div className="space-y-6 text-[#0F172A] dark:text-[#F8FAFC]">
       {/* Title */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight text-white uppercase">Portfolio Ingestion Hub</h2>
-          <p className="text-xs text-slate-400">Map custom bureau spreadsheets, predict default ratios, and index active credit portfolios.</p>
-        </div>
+      <div className="pb-2 border-b border-[#E2E8F0] dark:border-[#334155]">
+        <h2 className="text-lg font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Portfolio Ingestion Hub</h2>
+        <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Map custom bureau credit card datasets and calculate continuous default probability.</p>
       </div>
 
-      {/* Upload Zone & Active Progress Area */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Upload Card */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel lg:col-span-2 flex flex-col justify-center items-center py-8">
+        {/* Upload Zone */}
+        <div className="terminal-card lg:col-span-2 flex flex-col justify-center items-center py-6 !p-4">
           {!isMapping && !activeJob && (
-            <label className="flex flex-col items-center justify-center border-2 border-dashed border-slate-800 hover:border-emerald-500/40 rounded-xl p-8 cursor-pointer w-full text-center hover:bg-slate-900/20 transition-all">
-              <UploadCloud className="h-10 w-10 text-slate-500 mb-3" />
-              <span className="text-xs font-bold text-slate-300 uppercase tracking-widest">Select Bureau Portfolio CSV</span>
-              <span className="text-[10px] text-slate-500 mt-1">Accepts raw Indian credit card portfolio rows (up to 10k rows)</span>
-              <input
-                type="file"
-                accept=".csv"
-                onChange={handleFileChange}
-                className="hidden"
-              />
-            </label>
+            <div 
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`flex flex-col items-center justify-center border-2 border-dashed rounded-none p-10 cursor-pointer w-full text-center transition-all duration-150 ${
+                isDragging 
+                  ? 'border-[#2563EB] dark:border-[#3B82F6] bg-blue-500/5' 
+                  : 'border-[#E2E8F0] dark:border-slate-800 hover:border-[#2563EB] dark:hover:border-[#3B82F6]/60'
+              }`}
+            >
+              <UploadCloud className={`h-8 w-8 mb-2 transition-transform ${isDragging ? 'scale-110 text-[#3B82F6]' : 'text-slate-500'}`} />
+              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-300">
+                Drag & Drop Portfolio CSV Here
+              </span>
+              <span className="text-[8px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-1">
+                Accepts raw bureau accounts (up to 10k rows)
+              </span>
+              
+              <label className="mt-4 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#FFFFFF] dark:bg-[#1E293B] px-4 py-1.5 text-[9px] font-black uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-white transition-colors cursor-pointer">
+                Browse Files
+                <input
+                  type="file"
+                  accept=".csv"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+              </label>
+            </div>
           )}
 
-          {/* Ingestion progress display */}
+          {/* Ingestion active progress bar */}
           {activeJob && (
             <div className="w-full space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-900 pb-2.5">
-                <div className="flex items-center space-x-2">
-                  <RefreshCw className="h-4 w-4 animate-spin text-emerald-400" />
-                  <span className="text-xs font-bold uppercase text-slate-200">Asynchronous Data Processing</span>
+              <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-slate-800 pb-2">
+                <div className="flex items-center space-x-1.5">
+                  <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#2563EB] dark:text-[#3B82F6]" />
+                  <span className="text-[9px] font-black uppercase text-slate-400 dark:text-slate-200">Asynchronous Data Processing</span>
                 </div>
-                <span className="text-[10px] rounded bg-emerald-500/10 px-2 py-0.5 text-emerald-400 font-bold border border-emerald-500/15 uppercase">
+                <span className="text-[8px] rounded-sm bg-[#2563EB]/10 px-2 py-0.5 text-[#2563EB] dark:text-[#3B82F6] font-bold border border-[#2563EB]/15 uppercase">
                   {activeJob.status}
                 </span>
               </div>
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs font-semibold text-slate-400">
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-[10px] font-bold text-[#64748B] dark:text-[#94A3B8]">
                   <span>File: {activeJob.filename}</span>
-                  <span>
+                  <span className="terminal-text-mono">
                     {activeJob.processed_rows.toLocaleString()} / {activeJob.total_rows.toLocaleString()} Rows
                   </span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-slate-950 overflow-hidden">
+                <div className="h-2 w-full rounded-none bg-[#E2E8F0] dark:bg-slate-950 overflow-hidden">
                   <div 
-                    className="h-full bg-emerald-500 rounded-full transition-all duration-300"
+                    className="h-full bg-[#2563EB] dark:bg-[#3B82F6] transition-all duration-300"
                     style={{ width: `${(activeJob.processed_rows / (activeJob.total_rows || 1)) * 100}%` }}
                   ></div>
                 </div>
               </div>
               {activeJob.status === 'completed' && (
-                <div className="flex items-center space-x-2 text-xs text-emerald-400 font-semibold bg-emerald-950/20 border border-emerald-900/40 rounded-lg p-3">
-                  <CheckCircle2 className="h-4.5 w-4.5 shrink-0" />
+                <div className="flex items-center space-x-2 text-[10px] text-emerald-400 font-bold bg-emerald-950/10 border border-emerald-900/20 rounded-sm p-3">
+                  <CheckCircle2 className="h-4 w-4 shrink-0" />
                   <span>Success! 10,000 portfolio records ingested, scored, and mapped with RLS security policies.</span>
-                </div>
-              )}
-              {activeJob.status === 'failed' && (
-                <div className="flex items-center space-x-2 text-xs text-rose-400 font-semibold bg-rose-950/20 border border-rose-900/40 rounded-lg p-3">
-                  <AlertCircle className="h-4.5 w-4.5 shrink-0" />
-                  <span>Error: {activeJob.error_message}</span>
                 </div>
               )}
             </div>
           )}
 
-          {/* Mapping Options UI */}
+          {/* Schema Mapping UI */}
           {isMapping && (
             <div className="w-full space-y-4 text-xs">
-              <div className="flex items-center justify-between border-b border-slate-900 pb-2.5">
-                <span className="font-bold text-slate-200 uppercase tracking-widest flex items-center space-x-2">
-                  <Map className="h-4.5 w-4.5 text-indigo-400" />
+              <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-slate-800 pb-2">
+                <span className="font-black text-slate-400 dark:text-slate-200 uppercase tracking-widest flex items-center space-x-1.5">
+                  <Map className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
                   <span>Schema Column Mapper</span>
                 </span>
-                <span className="text-[10px] text-slate-500 font-bold uppercase">Heuristic Matches Pre-populated</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[250px] overflow-y-auto pr-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 max-h-[220px] overflow-y-auto pr-1">
                 {internalFields.map((field) => (
                   <div key={field.key} className="flex flex-col space-y-1">
-                    <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
-                      {field.label} {field.required && <span className="text-rose-400">*</span>}
+                    <label className="text-[9px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase tracking-wider">
+                      {field.label} {field.required && <span className="text-rose-500">*</span>}
                     </label>
                     <select
                       value={mapping[field.key] || ''}
                       onChange={(e) => setMapping({ ...mapping, [field.key]: e.target.value })}
-                      className="rounded bg-slate-950 border border-slate-800 px-3 py-2 text-slate-200 focus:outline-none"
+                      className="rounded-sm bg-[#F8FAFC] dark:bg-slate-950 border border-[#E2E8F0] dark:border-slate-800 px-2 py-1.5 text-xs text-[#0F172A] dark:text-slate-200 focus:outline-none"
                     >
                       <option value="">-- Ignore / Select Header --</option>
                       {headers.map(h => (
@@ -376,11 +395,11 @@ export default function PortfolioPage() {
                   </div>
                 ))}
               </div>
-              <div className="flex space-x-3 pt-3">
+              <div className="flex space-x-2 pt-2">
                 <button
                   onClick={handleStartIngestion}
                   disabled={isIngesting}
-                  className="flex-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:bg-emerald-850 px-6 py-2.5 font-bold text-slate-950 uppercase tracking-widest cursor-pointer text-center"
+                  className="flex-1 rounded-sm bg-[#2563EB] hover:bg-blue-600 disabled:bg-blue-800 py-2 text-[10px] font-black text-white uppercase tracking-widest cursor-pointer text-center"
                 >
                   Confirm and Start Ingest
                 </button>
@@ -389,7 +408,7 @@ export default function PortfolioPage() {
                     setIsMapping(false);
                     setFile(null);
                   }}
-                  className="rounded-lg bg-slate-950 hover:bg-slate-900 border border-slate-800 px-6 py-2.5 font-bold text-slate-400 uppercase tracking-widest cursor-pointer"
+                  className="rounded-sm bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 border border-[#E2E8F0] dark:border-[#334155] px-4 py-2 text-[10px] font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -399,12 +418,14 @@ export default function PortfolioPage() {
         </div>
 
         {/* Info Box */}
-        <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel space-y-3.5 text-xs text-slate-400">
-          <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">System Specifications</h3>
-          <p className="leading-relaxed">
-            Upload custom spreadsheets containing customer metrics. The engine parses the CSV in chunks of 500, score them against our XGBoost ML model to calculate default probability, and stores them under Row Level Security (RLS) constraints.
-          </p>
-          <div className="rounded-lg bg-slate-950 border border-slate-900 p-3 space-y-1.5 font-semibold text-[10px] uppercase text-slate-500">
+        <div className="terminal-card text-[10px] text-[#64748B] dark:text-[#94A3B8] space-y-3.5 !p-4 flex flex-col justify-between">
+          <div className="space-y-2">
+            <h3 className="text-xs font-bold text-[#0F172A] dark:text-slate-300 uppercase tracking-wider">System Specifications</h3>
+            <p className="leading-relaxed">
+              Upload custom spreadsheets containing customer metrics. The engine parses the CSV in chunks of 500, scores them against our XGBoost ML model to calculate default probability, and stores them under Row Level Security (RLS) constraints.
+            </p>
+          </div>
+          <div className="border-t border-[#E2E8F0] dark:border-slate-800 pt-3.5 space-y-1.5 font-bold uppercase text-[#64748B] dark:text-[#94A3B8]">
             <span className="block text-emerald-400">✓ Continuous PD [0.0 - 1.0]</span>
             <span className="block text-emerald-400">✓ 3-Tier Risk Verdict mapping</span>
             <span className="block text-indigo-400">✓ Dynamic Column Name Synonyms</span>
@@ -413,17 +434,17 @@ export default function PortfolioPage() {
       </div>
 
       {/* Main Customers List Data Table */}
-      <div className="rounded-xl bg-slate-900/40 border border-slate-900 p-5 glass-panel">
+      <div className="terminal-card !p-4">
         
         {/* Table Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 gap-4">
-          <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center space-x-1.5">
-            <Filter className="h-4.5 w-4.5 text-emerald-400" />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-3 border-b border-[#E2E8F0] dark:border-slate-800 mb-4 gap-4">
+          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider flex items-center space-x-1.5">
+            <Filter className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
             <span>Ingested Portfolio Cardholders</span>
           </h3>
           
           <div className="relative max-w-xs w-full">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
+            <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-[#64748B] dark:text-[#94A3B8]" />
             <input
               type="text"
               placeholder="Search by ID, Name or City"
@@ -432,84 +453,84 @@ export default function PortfolioPage() {
                 setTableSearch(e.target.value);
                 setCurrentPage(1);
               }}
-              className="w-full rounded-lg bg-slate-950 border border-slate-800 pl-9 pr-4 py-1.5 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+              className="w-full rounded-sm border border-[#E2E8F0] dark:border-slate-800 bg-[#F8FAFC] dark:bg-slate-950 pl-8 pr-3 py-1 text-xs text-[#0F172A] dark:text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#2563EB] dark:focus:border-[#3B82F6]"
             />
           </div>
         </div>
 
         {/* Data Table */}
-        <div className="overflow-x-auto min-h-[300px]">
+        <div className="overflow-x-auto min-h-[250px]">
           {tableLoading ? (
-            <div className="flex h-40 items-center justify-center">
-              <RefreshCw className="h-6 w-6 animate-spin text-emerald-400" />
+            <div className="flex h-36 items-center justify-center">
+              <RefreshCw className="h-5 w-5 animate-spin text-[#2563EB] dark:text-[#3B82F6]" />
             </div>
           ) : paginatedCustomers.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-48 text-slate-500 text-xs">
+            <div className="flex flex-col items-center justify-center h-36 text-[#64748B] dark:text-[#94A3B8] text-xs">
               <span>No customer records indexed in your portfolio.</span>
-              <span className="mt-1">Drag and drop a CSV file to index new data.</span>
+              <span className="mt-1 font-bold uppercase text-[9px]">Drag and drop a CSV file to index new data.</span>
             </div>
           ) : (
-            <table className="w-full text-[11px] text-left text-slate-300">
-              <thead className="bg-slate-950/80 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-800">
+            <table className="w-full text-[10px] text-left">
+              <thead className="bg-[#F8FAFC]/80 dark:bg-slate-950/80 text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest border-b border-[#E2E8F0] dark:border-slate-800">
                 <tr>
-                  <th onClick={() => toggleSort('customer_id')} className="px-4 py-3 cursor-pointer hover:text-slate-200">
+                  <th onClick={() => toggleSort('customer_id')} className="px-3 py-2 cursor-pointer hover:text-[#0F172A] dark:hover:text-white">
                     <span className="flex items-center">
                       ID <ArrowUpDown className="h-3 w-3 ml-1" />
                     </span>
                   </th>
-                  <th onClick={() => toggleSort('customer_name')} className="px-4 py-3 cursor-pointer hover:text-slate-200">
+                  <th onClick={() => toggleSort('customer_name')} className="px-3 py-2 cursor-pointer hover:text-[#0F172A] dark:hover:text-white">
                     <span className="flex items-center">
                       Name <ArrowUpDown className="h-3 w-3 ml-1" />
                     </span>
                   </th>
-                  <th onClick={() => toggleSort('cibil_score')} className="px-4 py-3 cursor-pointer hover:text-slate-200">
+                  <th onClick={() => toggleSort('cibil_score')} className="px-3 py-2 cursor-pointer hover:text-[#0F172A] dark:hover:text-white">
                     <span className="flex items-center">
                       CIBIL <ArrowUpDown className="h-3 w-3 ml-1" />
                     </span>
                   </th>
-                  <th onClick={() => toggleSort('primary_bank')} className="px-4 py-3 cursor-pointer hover:text-slate-200">
+                  <th onClick={() => toggleSort('primary_bank')} className="px-3 py-2 cursor-pointer hover:text-[#0F172A] dark:hover:text-white">
                     <span className="flex items-center">
                       Bank <ArrowUpDown className="h-3 w-3 ml-1" />
                     </span>
                   </th>
-                  <th onClick={() => toggleSort('current_utilization_pct')} className="px-4 py-3 cursor-pointer hover:text-slate-200">
+                  <th onClick={() => toggleSort('current_utilization_pct')} className="px-3 py-2 cursor-pointer hover:text-[#0F172A] dark:hover:text-white">
                     <span className="flex items-center">
                       Utilization <ArrowUpDown className="h-3 w-3 ml-1" />
                     </span>
                   </th>
-                  <th onClick={() => toggleSort('risk_score')} className="px-4 py-3 cursor-pointer hover:text-slate-200 text-right">
+                  <th onClick={() => toggleSort('risk_score')} className="px-3 py-2 cursor-pointer hover:text-[#0F172A] dark:hover:text-white text-right">
                     <span className="flex items-center justify-end">
                       Default PD % <ArrowUpDown className="h-3 w-3 ml-1" />
                     </span>
                   </th>
-                  <th className="px-4 py-3 text-right">Action</th>
+                  <th className="px-3 py-2 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-900">
+              <tbody className="divide-y divide-[#E2E8F0] dark:divide-slate-900">
                 {paginatedCustomers.map((cust) => (
-                  <tr key={cust.customer_id} className="hover:bg-slate-900/40 transition-colors">
-                    <td className="px-4 py-3.5 font-mono font-bold text-emerald-400">{cust.customer_id}</td>
-                    <td className="px-4 py-3.5 text-slate-200">{cust.customer_name}</td>
-                    <td className="px-4 py-3.5 font-semibold">{cust.cibil_score}</td>
-                    <td className="px-4 py-3.5">{cust.primary_bank}</td>
-                    <td className="px-4 py-3.5">{cust.current_utilization_pct}%</td>
-                    <td className="px-4 py-3.5 text-right font-black">
-                      <span className={`inline-flex rounded-full border px-2 py-0.5 text-[10px] ${
+                  <tr key={cust.customer_id} className="terminal-table-row">
+                    <td className="px-3 py-2 font-mono font-bold text-[#2563EB] dark:text-[#3B82F6]">{cust.customer_id}</td>
+                    <td className="px-3 py-2 font-bold text-[#0F172A] dark:text-slate-200">{cust.customer_name}</td>
+                    <td className="px-3 py-2 font-bold terminal-text-mono">{cust.cibil_score}</td>
+                    <td className="px-3 py-2 font-bold">{cust.primary_bank}</td>
+                    <td className="px-3 py-2 font-bold terminal-text-mono">{cust.current_utilization_pct}%</td>
+                    <td className="px-3 py-2 text-right font-black">
+                      <span className={`inline-flex rounded-sm px-2 py-0.5 text-[9px] font-extrabold ${
                         getVerdictBadge(cust.verdict)
                       }`}>
                         {(cust.risk_score * 100).toFixed(1)}%
                       </span>
                     </td>
-                    <td className="px-4 py-3.5 text-right">
+                    <td className="px-3 py-2 text-right">
                       <button
                         onClick={() => {
                           setSelectedCustomerId(cust.customer_id);
                           router.push('/dashboard/customer-360');
                         }}
-                        className="rounded bg-slate-950 hover:bg-slate-900 border border-slate-800 p-1.5 text-emerald-400 transition-colors cursor-pointer"
+                        className="rounded-sm bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 border border-[#E2E8F0] dark:border-slate-800 p-1 text-[#2563EB] dark:text-[#3B82F6] transition-colors cursor-pointer"
                         title="Customer 360 Deep-dive"
                       >
-                        <Eye className="h-4 w-4" />
+                        <Eye className="h-3.5 w-3.5" />
                       </button>
                     </td>
                   </tr>
@@ -519,29 +540,29 @@ export default function PortfolioPage() {
           )}
         </div>
 
-        {/* Pagination controls */}
+        {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between border-t border-slate-900 pt-4 text-xs font-semibold text-slate-400">
+          <div className="flex items-center justify-between border-t border-[#E2E8F0] dark:border-slate-800 pt-3 text-[10px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">
             <span>
               Showing {startIndex + 1} to {Math.min(startIndex + pageSize, totalItems)} of {totalItems} entries
             </span>
-            <div className="flex space-x-2">
+            <div className="flex space-x-1">
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className="rounded bg-slate-950 hover:bg-slate-900 disabled:opacity-40 border border-slate-800 p-1.5 cursor-pointer"
+                className="rounded-sm bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-40 border border-[#E2E8F0] dark:border-slate-800 p-1 cursor-pointer"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-3.5 w-3.5" />
               </button>
-              <span className="px-3 py-1.5 bg-slate-950 border border-slate-800 rounded">
+              <span className="px-3 py-1 bg-[#F8FAFC] dark:bg-slate-900 border border-[#E2E8F0] dark:border-slate-800 rounded-sm">
                 Page {currentPage} of {totalPages}
               </span>
               <button
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="rounded bg-slate-950 hover:bg-slate-900 disabled:opacity-40 border border-slate-800 p-1.5 cursor-pointer"
+                className="rounded-sm bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-40 border border-[#E2E8F0] dark:border-slate-800 p-1 cursor-pointer"
               >
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
