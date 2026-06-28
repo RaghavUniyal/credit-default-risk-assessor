@@ -20,8 +20,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         clearAuth();
         setAuthLoading(false);
-        if (pathname !== '/login') {
-          router.replace('/login');
+        if (pathname.startsWith('/dashboard')) {
+          router.replace('/');
         }
       }
     });
@@ -31,14 +31,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       async (event, session) => {
         if (session) {
           fetchProfile(session.user);
-          if (pathname === '/login') {
+          if (pathname === '/') {
             router.replace('/dashboard');
           }
         } else {
           clearAuth();
           setAuthLoading(false);
-          if (pathname !== '/login') {
-            router.replace('/login');
+          if (pathname.startsWith('/dashboard')) {
+            router.replace('/');
           }
         }
       }
