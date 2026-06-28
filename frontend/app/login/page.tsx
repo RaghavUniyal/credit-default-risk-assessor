@@ -195,7 +195,7 @@ export default function LoginPage() {
               }}
               className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold tracking-wide transition-colors uppercase cursor-pointer"
             >
-              {isRegistering ? 'Have an active profile? Log In' : 'Need bank credentials? Request Access'}
+              {isRegistering ? 'Already have an account? Log In' : 'New here? Create an account'}
             </button>
           </div>
         </div>
