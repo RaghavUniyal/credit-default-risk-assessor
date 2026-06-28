@@ -174,12 +174,7 @@ function LoginPanel() {
         </motion.button>
       </form>
 
-      {/* Admin registration trigger block */}
-      <div className="text-center pt-2">
-        <span className="text-xs text-[#0066FF] dark:text-[#3B82F6] font-bold uppercase tracking-wide">
-          Request Access (Administrators Only)
-        </span>
-      </div>
+
 
       <div className="border-t border-[#E2E8F0] dark:border-slate-800 pt-4 text-center">
         <p className="text-[10px] font-mono text-[#64748B] dark:text-slate-500 uppercase tracking-widest">
