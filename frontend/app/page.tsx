@@ -97,14 +97,14 @@ function LoginPanel() {
     <div className="mx-auto w-full max-w-sm space-y-6">
       {/* Brand Header */}
       <div className="flex items-center space-x-2.5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-[#2563EB] dark:bg-[#3B82F6] text-white font-black shadow-md shadow-blue-500/20">
+        <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-[#FFA028] dark:bg-[#FFA028] text-white font-black shadow-md shadow-amber-500/20">
           <ShieldCheck className="h-5 w-5" />
         </div>
         <div>
           <h1 className="text-sm font-black tracking-wider text-[#0F172A] dark:text-white uppercase font-mono">
             Credit Risk Assessor
           </h1>
-          <p className="text-[8px] tracking-widest text-[#2563EB] dark:text-[#3B82F6] font-bold uppercase">
+          <p className="text-[8px] tracking-widest text-[#FFA028] dark:text-[#FFA028] font-bold uppercase">
             Analyst Access Console
           </p>
         </div>
@@ -161,7 +161,7 @@ function LoginPanel() {
           whileTap={{ scale: 0.98 }}
           type="submit"
           disabled={loading}
-          className="mt-6 flex w-full items-center justify-center space-x-2 rounded-sm bg-[#2563EB] dark:bg-[#3B82F6] hover:brightness-110 disabled:bg-blue-800 py-3 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer shadow-md shadow-blue-500/10"
+          className="mt-6 flex w-full items-center justify-center space-x-2 rounded-sm bg-[#FFA028] dark:bg-[#FFA028] hover:brightness-110 disabled:bg-amber-800 py-3 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer shadow-md shadow-amber-500/10"
         >
           {loading ? (
             <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
@@ -176,7 +176,7 @@ function LoginPanel() {
 
       {/* Admin registration trigger block */}
       <div className="text-center pt-2">
-        <span className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase tracking-wide">
+        <span className="text-xs text-[#FFA028] dark:text-[#FFA028] font-bold uppercase tracking-wide">
           Request Access (Administrators Only)
         </span>
       </div>
@@ -274,7 +274,7 @@ function MarketingPanel() {
                 {[20, 35, 15, 45, 60, 50, 75, 68].map((h, idx) => (
                   <div 
                     key={idx} 
-                    className="flex-1 bg-[#3B82F6] rounded-t-xs"
+                    className="flex-1 bg-[#FFA028] rounded-t-xs"
                     style={{ height: `${h}%` }}
                   ></div>
                 ))}

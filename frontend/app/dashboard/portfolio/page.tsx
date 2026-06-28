@@ -308,11 +308,11 @@ export default function PortfolioPage() {
               onDrop={handleDrop}
               className={`flex flex-col items-center justify-center border-2 border-dashed rounded-none p-10 cursor-pointer w-full text-center transition-all duration-150 ${
                 isDragging 
-                  ? 'border-[#2563EB] dark:border-[#3B82F6] bg-blue-500/5' 
-                  : 'border-[#E2E8F0] dark:border-slate-800 hover:border-[#2563EB] dark:hover:border-[#3B82F6]/60'
+                  ? 'border-[#FFA028] dark:border-[#FFA028] bg-amber-500/5' 
+                  : 'border-[#E2E8F0] dark:border-slate-800 hover:border-[#FFA028] dark:hover:border-[#FFA028]/60'
               }`}
             >
-              <UploadCloud className={`h-8 w-8 mb-2 transition-transform ${isDragging ? 'scale-110 text-[#3B82F6]' : 'text-slate-500'}`} />
+              <UploadCloud className={`h-8 w-8 mb-2 transition-transform ${isDragging ? 'scale-110 text-[#FFA028]' : 'text-slate-500'}`} />
               <span className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-300">
                 Drag & Drop Portfolio CSV Here
               </span>
@@ -337,10 +337,10 @@ export default function PortfolioPage() {
             <div className="w-full space-y-4">
               <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-slate-800 pb-2">
                 <div className="flex items-center space-x-1.5">
-                  <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#2563EB] dark:text-[#3B82F6]" />
+                  <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#FFA028] dark:text-[#FFA028]" />
                   <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-200">Asynchronous Data Processing</span>
                 </div>
-                <span className="text-[10.5px] rounded-sm bg-[#2563EB]/10 px-2 py-0.5 text-[#2563EB] dark:text-[#3B82F6] font-bold border border-[#2563EB]/15 uppercase">
+                <span className="text-[10.5px] rounded-sm bg-[#FFA028]/10 px-2 py-0.5 text-[#FFA028] dark:text-[#FFA028] font-bold border border-[#FFA028]/15 uppercase">
                   {activeJob.status}
                 </span>
               </div>
@@ -353,7 +353,7 @@ export default function PortfolioPage() {
                 </div>
                 <div className="h-2 w-full rounded-none bg-[#E2E8F0] dark:bg-slate-950 overflow-hidden">
                   <div 
-                    className="h-full bg-[#2563EB] dark:bg-[#3B82F6] transition-all duration-300"
+                    className="h-full bg-[#FFA028] dark:bg-[#FFA028] transition-all duration-300"
                     style={{ width: `${(activeJob.processed_rows / (activeJob.total_rows || 1)) * 100}%` }}
                   ></div>
                 </div>
@@ -372,7 +372,7 @@ export default function PortfolioPage() {
             <div className="w-full space-y-4 text-xs">
               <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-slate-800 pb-2">
                 <span className="font-black text-slate-400 dark:text-slate-200 uppercase tracking-widest flex items-center space-x-1.5">
-                  <Map className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+                  <Map className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
                   <span>Schema Column Mapper</span>
                 </span>
               </div>
@@ -399,7 +399,7 @@ export default function PortfolioPage() {
                 <button
                   onClick={handleStartIngestion}
                   disabled={isIngesting}
-                  className="flex-1 rounded-sm bg-[#2563EB] hover:bg-blue-600 disabled:bg-blue-800 py-2 text-xs font-black text-white uppercase tracking-widest cursor-pointer text-center"
+                  className="flex-1 rounded-sm bg-[#FFA028] hover:bg-amber-600 disabled:bg-amber-800 py-2 text-xs font-black text-white uppercase tracking-widest cursor-pointer text-center"
                 >
                   Confirm and Start Ingest
                 </button>
@@ -439,7 +439,7 @@ export default function PortfolioPage() {
         {/* Table Controls */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-3 border-b border-[#E2E8F0] dark:border-slate-800 mb-4 gap-4">
           <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider flex items-center space-x-1.5">
-            <Filter className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+            <Filter className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
             <span>Ingested Portfolio Cardholders</span>
           </h3>
           
@@ -453,7 +453,7 @@ export default function PortfolioPage() {
                 setTableSearch(e.target.value);
                 setCurrentPage(1);
               }}
-              className="w-full rounded-sm border border-[#E2E8F0] dark:border-slate-800 bg-[#F8FAFC] dark:bg-slate-950 pl-8 pr-3 py-1 text-xs text-[#0F172A] dark:text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#2563EB] dark:focus:border-[#3B82F6]"
+              className="w-full rounded-sm border border-[#E2E8F0] dark:border-slate-800 bg-[#F8FAFC] dark:bg-slate-950 pl-8 pr-3 py-1 text-xs text-[#0F172A] dark:text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#FFA028] dark:focus:border-[#FFA028]"
             />
           </div>
         </div>
@@ -462,7 +462,7 @@ export default function PortfolioPage() {
         <div className="overflow-x-auto min-h-[250px]">
           {tableLoading ? (
             <div className="flex h-36 items-center justify-center">
-              <RefreshCw className="h-5 w-5 animate-spin text-[#2563EB] dark:text-[#3B82F6]" />
+              <RefreshCw className="h-5 w-5 animate-spin text-[#FFA028] dark:text-[#FFA028]" />
             </div>
           ) : paginatedCustomers.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-36 text-[#64748B] dark:text-[#94A3B8] text-xs">
@@ -509,7 +509,7 @@ export default function PortfolioPage() {
               <tbody className="divide-y divide-[#E2E8F0] dark:divide-slate-900">
                 {paginatedCustomers.map((cust) => (
                   <tr key={cust.customer_id} className="terminal-table-row">
-                    <td className="px-3 py-2 font-mono font-bold text-[#2563EB] dark:text-[#3B82F6]">{cust.customer_id}</td>
+                    <td className="px-3 py-2 font-mono font-bold text-[#FFA028] dark:text-[#FFA028]">{cust.customer_id}</td>
                     <td className="px-3 py-2 font-bold text-[#0F172A] dark:text-slate-200">{cust.customer_name}</td>
                     <td className="px-3 py-2 font-bold terminal-text-mono">{cust.cibil_score}</td>
                     <td className="px-3 py-2 font-bold">{cust.primary_bank}</td>
@@ -527,7 +527,7 @@ export default function PortfolioPage() {
                           setSelectedCustomerId(cust.customer_id);
                           router.push('/dashboard/customer-360');
                         }}
-                        className="rounded-sm bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 border border-[#E2E8F0] dark:border-slate-800 p-1 text-[#2563EB] dark:text-[#3B82F6] transition-colors cursor-pointer"
+                        className="rounded-sm bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 border border-[#E2E8F0] dark:border-slate-800 p-1 text-[#FFA028] dark:text-[#FFA028] transition-colors cursor-pointer"
                         title="Customer 360 Deep-dive"
                       >
                         <Eye className="h-3.5 w-3.5" />

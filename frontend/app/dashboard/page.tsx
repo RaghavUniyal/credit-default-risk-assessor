@@ -247,7 +247,7 @@ export default function OverviewPage() {
         <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Ingested Accounts</span>
-            <Users className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+            <Users className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
           </div>
           <div className="mt-2.5 flex items-baseline justify-between">
             <h3 className="text-xl font-black terminal-text-mono tracking-tight text-[#0F172A] dark:text-white">
@@ -376,7 +376,7 @@ export default function OverviewPage() {
         {/* Heatmap Card */}
         <div className="terminal-card !p-4 flex flex-col">
           <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-            <Sparkles className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+            <Sparkles className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
             <span>Bank x Network Risk Heatmap</span>
           </h3>
           <p className="text-[10.5px] text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wide mb-4">
@@ -392,7 +392,7 @@ export default function OverviewPage() {
                     <th 
                       key={net} 
                       className={`py-2 uppercase text-[10px] font-bold transition-all ${
-                        hoveredNetwork === net ? 'text-[#2563EB] dark:text-[#3B82F6] bg-blue-500/5' : 'text-[#64748B] dark:text-[#94A3B8]'
+                        hoveredNetwork === net ? 'text-[#FFA028] dark:text-[#FFA028] bg-amber-500/5' : 'text-[#64748B] dark:text-[#94A3B8]'
                       }`}
                     >
                       {net.replace('_', ' ')}
@@ -405,11 +405,11 @@ export default function OverviewPage() {
                   <tr 
                     key={row.bank} 
                     className={`transition-all ${
-                      hoveredBank === row.bank ? 'bg-blue-500/5' : ''
+                      hoveredBank === row.bank ? 'bg-amber-500/5' : ''
                     }`}
                   >
                     <td className={`py-2 text-left font-bold border-r border-[#E2E8F0] dark:border-slate-800 text-[11px] uppercase ${
-                      hoveredBank === row.bank ? 'text-[#2563EB] dark:text-[#3B82F6]' : 'text-slate-400'
+                      hoveredBank === row.bank ? 'text-[#FFA028] dark:text-[#FFA028]' : 'text-slate-400'
                     }`}>
                       {row.bank}
                     </td>
@@ -428,7 +428,7 @@ export default function OverviewPage() {
                           }}
                           className={`p-1 font-bold terminal-text-mono transition-all duration-150 cursor-crosshair border ${
                             hoveredBank === row.bank && hoveredNetwork === net 
-                              ? 'scale-105 border-[#2563EB] dark:border-[#3B82F6] shadow-sm z-10' 
+                              ? 'scale-105 border-[#FFA028] dark:border-[#FFA028] shadow-sm z-10' 
                               : 'border-transparent'
                           }`}
                         >
@@ -467,7 +467,7 @@ export default function OverviewPage() {
               <tbody className="divide-y divide-[#E2E8F0] dark:divide-slate-900">
                 {data?.topStressed?.map((cust: any) => (
                   <tr key={cust.customer_id} className="terminal-table-row">
-                    <td className="px-3 py-2 font-mono font-bold text-[#2563EB] dark:text-[#3B82F6]">{cust.customer_id}</td>
+                    <td className="px-3 py-2 font-mono font-bold text-[#FFA028] dark:text-[#FFA028]">{cust.customer_id}</td>
                     <td className="px-3 py-2 font-bold text-[#0F172A] dark:text-slate-200">{cust.customer_name}</td>
                     <td className="px-3 py-2 font-bold terminal-text-mono">{cust.cibil_score}</td>
                     <td className="px-3 py-2 font-bold">{cust.primary_bank}</td>

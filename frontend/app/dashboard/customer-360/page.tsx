@@ -164,7 +164,7 @@ export default function Customer360Page() {
           </div>
           <button
             type="submit"
-            className="rounded-sm bg-[#2563EB] hover:bg-blue-600 px-5 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
+            className="rounded-sm bg-[#FFA028] hover:bg-amber-600 px-5 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
           >
             Query
           </button>
@@ -191,7 +191,7 @@ export default function Customer360Page() {
               {/* Panel 1: Identity & Bureau */}
               <div className="terminal-card space-y-3.5">
                 <div className="flex items-center space-x-2.5 pb-2.5 border-b border-[#E2E8F0] dark:border-slate-800">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#2563EB]/10 text-[#2563EB] dark:text-[#3B82F6]">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#FFA028]/10 text-[#FFA028] dark:text-[#FFA028]">
                     <User className="h-4 w-4" />
                   </div>
                   <div>
@@ -239,7 +239,7 @@ export default function Customer360Page() {
               {/* Panel 2: Financial Health */}
               <div className="terminal-card space-y-3.5">
                 <div className="flex items-center space-x-2.5 pb-2.5 border-b border-[#E2E8F0] dark:border-slate-800">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#2563EB]/10 text-[#2563EB] dark:text-[#3B82F6]">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#FFA028]/10 text-[#FFA028] dark:text-[#FFA028]">
                     <CreditCard className="h-4 w-4" />
                   </div>
                   <div>
@@ -290,7 +290,7 @@ export default function Customer360Page() {
             <div className="terminal-card">
               <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0] dark:border-slate-800 mb-3">
                 <div className="flex items-center space-x-2">
-                  <Calendar className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+                  <Calendar className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
                   <span className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider">6-Month Payment Timeline</span>
                 </div>
                 <div className="flex space-x-2 text-[10px] font-bold uppercase tracking-wider">
@@ -322,7 +322,7 @@ export default function Customer360Page() {
             {/* Panel: SHAP Explainability Chart */}
             <div className="terminal-card">
               <h3 className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider mb-4 flex items-center space-x-2">
-                <Activity className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+                <Activity className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
                 <span>Risk Driver Contributions (SHAP Values)</span>
               </h3>
               
@@ -414,13 +414,13 @@ export default function Customer360Page() {
             {/* AI Risk Narrative */}
             <div className="terminal-card space-y-3">
               <div className="flex items-center space-x-2">
-                <FileText className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
+                <FileText className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
                 <h3 className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider">GenAI Compliance Narrative</h3>
               </div>
               <p className="text-[12.5px] text-[#64748B] dark:text-slate-300 leading-relaxed italic bg-[#F8FAFC] dark:bg-slate-950 border border-[#E2E8F0] dark:border-slate-900 p-3 rounded-none relative overflow-hidden">
                 "{customerRiskData.prediction.risk_narrative}"
                 {/* Blinking Cursor representing streaming trace */}
-                <span className="inline-block h-3 w-1.5 bg-[#2563EB] dark:bg-[#3B82F6] ml-1 animate-pulse"></span>
+                <span className="inline-block h-3 w-1.5 bg-[#FFA028] dark:bg-[#FFA028] ml-1 animate-pulse"></span>
               </p>
             </div>
 
@@ -430,7 +430,7 @@ export default function Customer360Page() {
                 setSelectedCustomerId(customerRiskData.customer.customer_id);
                 router.push('/dashboard/collections');
               }}
-              className="flex w-full items-center justify-between rounded-sm bg-[#2563EB]/10 hover:bg-[#2563EB]/25 border border-[#2563EB]/20 p-3.5 text-xs font-black uppercase tracking-wider text-[#2563EB] dark:text-[#3B82F6] group cursor-pointer"
+              className="flex w-full items-center justify-between rounded-sm bg-[#FFA028]/10 hover:bg-[#FFA028]/25 border border-[#FFA028]/20 p-3.5 text-xs font-black uppercase tracking-wider text-[#FFA028] dark:text-[#FFA028] group cursor-pointer"
             >
               <span>Target Collections Strategy</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

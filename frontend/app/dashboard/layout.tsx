@@ -75,32 +75,32 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className="hidden md:flex md:w-60 md:flex-col shrink-0 border-r border-[#E2E8F0] dark:border-[#334155] bg-[#FFFFFF] dark:bg-[#0F172A]">
         {/* Brand Logo */}
         <div className="flex h-14 items-center px-4 border-b border-[#E2E8F0] dark:border-[#334155] space-x-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#2563EB] dark:bg-[#3B82F6] text-white font-black shadow-md shadow-blue-500/20">
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#FFA028] dark:bg-[#FFA028] text-white font-black shadow-md shadow-amber-500/20">
             <span className="text-xs tracking-tighter">CD</span>
           </div>
           <div>
             <h1 className="text-xs font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Risk Assessor</h1>
-            <p className="text-[10.5px] tracking-widest text-[#2563EB] dark:text-[#3B82F6] font-bold uppercase">B2B Command Center</p>
+            <p className="text-[10.5px] tracking-widest text-[#FFA028] dark:text-[#FFA028] font-bold uppercase">B2B Command Center</p>
           </div>
         </div>
 
         {/* Navigation Items */}
         <nav className="flex-1 space-y-1 px-3 py-4 overflow-y-auto">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            const Icon = link.icon;
+          {navLinks.map((item) => {
+            const active = pathname === item.href;
+            const Icon = item.icon;
             return (
               <Link
-                key={link.name}
-                href={link.href}
-                className={`flex items-center space-x-2.5 px-3 py-2 text-xs font-bold transition-all border rounded-sm cursor-pointer ${
-                  isActive
-                    ? 'bg-[#2563EB]/10 dark:bg-[#3B82F6]/10 text-[#2563EB] dark:text-[#3B82F6] border-[#2563EB]/20 dark:border-[#3B82F6]/20'
-                    : 'text-[#64748B] dark:text-[#94A3B8] border-transparent hover:bg-slate-100 dark:hover:bg-[#1E293B] hover:text-[#0F172A] dark:hover:text-white'
+                key={item.name}
+                href={item.href}
+                className={`flex items-center space-x-3.5 border px-3.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-150 rounded-sm ${
+                  active
+                    ? 'bg-[#FFA028]/10 dark:bg-[#FFA028]/10 text-[#FFA028] dark:text-[#FFA028] border-[#FFA028]/20 dark:border-[#FFA028]/20'
+                    : 'text-[#64748B] dark:text-[#94A3B8] border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/50'
                 }`}
               >
                 <Icon className="h-4 w-4 shrink-0" />
-                <span>{link.name}</span>
+                <span>{item.name}</span>
               </Link>
             );
           })}
@@ -136,7 +136,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           {/* Cmd+K Search trigger input */}
           <div 
             onClick={() => setIsOpen(true)}
-            className="flex items-center space-x-2.5 w-64 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] px-3 py-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] cursor-pointer hover:border-[#2563EB] dark:hover:border-[#3B82F6] transition-colors"
+            className="flex items-center space-x-2.5 w-64 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] px-3 py-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] cursor-pointer hover:border-[#FFA028] dark:hover:border-[#FFA028] transition-colors"
           >
             <Search className="h-3.5 w-3.5" />
             <span className="flex-1 text-xs font-semibold">Search Cardholder ID...</span>
@@ -196,9 +196,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               transition={{ duration: 0.15, ease: 'easeOut' }}
               className="relative w-full max-w-lg rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] shadow-2xl p-4 mx-4"
             >
-              <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-[#334155] pb-2 mb-3">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-[#3B82F6]">
-                  Global Command Portal
+              <div className="flex items-center justify-between pb-3.5 border-b border-[#E2E8F0] dark:border-slate-800/80">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#FFA028] dark:text-[#FFA028]">
+                  Global Command Search
                 </span>
                 <button 
                   onClick={() => setIsOpen(false)}
@@ -208,20 +208,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </button>
               </div>
 
-              <form onSubmit={handleCommandSearch} className="relative">
+              <form onSubmit={handleCommandSearch} className="relative mt-3">
                 <Search className="absolute left-3 top-3 h-4.5 w-4.5 text-[#64748B] dark:text-[#94A3B8]" />
                 <input
                   type="text"
                   placeholder="Type Cardholder ID (e.g. IND100002) and hit Enter..."
                   value={cmdInput}
                   onChange={(e) => setCmdInput(e.target.value)}
-                  className="w-full rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] pl-10 pr-4 py-2.5 text-xs text-[#0F172A] dark:text-white placeholder-[#64748B] dark:placeholder-[#64748B] focus:outline-none focus:border-[#2563EB] dark:focus:border-[#3B82F6]"
+                  className="w-full rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] pl-10 pr-4 py-2.5 text-xs text-[#0F172A] dark:text-white placeholder-[#64748B] dark:placeholder-[#64748B] focus:outline-none focus:border-[#FFA028] dark:focus:border-[#FFA028]"
                   autoFocus
                 />
               </form>
 
               <div className="mt-3 text-[11px] text-[#64748B] dark:text-[#94A3B8] flex items-center space-x-1 font-semibold uppercase">
-                <Sparkles className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#3B82F6]" />
+                <Sparkles className="h-3.5 w-3.5 text-[#FFA028] dark:text-[#FFA028]" />
                 <span>Quick Tip: Enter customer ID sequence to jump directly to their 360 Risk timeline.</span>
               </div>
             </motion.div>
