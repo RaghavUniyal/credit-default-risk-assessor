@@ -69,18 +69,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   ];
 
   return (
-    <div className="flex h-screen bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC] overflow-hidden font-sans">
+    <div className="flex h-screen bg-white dark:bg-black text-[#0F172A] dark:text-[#F8FAFC] overflow-hidden font-sans">
       
       {/* Sidebar Navigation */}
-      <aside className="hidden md:flex md:w-60 md:flex-col shrink-0 border-r border-[#E2E8F0] dark:border-[#334155] bg-[#FFFFFF] dark:bg-[#0F172A]">
+      <aside className="hidden md:flex md:w-60 md:flex-col shrink-0 border-r border-[#E2E8F0] dark:border-[#334155] bg-[#F4F6FA] dark:bg-[#0D0D0D]">
         {/* Brand Logo */}
         <div className="flex h-14 items-center px-4 border-b border-[#E2E8F0] dark:border-[#334155] space-x-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#FFA028] dark:bg-[#FFA028] text-white font-black shadow-md shadow-amber-500/20">
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#0066FF] dark:bg-[#3B82F6] text-white font-black shadow-md shadow-blue-500/10">
             <span className="text-xs tracking-tighter">CD</span>
           </div>
           <div>
             <h1 className="text-xs font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Risk Assessor</h1>
-            <p className="text-[10.5px] tracking-widest text-[#FFA028] dark:text-[#FFA028] font-bold uppercase">B2B Command Center</p>
+            <p className="text-[10.5px] tracking-widest text-[#0066FF] dark:text-[#3B82F6] font-bold uppercase">B2B Command Center</p>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 href={item.href}
                 className={`flex items-center space-x-3.5 border px-3.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-150 rounded-sm ${
                   active
-                    ? 'bg-[#FFA028]/10 dark:bg-[#FFA028]/10 text-[#FFA028] dark:text-[#FFA028] border-[#FFA028]/20 dark:border-[#FFA028]/20'
+                    ? 'bg-[#0066FF]/10 dark:bg-[#0066FF]/10 text-[#0066FF] dark:text-[#3B82F6] border-[#0066FF]/20 dark:border-[#0066FF]/20'
                     : 'text-[#64748B] dark:text-[#94A3B8] border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/50'
                 }`}
               >
@@ -107,7 +107,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         {/* User Account Info Footer */}
-        <div className="border-t border-[#E2E8F0] dark:border-[#334155] p-3 space-y-2 bg-[#F8FAFC]/50 dark:bg-[#1E293B]/20">
+        <div className="border-t border-[#E2E8F0] dark:border-[#334155] p-3 space-y-2 bg-[#E2E8F0]/30 dark:bg-[#0B0F19]/40">
           <div className="flex items-center space-x-2">
             <UserCircle2 className="h-7 w-7 text-[#64748B] dark:text-[#94A3B8]" />
             <div className="min-w-0 flex-1">
@@ -132,11 +132,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main Content Pane */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top Header Bar */}
-        <header className="flex h-14 items-center justify-between px-6 border-b border-[#E2E8F0] dark:border-[#334155] bg-[#FFFFFF] dark:bg-[#1E293B]/40 backdrop-blur-md z-10 shrink-0">
+        <header className="flex h-14 items-center justify-between px-6 border-b border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-black backdrop-blur-md z-10 shrink-0">
           {/* Cmd+K Search trigger input */}
           <div 
             onClick={() => setIsOpen(true)}
-            className="flex items-center space-x-2.5 w-64 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] px-3 py-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] cursor-pointer hover:border-[#FFA028] dark:hover:border-[#FFA028] transition-colors"
+            className="flex items-center space-x-2.5 w-64 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F4F6FA] dark:bg-[#0D0D0D] px-3 py-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] cursor-pointer hover:border-[#0066FF] dark:hover:border-[#3B82F6] transition-colors"
           >
             <Search className="h-3.5 w-3.5" />
             <span className="flex-1 text-xs font-semibold">Search Cardholder ID...</span>
@@ -197,7 +197,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               className="relative w-full max-w-lg rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] shadow-2xl p-4 mx-4"
             >
               <div className="flex items-center justify-between pb-3.5 border-b border-[#E2E8F0] dark:border-slate-800/80">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#FFA028] dark:text-[#FFA028]">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#0066FF] dark:text-[#3B82F6]">
                   Global Command Search
                 </span>
                 <button 
@@ -215,13 +215,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   placeholder="Type Cardholder ID (e.g. IND100002) and hit Enter..."
                   value={cmdInput}
                   onChange={(e) => setCmdInput(e.target.value)}
-                  className="w-full rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] pl-10 pr-4 py-2.5 text-xs text-[#0F172A] dark:text-white placeholder-[#64748B] dark:placeholder-[#64748B] focus:outline-none focus:border-[#FFA028] dark:focus:border-[#FFA028]"
+                  className="w-full rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] pl-10 pr-4 py-2.5 text-xs text-[#0F172A] dark:text-white placeholder-[#64748B] dark:placeholder-[#64748B] focus:outline-none focus:border-[#0066FF] dark:focus:border-[#3B82F6]"
                   autoFocus
                 />
               </form>
 
               <div className="mt-3 text-[11px] text-[#64748B] dark:text-[#94A3B8] flex items-center space-x-1 font-semibold uppercase">
-                <Sparkles className="h-3.5 w-3.5 text-[#FFA028] dark:text-[#FFA028]" />
+                <Sparkles className="h-3.5 w-3.5 text-[#0066FF] dark:text-[#3B82F6]" />
                 <span>Quick Tip: Enter customer ID sequence to jump directly to their 360 Risk timeline.</span>
               </div>
             </motion.div>

@@ -3,28 +3,26 @@
 html {
   font-size: 17.5px;
 }
-
-@layer base {
   :root {
     --bg-color: #FFFFFF;
-    --surface-color: #F8FAFC;
+    --surface-color: #F4F6FA;
     --border-color: #E2E8F0;
     --text-primary: #0F172A;
     --text-secondary: #64748B;
-    --brand-color: #FFA028;
+    --brand-color: #0066FF;
     
     --low-risk: #10B981;
-    --med-risk: #FFA028;
+    --med-risk: #F59E0B;
     --high-risk: #EF4444;
   }
 
   .dark {
     --bg-color: #000000;
-    --surface-color: #0D0D0D;
-    --border-color: #222222;
+    --surface-color: #0B0F19;
+    --border-color: #1E293B;
     --text-primary: #FFFFFF;
-    --text-secondary: #A0A0A0;
-    --brand-color: #FFA028;
+    --text-secondary: #94A3B8;
+    --brand-color: #3B82F6;
   }
 
   body {
@@ -109,7 +107,7 @@ html {
 }
 
 .terminal-table-row:hover {
-  background-color: rgba(255, 160, 40, 0.05); /* very light sunshade orange highlight on hover */
+  background-color: rgba(0, 102, 255, 0.04); /* very light sunshade orange highlight on hover */
 }
 
 /* Custom Scrollbar for Terminal */

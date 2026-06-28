@@ -166,7 +166,7 @@ export default function CollectionsPage() {
             {selectedCustomerDetails ? (
               <div className="rounded-sm bg-[#F8FAFC] dark:bg-slate-950 border border-[#E2E8F0] dark:border-slate-900 p-4 space-y-3.5 text-xs flex-1 flex flex-col justify-between max-h-[220px]">
                 <div className="flex items-center space-x-2 pb-1.5 border-b border-[#E2E8F0] dark:border-slate-900">
-                  <User className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
+                  <User className="h-4 w-4 text-[#0066FF] dark:text-[#3B82F6]" />
                   <span className="font-bold text-[#0F172A] dark:text-slate-200">{selectedCustomerDetails.customer_name}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-[11px]">
@@ -190,7 +190,7 @@ export default function CollectionsPage() {
                 <button
                   onClick={handleRunStrategy}
                   disabled={isStreamingStrategy}
-                  className="flex w-full items-center justify-between rounded-sm bg-[#FFA028] hover:bg-amber-600 disabled:bg-amber-800 px-4 py-2 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
+                  className="flex w-full items-center justify-between rounded-sm bg-[#0066FF] hover:bg-blue-600 disabled:bg-blue-800 px-4 py-2 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
                 >
                   <span>Run Strategist</span>
                   <ArrowRight className="h-4 w-4 text-white" />
@@ -207,14 +207,14 @@ export default function CollectionsPage() {
           {/* Right: Output text stream */}
           <div className="terminal-card lg:col-span-2 flex flex-col overflow-hidden max-h-full">
             <h3 className="shrink-0 text-xs font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-3 flex items-center space-x-2">
-              <BrainCircuit className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
+              <BrainCircuit className="h-4 w-4 text-[#0066FF] dark:text-[#3B82F6]" />
               <span>AI Collection Strategy Console</span>
             </h3>
             
             <div className="flex-1 overflow-y-auto bg-[#F8FAFC] dark:bg-slate-950/60 border border-[#E2E8F0] dark:border-slate-900 p-4 font-mono text-xs text-[#0F172A] dark:text-slate-300 leading-relaxed max-h-full">
               {isStreamingStrategy && !strategyText && (
                 <div className="flex space-x-1.5 items-center text-slate-500">
-                  <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#FFA028] dark:text-[#FFA028]" />
+                  <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#0066FF] dark:text-[#3B82F6]" />
                   <span>Establishing GenAI collection streams...</span>
                 </div>
               )}
@@ -222,7 +222,7 @@ export default function CollectionsPage() {
                 <div className="space-y-4 whitespace-pre-wrap relative">
                   {strategyText}
                   {isStreamingStrategy && (
-                    <span className="inline-block h-3.5 w-1.5 bg-[#FFA028] dark:bg-[#FFA028] ml-1 animate-pulse"></span>
+                    <span className="inline-block h-3.5 w-1.5 bg-[#0066FF] dark:bg-[#3B82F6] ml-1 animate-pulse"></span>
                   )}
                 </div>
               ) : (

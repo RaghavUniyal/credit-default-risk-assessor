@@ -107,7 +107,7 @@ export default function Customer360Page() {
       case 'Low Risk':
         return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
       case 'Medium Risk':
-        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+        return 'bg-[#0066FF]/10 text-amber-400 border-[#0066FF]/20';
       case 'High Risk':
       default:
         return 'bg-rose-500/10 text-rose-400 border-rose-500/20';
@@ -119,7 +119,7 @@ export default function Customer360Page() {
       case 'Full':
         return 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20';
       case 'MAD':
-        return 'bg-amber-500/15 text-amber-400 border-amber-500/20';
+        return 'bg-amber-500/15 text-amber-400 border-[#0066FF]/20';
       case 'Late':
         return 'bg-orange-500/15 text-orange-400 border-orange-500/20';
       case 'Missed':
@@ -164,7 +164,7 @@ export default function Customer360Page() {
           </div>
           <button
             type="submit"
-            className="rounded-sm bg-[#FFA028] hover:bg-amber-600 px-5 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
+            className="rounded-sm bg-[#0066FF] hover:bg-blue-600 px-5 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
           >
             Query
           </button>
@@ -191,7 +191,7 @@ export default function Customer360Page() {
               {/* Panel 1: Identity & Bureau */}
               <div className="terminal-card space-y-3.5">
                 <div className="flex items-center space-x-2.5 pb-2.5 border-b border-[#E2E8F0] dark:border-slate-800">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#FFA028]/10 text-[#FFA028] dark:text-[#FFA028]">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#0066FF]/10 text-[#0066FF] dark:text-[#3B82F6]">
                     <User className="h-4 w-4" />
                   </div>
                   <div>
@@ -239,7 +239,7 @@ export default function Customer360Page() {
               {/* Panel 2: Financial Health */}
               <div className="terminal-card space-y-3.5">
                 <div className="flex items-center space-x-2.5 pb-2.5 border-b border-[#E2E8F0] dark:border-slate-800">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#FFA028]/10 text-[#FFA028] dark:text-[#FFA028]">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#0066FF]/10 text-[#0066FF] dark:text-[#3B82F6]">
                     <CreditCard className="h-4 w-4" />
                   </div>
                   <div>
@@ -290,7 +290,7 @@ export default function Customer360Page() {
             <div className="terminal-card">
               <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0] dark:border-slate-800 mb-3">
                 <div className="flex items-center space-x-2">
-                  <Calendar className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
+                  <Calendar className="h-4 w-4 text-[#0066FF] dark:text-[#3B82F6]" />
                   <span className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider">6-Month Payment Timeline</span>
                 </div>
                 <div className="flex space-x-2 text-[10px] font-bold uppercase tracking-wider">
@@ -322,7 +322,7 @@ export default function Customer360Page() {
             {/* Panel: SHAP Explainability Chart */}
             <div className="terminal-card">
               <h3 className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider mb-4 flex items-center space-x-2">
-                <Activity className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
+                <Activity className="h-4 w-4 text-[#0066FF] dark:text-[#3B82F6]" />
                 <span>Risk Driver Contributions (SHAP Values)</span>
               </h3>
               
@@ -414,13 +414,13 @@ export default function Customer360Page() {
             {/* AI Risk Narrative */}
             <div className="terminal-card space-y-3">
               <div className="flex items-center space-x-2">
-                <FileText className="h-4 w-4 text-[#FFA028] dark:text-[#FFA028]" />
+                <FileText className="h-4 w-4 text-[#0066FF] dark:text-[#3B82F6]" />
                 <h3 className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider">GenAI Compliance Narrative</h3>
               </div>
               <p className="text-[12.5px] text-[#64748B] dark:text-slate-300 leading-relaxed italic bg-[#F8FAFC] dark:bg-slate-950 border border-[#E2E8F0] dark:border-slate-900 p-3 rounded-none relative overflow-hidden">
                 "{customerRiskData.prediction.risk_narrative}"
                 {/* Blinking Cursor representing streaming trace */}
-                <span className="inline-block h-3 w-1.5 bg-[#FFA028] dark:bg-[#FFA028] ml-1 animate-pulse"></span>
+                <span className="inline-block h-3 w-1.5 bg-[#0066FF] dark:bg-[#3B82F6] ml-1 animate-pulse"></span>
               </p>
             </div>
 
@@ -430,7 +430,7 @@ export default function Customer360Page() {
                 setSelectedCustomerId(customerRiskData.customer.customer_id);
                 router.push('/dashboard/collections');
               }}
-              className="flex w-full items-center justify-between rounded-sm bg-[#FFA028]/10 hover:bg-[#FFA028]/25 border border-[#FFA028]/20 p-3.5 text-xs font-black uppercase tracking-wider text-[#FFA028] dark:text-[#FFA028] group cursor-pointer"
+              className="flex w-full items-center justify-between rounded-sm bg-[#0066FF]/10 hover:bg-[#0066FF]/25 border border-[#0066FF]/20 p-3.5 text-xs font-black uppercase tracking-wider text-[#0066FF] dark:text-[#3B82F6] group cursor-pointer"
             >
               <span>Target Collections Strategy</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
