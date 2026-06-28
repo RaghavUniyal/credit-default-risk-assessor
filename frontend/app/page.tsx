@@ -114,7 +114,7 @@ function LoginPanel() {
         <h2 className="text-lg font-black tracking-wider uppercase text-[#0F172A] dark:text-white">
           Secure Authenticator
         </h2>
-        <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase leading-relaxed">
+        <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase leading-relaxed">
           Access credit risk models and portfolio analytics. Authorized personnel only.
         </p>
       </div>
@@ -129,7 +129,7 @@ function LoginPanel() {
       {/* Form fields */}
       <form onSubmit={handleLogin} className="space-y-4">
         <div>
-          <label className="block text-[9px] font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">
+          <label className="block text-[10.5px] font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">
             Email Address
           </label>
           <input
@@ -143,7 +143,7 @@ function LoginPanel() {
         </div>
 
         <div>
-          <label className="block text-[9px] font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">
+          <label className="block text-[10.5px] font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">
             Secure Password
           </label>
           <input
@@ -176,13 +176,13 @@ function LoginPanel() {
 
       {/* Admin registration trigger block */}
       <div className="text-center pt-2">
-        <span className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase tracking-wide">
+        <span className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase tracking-wide">
           Request Access (Administrators Only)
         </span>
       </div>
 
       <div className="border-t border-[#E2E8F0] dark:border-slate-800 pt-4 text-center">
-        <p className="text-[8px] font-mono text-[#64748B] dark:text-slate-500 uppercase tracking-widest">
+        <p className="text-[10px] font-mono text-[#64748B] dark:text-slate-500 uppercase tracking-widest">
           System Build v2.4.1 | Role-Based Access Control | Activity Monitoring
         </p>
       </div>
@@ -198,10 +198,6 @@ function MarketingPanel() {
     {
       title: "6-Month Early Warning System",
       desc: "Predict defaults before they happen using XGBoost ML models."
-    },
-    {
-      title: "Regulatory-Aware Design",
-      desc: "Incorporates fair lending principles and model explainability standards."
     },
     {
       title: "AI-Powered Risk Narratives",
@@ -232,7 +228,7 @@ function MarketingPanel() {
         className="relative border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] p-5 shadow-lg rounded-sm overflow-hidden"
       >
         {/* Live preview badge */}
-        <span className="absolute top-3 right-3 inline-flex items-center rounded-sm bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 text-[8px] font-black text-emerald-500 uppercase tracking-widest">
+        <span className="absolute top-3 right-3 inline-flex items-center rounded-sm bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 text-[10px] font-black text-emerald-500 uppercase tracking-widest">
           Live Demo Preview
         </span>
 
@@ -244,7 +240,7 @@ function MarketingPanel() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 relative z-10">
           {/* Mini Gauge display */}
           <div className="flex flex-col items-center justify-center text-center space-y-2 border-r border-[#E2E8F0] dark:border-slate-800 pr-2">
-            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Default Risk Score</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Default Risk Score</span>
             
             {/* SVG semi-circle gauge preview */}
             <div className="relative h-14 w-24 flex items-end justify-center">
@@ -255,25 +251,25 @@ function MarketingPanel() {
                 <span className="text-base font-black terminal-text-mono text-rose-500">68.4%</span>
               </div>
             </div>
-            <span className="text-[7px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-500 border border-rose-500/15 font-black uppercase tracking-wider">High Risk</span>
+            <span className="text-[9.5px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-500 border border-rose-500/15 font-black uppercase tracking-wider">High Risk</span>
           </div>
 
           {/* Mini Metrics cards */}
           <div className="md:col-span-2 flex flex-col justify-between space-y-3.5">
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-[#F8FAFC] dark:bg-slate-900 border border-[#E2E8F0] dark:border-slate-800 p-2.5 rounded-sm">
-                <span className="text-[7px] font-bold text-slate-500 uppercase tracking-widest block">High-Risk Alerts</span>
+                <span className="text-[9.5px] font-bold text-slate-500 uppercase tracking-widest block">High-Risk Alerts</span>
                 <span className="text-base font-black terminal-text-mono text-rose-500">142</span>
               </div>
               <div className="bg-[#F8FAFC] dark:bg-slate-900 border border-[#E2E8F0] dark:border-slate-800 p-2.5 rounded-sm">
-                <span className="text-[7px] font-bold text-slate-500 uppercase tracking-widest block">Portfolio Value</span>
+                <span className="text-[9.5px] font-bold text-slate-500 uppercase tracking-widest block">Portfolio Value</span>
                 <span className="text-base font-black terminal-text-mono text-[#0F172A] dark:text-white">₹254.9 Cr</span>
               </div>
             </div>
 
             {/* Simulated mini chart */}
             <div className="space-y-1">
-              <span className="text-[7px] font-bold text-slate-500 uppercase tracking-widest block">Portfolio Risk Trend</span>
+              <span className="text-[9.5px] font-bold text-slate-500 uppercase tracking-widest block">Portfolio Risk Trend</span>
               <div className="h-6 flex items-end space-x-1.5 bg-[#F8FAFC] dark:bg-slate-900 border border-[#E2E8F0] dark:border-slate-800 p-1">
                 {[20, 35, 15, 45, 60, 50, 75, 68].map((h, idx) => (
                   <div 
@@ -303,7 +299,7 @@ function MarketingPanel() {
               <h3 className="text-xs font-black text-[#0F172A] dark:text-white uppercase leading-none">
                 {feat.title}
               </h3>
-              <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8]">
+              <p className="text-[12.5px] text-[#64748B] dark:text-[#94A3B8]">
                 {feat.desc}
               </p>
             </div>
@@ -313,7 +309,7 @@ function MarketingPanel() {
 
       {/* Footer Trust details */}
       <div className="border-t border-[#E2E8F0] dark:border-slate-800/80 pt-4 text-left">
-        <p className="text-[8px] font-mono text-[#64748B] dark:text-slate-500 uppercase tracking-wider">
+        <p className="text-[10px] font-mono text-[#64748B] dark:text-slate-500 uppercase tracking-wider">
           Credit Risk Assessor | Role-Based Access Control | Powered by XGBoost & Google Gemini
         </p>
       </div>

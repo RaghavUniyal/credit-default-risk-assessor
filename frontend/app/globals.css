@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  font-size: 17.5px;
+}
+
 @layer base {
   :root {
     --bg-color: #F8FAFC;
@@ -26,7 +30,6 @@
   body {
     background-color: var(--bg-color);
     color: var(--text-primary);
-    font-size: 14px;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 }

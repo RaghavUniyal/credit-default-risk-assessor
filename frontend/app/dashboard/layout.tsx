@@ -76,11 +76,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Brand Logo */}
         <div className="flex h-14 items-center px-4 border-b border-[#E2E8F0] dark:border-[#334155] space-x-2.5">
           <div className="flex h-7 w-7 items-center justify-center rounded bg-[#2563EB] dark:bg-[#3B82F6] text-white font-black shadow-md shadow-blue-500/20">
-            <span className="text-[10px] tracking-tighter">CD</span>
+            <span className="text-xs tracking-tighter">CD</span>
           </div>
           <div>
             <h1 className="text-xs font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Risk Assessor</h1>
-            <p className="text-[8px] tracking-widest text-[#2563EB] dark:text-[#3B82F6] font-bold uppercase">B2B Command Center</p>
+            <p className="text-[10.5px] tracking-widest text-[#2563EB] dark:text-[#3B82F6] font-bold uppercase">B2B Command Center</p>
           </div>
         </div>
 
@@ -111,17 +111,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="flex items-center space-x-2">
             <UserCircle2 className="h-7 w-7 text-[#64748B] dark:text-[#94A3B8]" />
             <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-bold truncate text-[#0F172A] dark:text-white">
+              <p className="text-[11px] font-bold truncate text-[#0F172A] dark:text-white">
                 {profile?.full_name || 'Risk Manager'}
               </p>
-              <p className="text-[8px] truncate text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wider">
+              <p className="text-[10px] truncate text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wider">
                 {profile?.role?.replace('_', ' ') || 'analyst'}
               </p>
             </div>
           </div>
           <button
             onClick={handleSignOut}
-            className="flex w-full items-center justify-center space-x-1.5 rounded-sm border border-[#E2E8F0] dark:border-[#334155] hover:border-[#EF4444]/30 bg-white dark:bg-[#1E293B] hover:bg-rose-500/10 hover:text-rose-400 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] transition-all cursor-pointer"
+            className="flex w-full items-center justify-center space-x-1.5 rounded-sm border border-[#E2E8F0] dark:border-[#334155] hover:border-[#EF4444]/30 bg-white dark:bg-[#1E293B] hover:bg-rose-500/10 hover:text-rose-400 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] transition-all cursor-pointer"
           >
             <LogOut className="h-3 w-3" />
             <span>Sign Out</span>
@@ -139,8 +139,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             className="flex items-center space-x-2.5 w-64 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F8FAFC] dark:bg-[#0F172A] px-3 py-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] cursor-pointer hover:border-[#2563EB] dark:hover:border-[#3B82F6] transition-colors"
           >
             <Search className="h-3.5 w-3.5" />
-            <span className="flex-1 text-[10px] font-semibold">Search Cardholder ID...</span>
-            <kbd className="hidden sm:inline-block rounded bg-[#E2E8F0] dark:bg-[#1E293B] px-1.5 py-0.5 font-mono text-[8px] font-bold border border-slate-300 dark:border-slate-800 uppercase tracking-widest text-[#0F172A] dark:text-slate-400">
+            <span className="flex-1 text-xs font-semibold">Search Cardholder ID...</span>
+            <kbd className="hidden sm:inline-block rounded bg-[#E2E8F0] dark:bg-[#1E293B] px-1.5 py-0.5 font-mono text-[9px] font-bold border border-slate-300 dark:border-slate-800 uppercase tracking-widest text-[#0F172A] dark:text-slate-400">
               Ctrl+K
             </kbd>
           </div>
@@ -220,7 +220,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 />
               </form>
 
-              <div className="mt-3 text-[9px] text-[#64748B] dark:text-[#94A3B8] flex items-center space-x-1 font-semibold uppercase">
+              <div className="mt-3 text-[11px] text-[#64748B] dark:text-[#94A3B8] flex items-center space-x-1 font-semibold uppercase">
                 <Sparkles className="h-3.5 w-3.5 text-[#2563EB] dark:text-[#3B82F6]" />
                 <span>Quick Tip: Enter customer ID sequence to jump directly to their 360 Risk timeline.</span>
               </div>

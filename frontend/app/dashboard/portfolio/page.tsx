@@ -295,7 +295,7 @@ export default function PortfolioPage() {
       {/* Title */}
       <div className="pb-2 border-b border-[#E2E8F0] dark:border-[#334155]">
         <h2 className="text-lg font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Portfolio Ingestion Hub</h2>
-        <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Map custom bureau credit card datasets and calculate continuous default probability.</p>
+        <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Map custom bureau credit card datasets and calculate continuous default probability.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -313,14 +313,14 @@ export default function PortfolioPage() {
               }`}
             >
               <UploadCloud className={`h-8 w-8 mb-2 transition-transform ${isDragging ? 'scale-110 text-[#3B82F6]' : 'text-slate-500'}`} />
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-300">
+              <span className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-300">
                 Drag & Drop Portfolio CSV Here
               </span>
-              <span className="text-[8px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-1">
+              <span className="text-[10.5px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-1">
                 Accepts raw bureau accounts (up to 10k rows)
               </span>
               
-              <label className="mt-4 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#FFFFFF] dark:bg-[#1E293B] px-4 py-1.5 text-[9px] font-black uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-white transition-colors cursor-pointer">
+              <label className="mt-4 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#FFFFFF] dark:bg-[#1E293B] px-4 py-1.5 text-xs font-black uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-white transition-colors cursor-pointer">
                 Browse Files
                 <input
                   type="file"
@@ -338,14 +338,14 @@ export default function PortfolioPage() {
               <div className="flex items-center justify-between border-b border-[#E2E8F0] dark:border-slate-800 pb-2">
                 <div className="flex items-center space-x-1.5">
                   <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#2563EB] dark:text-[#3B82F6]" />
-                  <span className="text-[9px] font-black uppercase text-slate-400 dark:text-slate-200">Asynchronous Data Processing</span>
+                  <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-200">Asynchronous Data Processing</span>
                 </div>
-                <span className="text-[8px] rounded-sm bg-[#2563EB]/10 px-2 py-0.5 text-[#2563EB] dark:text-[#3B82F6] font-bold border border-[#2563EB]/15 uppercase">
+                <span className="text-[10.5px] rounded-sm bg-[#2563EB]/10 px-2 py-0.5 text-[#2563EB] dark:text-[#3B82F6] font-bold border border-[#2563EB]/15 uppercase">
                   {activeJob.status}
                 </span>
               </div>
               <div className="space-y-1.5">
-                <div className="flex justify-between text-[10px] font-bold text-[#64748B] dark:text-[#94A3B8]">
+                <div className="flex justify-between text-xs font-bold text-[#64748B] dark:text-[#94A3B8]">
                   <span>File: {activeJob.filename}</span>
                   <span className="terminal-text-mono">
                     {activeJob.processed_rows.toLocaleString()} / {activeJob.total_rows.toLocaleString()} Rows
@@ -359,7 +359,7 @@ export default function PortfolioPage() {
                 </div>
               </div>
               {activeJob.status === 'completed' && (
-                <div className="flex items-center space-x-2 text-[10px] text-emerald-400 font-bold bg-emerald-950/10 border border-emerald-900/20 rounded-sm p-3">
+                <div className="flex items-center space-x-2 text-xs text-emerald-400 font-bold bg-emerald-950/10 border border-emerald-900/20 rounded-sm p-3">
                   <CheckCircle2 className="h-4 w-4 shrink-0" />
                   <span>Success! 10,000 portfolio records ingested, scored, and mapped with RLS security policies.</span>
                 </div>
@@ -379,7 +379,7 @@ export default function PortfolioPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 max-h-[220px] overflow-y-auto pr-1">
                 {internalFields.map((field) => (
                   <div key={field.key} className="flex flex-col space-y-1">
-                    <label className="text-[9px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase tracking-wider">
+                    <label className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase tracking-wider">
                       {field.label} {field.required && <span className="text-rose-500">*</span>}
                     </label>
                     <select
@@ -399,7 +399,7 @@ export default function PortfolioPage() {
                 <button
                   onClick={handleStartIngestion}
                   disabled={isIngesting}
-                  className="flex-1 rounded-sm bg-[#2563EB] hover:bg-blue-600 disabled:bg-blue-800 py-2 text-[10px] font-black text-white uppercase tracking-widest cursor-pointer text-center"
+                  className="flex-1 rounded-sm bg-[#2563EB] hover:bg-blue-600 disabled:bg-blue-800 py-2 text-xs font-black text-white uppercase tracking-widest cursor-pointer text-center"
                 >
                   Confirm and Start Ingest
                 </button>
@@ -408,7 +408,7 @@ export default function PortfolioPage() {
                     setIsMapping(false);
                     setFile(null);
                   }}
-                  className="rounded-sm bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 border border-[#E2E8F0] dark:border-[#334155] px-4 py-2 text-[10px] font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest cursor-pointer"
+                  className="rounded-sm bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 border border-[#E2E8F0] dark:border-[#334155] px-4 py-2 text-xs font-black text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -418,7 +418,7 @@ export default function PortfolioPage() {
         </div>
 
         {/* Info Box */}
-        <div className="terminal-card text-[10px] text-[#64748B] dark:text-[#94A3B8] space-y-3.5 !p-4 flex flex-col justify-between">
+        <div className="terminal-card text-xs text-[#64748B] dark:text-[#94A3B8] space-y-3.5 !p-4 flex flex-col justify-between">
           <div className="space-y-2">
             <h3 className="text-xs font-bold text-[#0F172A] dark:text-slate-300 uppercase tracking-wider">System Specifications</h3>
             <p className="leading-relaxed">
@@ -467,11 +467,11 @@ export default function PortfolioPage() {
           ) : paginatedCustomers.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-36 text-[#64748B] dark:text-[#94A3B8] text-xs">
               <span>No customer records indexed in your portfolio.</span>
-              <span className="mt-1 font-bold uppercase text-[9px]">Drag and drop a CSV file to index new data.</span>
+              <span className="mt-1 font-bold uppercase text-[11px]">Drag and drop a CSV file to index new data.</span>
             </div>
           ) : (
-            <table className="w-full text-[10px] text-left">
-              <thead className="bg-[#F8FAFC]/80 dark:bg-slate-950/80 text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest border-b border-[#E2E8F0] dark:border-slate-800">
+            <table className="w-full text-xs text-left">
+              <thead className="bg-[#F8FAFC]/80 dark:bg-slate-950/80 text-[10px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest border-b border-[#E2E8F0] dark:border-slate-800">
                 <tr>
                   <th onClick={() => toggleSort('customer_id')} className="px-3 py-2 cursor-pointer hover:text-[#0F172A] dark:hover:text-white">
                     <span className="flex items-center">
@@ -515,7 +515,7 @@ export default function PortfolioPage() {
                     <td className="px-3 py-2 font-bold">{cust.primary_bank}</td>
                     <td className="px-3 py-2 font-bold terminal-text-mono">{cust.current_utilization_pct}%</td>
                     <td className="px-3 py-2 text-right font-black">
-                      <span className={`inline-flex rounded-sm px-2 py-0.5 text-[9px] font-extrabold ${
+                      <span className={`inline-flex rounded-sm px-2 py-0.5 text-[11px] font-extrabold ${
                         getVerdictBadge(cust.verdict)
                       }`}>
                         {(cust.risk_score * 100).toFixed(1)}%
@@ -542,7 +542,7 @@ export default function PortfolioPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between border-t border-[#E2E8F0] dark:border-slate-800 pt-3 text-[10px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">
+          <div className="flex items-center justify-between border-t border-[#E2E8F0] dark:border-slate-800 pt-3 text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">
             <span>
               Showing {startIndex + 1} to {Math.min(startIndex + pageSize, totalItems)} of {totalItems} entries
             </span>

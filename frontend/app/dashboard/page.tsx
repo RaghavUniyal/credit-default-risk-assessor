@@ -227,10 +227,10 @@ export default function OverviewPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 pb-2 border-b border-[#E2E8F0] dark:border-[#334155]">
         <div>
           <h2 className="text-lg font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Portfolio Risk Command Center</h2>
-          <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Indian credit cards exposures and dynamic default matrix.</p>
+          <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Indian credit cards exposures and dynamic default matrix.</p>
         </div>
         {portfolioData?.empty && (
-          <span className="inline-flex items-center rounded-sm bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[9px] font-black text-amber-400 uppercase tracking-widest animate-pulse">
+          <span className="inline-flex items-center rounded-sm bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-xs font-black text-amber-400 uppercase tracking-widest animate-pulse">
             DEMO MODE (Using Fallback Aggregates)
           </span>
         )}
@@ -246,28 +246,28 @@ export default function OverviewPage() {
         {/* Metric 1 */}
         <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Ingested Accounts</span>
+            <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Ingested Accounts</span>
             <Users className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
           </div>
           <div className="mt-2.5 flex items-baseline justify-between">
             <h3 className="text-xl font-black terminal-text-mono tracking-tight text-[#0F172A] dark:text-white">
               {data?.totalSize?.toLocaleString() ?? "0"}
             </h3>
-            <span className="text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">Cardholders</span>
+            <span className="text-[11px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">Cardholders</span>
           </div>
         </motion.div>
 
         {/* Metric 2 */}
         <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Weighted PD</span>
+            <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Weighted PD</span>
             <Activity className="h-4 w-4 text-rose-500" />
           </div>
           <div className="mt-2.5 flex items-baseline justify-between">
             <h3 className="text-xl font-black terminal-text-mono text-rose-500">
               {((data?.avgPD ?? 0) * 100).toFixed(2)}%
             </h3>
-            <span className="inline-flex items-center text-[8px] font-bold text-rose-400 uppercase">
+            <span className="inline-flex items-center text-[11px] font-bold text-rose-400 uppercase">
               Stress Factor
             </span>
           </div>
@@ -276,14 +276,14 @@ export default function OverviewPage() {
         {/* Metric 3 */}
         <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Avg CIBIL Score</span>
+            <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Avg CIBIL Score</span>
             <Layers className="h-4 w-4 text-cyan-500" />
           </div>
           <div className="mt-2.5 flex items-baseline justify-between">
             <h3 className="text-xl font-black terminal-text-mono text-[#0F172A] dark:text-white">
               {Math.round(data?.avgCibil ?? 0)}
             </h3>
-            <span className="inline-flex items-center text-[8px] font-bold text-emerald-400 uppercase">
+            <span className="inline-flex items-center text-[11px] font-bold text-emerald-400 uppercase">
               Prime Avg
             </span>
           </div>
@@ -292,14 +292,14 @@ export default function OverviewPage() {
         {/* Metric 4 */}
         <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Outstanding Limit</span>
+            <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Outstanding Limit</span>
             <Building className="h-4 w-4 text-indigo-500" />
           </div>
           <div className="mt-2.5 flex items-baseline justify-between">
             <h3 className="text-xl font-black terminal-text-mono text-[#0F172A] dark:text-white">
               INR {((data?.totalLimit ?? 0) / 10000000).toFixed(2)} Cr
             </h3>
-            <span className="text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">Exposure</span>
+            <span className="text-[11px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">Exposure</span>
           </div>
         </motion.div>
       </motion.div>
@@ -309,7 +309,7 @@ export default function OverviewPage() {
         {/* Left Chart: Bank Exposure */}
         <div className="terminal-card lg:col-span-2 !p-4">
           <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-4">Bank Exposure and Average PD %</h3>
-          <div className="h-64 w-full text-[10px]">
+          <div className="h-64 w-full text-xs">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data?.bankChartData ?? []}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" className="dark:stroke-slate-800" />
@@ -353,7 +353,7 @@ export default function OverviewPage() {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="grid grid-cols-3 gap-2 text-center text-[9px] font-bold border-t border-[#E2E8F0] dark:border-slate-800 pt-3">
+          <div className="grid grid-cols-3 gap-2 text-center text-xs font-bold border-t border-[#E2E8F0] dark:border-slate-800 pt-3">
             <div>
               <span className="text-emerald-400 block">LOW</span>
               <span className="text-slate-400 terminal-text-mono">{data?.counts?.lowCount} Accts</span>
@@ -379,19 +379,19 @@ export default function OverviewPage() {
             <Sparkles className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
             <span>Bank x Network Risk Heatmap</span>
           </h3>
-          <p className="text-[8px] text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wide mb-4">
+          <p className="text-[10.5px] text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wide mb-4">
             Cross-hair highlights on hover. Cell indicates avg PD %.
           </p>
 
           <div className="flex-1 flex flex-col justify-between">
-            <table className="w-full text-[10px] text-center border-collapse">
+            <table className="w-full text-xs text-center border-collapse">
               <thead>
                 <tr className="border-b border-[#E2E8F0] dark:border-slate-800">
-                  <th className="py-2 text-[#64748B] dark:text-[#94A3B8] text-left uppercase text-[8px] font-bold">Bank</th>
+                  <th className="py-2 text-[#64748B] dark:text-[#94A3B8] text-left uppercase text-[10px] font-bold">Bank</th>
                   {['Visa', 'Mastercard', 'RuPay', 'RuPay_UPI'].map(net => (
                     <th 
                       key={net} 
-                      className={`py-2 uppercase text-[8px] font-bold transition-all ${
+                      className={`py-2 uppercase text-[10px] font-bold transition-all ${
                         hoveredNetwork === net ? 'text-[#2563EB] dark:text-[#3B82F6] bg-blue-500/5' : 'text-[#64748B] dark:text-[#94A3B8]'
                       }`}
                     >
@@ -408,7 +408,7 @@ export default function OverviewPage() {
                       hoveredBank === row.bank ? 'bg-blue-500/5' : ''
                     }`}
                   >
-                    <td className={`py-2 text-left font-bold border-r border-[#E2E8F0] dark:border-slate-800 text-[9px] uppercase ${
+                    <td className={`py-2 text-left font-bold border-r border-[#E2E8F0] dark:border-slate-800 text-[11px] uppercase ${
                       hoveredBank === row.bank ? 'text-[#2563EB] dark:text-[#3B82F6]' : 'text-slate-400'
                     }`}>
                       {row.bank}
@@ -453,8 +453,8 @@ export default function OverviewPage() {
           </h3>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-[10px] text-left">
-              <thead className="bg-[#F8FAFC]/80 dark:bg-slate-950/80 text-[8px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest border-b border-[#E2E8F0] dark:border-slate-800">
+            <table className="w-full text-xs text-left">
+              <thead className="bg-[#F8FAFC]/80 dark:bg-slate-950/80 text-[10px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest border-b border-[#E2E8F0] dark:border-slate-800">
                 <tr>
                   <th className="px-3 py-2">Cust ID</th>
                   <th className="px-3 py-2">Name</th>
@@ -473,7 +473,7 @@ export default function OverviewPage() {
                     <td className="px-3 py-2 font-bold">{cust.primary_bank}</td>
                     <td className="px-3 py-2 font-semibold terminal-text-mono">INR {cust.total_credit_limit.toLocaleString()}</td>
                     <td className="px-3 py-2 text-right font-black">
-                      <span className={`inline-flex rounded-sm px-2 py-0.5 text-[9px] font-extrabold ${getVerdictStyle(cust.risk_score >= 0.4 ? 'High Risk' : cust.risk_score >= 0.15 ? 'Medium Risk' : 'Low Risk')}`}>
+                      <span className={`inline-flex rounded-sm px-2 py-0.5 text-[11px] font-extrabold ${getVerdictStyle(cust.risk_score >= 0.4 ? 'High Risk' : cust.risk_score >= 0.15 ? 'Medium Risk' : 'Low Risk')}`}>
                         {(cust.risk_score * 100).toFixed(1)}%
                       </span>
                     </td>

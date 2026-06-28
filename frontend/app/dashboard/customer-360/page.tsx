@@ -146,7 +146,7 @@ export default function Customer360Page() {
       {/* Title */}
       <div className="pb-2 border-b border-[#E2E8F0] dark:border-[#334155]">
         <h2 className="text-lg font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Customer 360 Risk Profile</h2>
-        <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Deep-dive customer risk timelines, CIBIL metrics, and SHAP contributors.</p>
+        <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Deep-dive customer risk timelines, CIBIL metrics, and SHAP contributors.</p>
       </div>
 
       {/* Global Search Bar */}
@@ -164,7 +164,7 @@ export default function Customer360Page() {
           </div>
           <button
             type="submit"
-            className="rounded-sm bg-[#2563EB] hover:bg-blue-600 px-5 text-[10px] font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
+            className="rounded-sm bg-[#2563EB] hover:bg-blue-600 px-5 text-xs font-black text-white uppercase tracking-widest transition-colors cursor-pointer"
           >
             Query
           </button>
@@ -198,29 +198,29 @@ export default function Customer360Page() {
                     <h3 className="text-xs font-black text-[#0F172A] dark:text-white uppercase leading-none">
                       {customerRiskData.customer.customer_name}
                     </h3>
-                    <p className="text-[8px] font-mono text-slate-500 mt-1">{customerRiskData.customer.customer_id}</p>
+                    <p className="text-[10px] font-mono text-slate-500 mt-1">{customerRiskData.customer.customer_id}</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-y-3 text-[10px]">
+                <div className="grid grid-cols-2 gap-y-3 text-xs">
                   <div>
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest font-bold block">Age / City</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block">Age / City</span>
                     <span className="font-bold text-[#0F172A] dark:text-slate-200">
                       {customerRiskData.customer.age} Yrs / {customerRiskData.customer.city}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest font-bold block">Primary Bank</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block">Primary Bank</span>
                     <span className="font-bold text-[#0F172A] dark:text-slate-200">{customerRiskData.customer.primary_bank}</span>
                   </div>
                   <div>
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest font-bold block">Card Network</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block">Card Network</span>
                     <span className="font-bold text-[#0F172A] dark:text-slate-200">
                       {customerRiskData.customer.card_network.replace('_', ' ')}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest font-bold block">CIBIL Score</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block">CIBIL Score</span>
                     <span className={`font-black terminal-text-mono flex items-center ${
                       customerRiskData.customer.cibil_score >= 750 ? 'text-emerald-500' :
                       customerRiskData.customer.cibil_score >= 650 ? 'text-yellow-500' : 'text-rose-500'
@@ -244,29 +244,29 @@ export default function Customer360Page() {
                   </div>
                   <div>
                     <h3 className="text-xs font-black text-[#0F172A] dark:text-white uppercase leading-none">Financial Health</h3>
-                    <p className="text-[8px] text-slate-500 mt-1">Income exposure and limit utilizations</p>
+                    <p className="text-[10px] text-slate-500 mt-1">Income exposure and limit utilizations</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-y-3 text-[10px]">
+                <div className="grid grid-cols-2 gap-y-3 text-xs">
                   <div>
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest font-bold block">Credit Limit</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block">Credit Limit</span>
                     <span className="font-bold terminal-text-mono text-[#0F172A] dark:text-slate-200">
                       INR {customerRiskData.customer.total_credit_limit.toLocaleString()}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest font-bold block">DTI Estimate</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block">DTI Estimate</span>
                     <span className="font-bold terminal-text-mono text-[#0F172A] dark:text-slate-200">{customerRiskData.customer.debt_to_income_pct}%</span>
                   </div>
                   <div>
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest font-bold block">Avg Monthly Spend</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block">Avg Monthly Spend</span>
                     <span className="font-bold terminal-text-mono text-[#0F172A] dark:text-slate-200">
                       INR {customerRiskData.customer.avg_monthly_spend.toLocaleString()}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest font-bold block">Utilization %</span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block">Utilization %</span>
                     <div className="mt-1 flex items-center space-x-2">
                       <div className="h-1.5 w-16 bg-[#E2E8F0] dark:bg-slate-900 rounded-none overflow-hidden">
                         <div 
@@ -291,9 +291,9 @@ export default function Customer360Page() {
               <div className="flex items-center justify-between pb-3 border-b border-[#E2E8F0] dark:border-slate-800 mb-3">
                 <div className="flex items-center space-x-2">
                   <Calendar className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
-                  <span className="text-[10px] font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider">6-Month Payment Timeline</span>
+                  <span className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider">6-Month Payment Timeline</span>
                 </div>
-                <div className="flex space-x-2 text-[8px] font-bold uppercase tracking-wider">
+                <div className="flex space-x-2 text-[10px] font-bold uppercase tracking-wider">
                   <span className="text-emerald-500">● Full</span>
                   <span className="text-amber-500">● MAD</span>
                   <span className="text-orange-500">● Late</span>
@@ -307,8 +307,8 @@ export default function Customer360Page() {
                   const status = customerRiskData.customer[dbField];
                   return (
                     <div key={idx} className="space-y-1.5">
-                      <p className="text-[8px] text-slate-500 font-bold uppercase tracking-wider">{month}</p>
-                      <div className={`border p-2.5 font-extrabold text-[9px] uppercase tracking-wider rounded-sm transition-all ${
+                      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{month}</p>
+                      <div className={`border p-2.5 font-extrabold text-[11px] uppercase tracking-wider rounded-sm transition-all ${
                         getPaymentStatusStyles(status)
                       }`}>
                         {status}
@@ -321,12 +321,12 @@ export default function Customer360Page() {
 
             {/* Panel: SHAP Explainability Chart */}
             <div className="terminal-card">
-              <h3 className="text-[10px] font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider mb-4 flex items-center space-x-2">
+              <h3 className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider mb-4 flex items-center space-x-2">
                 <Activity className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
                 <span>Risk Driver Contributions (SHAP Values)</span>
               </h3>
               
-              <div className="space-y-3.5 text-[10px]">
+              <div className="space-y-3.5 text-xs">
                 {customerRiskData.prediction.shap_drivers.map((driver: any, idx: number) => {
                   const isPositive = driver.contribution > 0;
                   const pctVal = Math.min(Math.abs(driver.contribution) * 100, 100);
@@ -337,7 +337,7 @@ export default function Customer360Page() {
                         <span className="text-[#0F172A] dark:text-slate-200">
                           {driver.feature} ({driver.display_value})
                         </span>
-                        <span className={`font-bold terminal-text-mono text-[9px] ${
+                        <span className={`font-bold terminal-text-mono text-[11px] ${
                           isPositive ? 'text-rose-500' : 'text-emerald-500'
                         }`}>
                           {isPositive ? '+' : ''}{(driver.contribution * 100).toFixed(1)}% PD Influence
@@ -369,7 +369,8 @@ export default function Customer360Page() {
             
             {/* SVG Radial Gauge */}
             <div className="terminal-card text-center flex flex-col items-center justify-center space-y-4 py-6">
-              <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Continuous Probability of Default</span>
+            <div className="terminal-card text-center flex flex-col items-center justify-center space-y-4 py-6">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Continuous Probability of Default</span>
               
               {/* Semi-Circle SVG Gauge */}
               <div className="relative flex h-24 w-44 items-end justify-center">
@@ -399,12 +400,12 @@ export default function Customer360Page() {
                   <h4 className="text-2xl font-black terminal-text-mono leading-none text-[#0F172A] dark:text-white">
                     {(score * 100).toFixed(1)}%
                   </h4>
-                  <p className="text-[8px] text-slate-500 uppercase tracking-widest font-bold">6-Month PD</p>
+                  <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">6-Month PD</p>
                 </div>
               </div>
 
               {/* Verdict badge */}
-              <div className={`rounded-sm border px-4 py-0.5 text-[10px] font-black uppercase tracking-wider ${
+              <div className={`rounded-sm border px-4 py-0.5 text-xs font-black uppercase tracking-wider ${
                 getVerdictStyles(customerRiskData.prediction.verdict)
               }`}>
                 {customerRiskData.prediction.verdict}
@@ -415,9 +416,9 @@ export default function Customer360Page() {
             <div className="terminal-card space-y-3">
               <div className="flex items-center space-x-2">
                 <FileText className="h-4 w-4 text-[#2563EB] dark:text-[#3B82F6]" />
-                <h3 className="text-[10px] font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider">GenAI Compliance Narrative</h3>
+                <h3 className="text-xs font-black text-slate-400 dark:text-slate-200 uppercase tracking-wider">GenAI Compliance Narrative</h3>
               </div>
-              <p className="text-[11px] text-[#64748B] dark:text-slate-300 leading-relaxed italic bg-[#F8FAFC] dark:bg-slate-950 border border-[#E2E8F0] dark:border-slate-900 p-3 rounded-none relative overflow-hidden">
+              <p className="text-[12.5px] text-[#64748B] dark:text-slate-300 leading-relaxed italic bg-[#F8FAFC] dark:bg-slate-950 border border-[#E2E8F0] dark:border-slate-900 p-3 rounded-none relative overflow-hidden">
                 "{customerRiskData.prediction.risk_narrative}"
                 {/* Blinking Cursor representing streaming trace */}
                 <span className="inline-block h-3 w-1.5 bg-[#2563EB] dark:bg-[#3B82F6] ml-1 animate-pulse"></span>
@@ -430,7 +431,7 @@ export default function Customer360Page() {
                 setSelectedCustomerId(customerRiskData.customer.customer_id);
                 router.push('/dashboard/collections');
               }}
-              className="flex w-full items-center justify-between rounded-sm bg-[#2563EB]/10 hover:bg-[#2563EB]/25 border border-[#2563EB]/20 p-3.5 text-[9px] font-black uppercase tracking-wider text-[#2563EB] dark:text-[#3B82F6] group cursor-pointer"
+              className="flex w-full items-center justify-between rounded-sm bg-[#2563EB]/10 hover:bg-[#2563EB]/25 border border-[#2563EB]/20 p-3.5 text-xs font-black uppercase tracking-wider text-[#2563EB] dark:text-[#3B82F6] group cursor-pointer"
             >
               <span>Target Collections Strategy</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -445,7 +446,7 @@ export default function Customer360Page() {
         <div className="terminal-card p-12 text-center">
           <ShieldAlert className="h-10 w-10 text-rose-500 mx-auto mb-3" />
           <h3 className="text-xs font-black uppercase tracking-wider text-[#0F172A] dark:text-white">Customer Record Not Found</h3>
-          <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-2">
+          <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-2">
             No active portfolio contains customer ID <span className="font-mono text-rose-500 font-bold">"{activeSearchId}"</span>.
           </p>
         </div>
@@ -455,7 +456,7 @@ export default function Customer360Page() {
         <div className="terminal-card p-16 text-center">
           <Search className="h-10 w-10 text-slate-300 dark:text-slate-700 mx-auto mb-3" />
           <h3 className="text-xs font-black uppercase tracking-wider text-[#0F172A] dark:text-white">Risk Query Terminal Active</h3>
-          <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-1">
+          <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-1">
             Input a customer ID above to scan default metrics.
           </p>
         </div>
