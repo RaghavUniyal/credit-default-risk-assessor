@@ -84,7 +84,7 @@ function LoginPanel() {
         id: 'mock-uuid',
         email: email || 'analyst@bank.in',
         full_name: 'Risk Analyst',
-        role: 'analyst',
+        role: 'analyst' as const,
         created_at: new Date().toISOString()
       };
       localStorage.setItem('mock_session', JSON.stringify({ user: mockUser, profile: mockProfile }));
