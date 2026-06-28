@@ -141,7 +141,43 @@ export default function PortfolioPage() {
         setHeaders(parsedHeaders);
         setIsMapping(true);
         
-        // Auto detect mappings via API
+        // Auto detect mappings locally first (ensures instant automatic pairing)
+        const localMapping: Record<string, string> = {};
+        const synonyms: Record<string, string[]> = {
+          customer_id: ['customer_id', 'cust_id', 'id', 'customer id', 'cust id', 'pan', 'cardholder_id', 'cardholder id', 'customer_number'],
+          customer_name: ['customer_name', 'name', 'customer name', 'full_name', 'full name', 'cardholder_name', 'cardholder name', 'client_name'],
+          age: ['age', 'customer_age', 'customer age', 'dob', 'birth_year', 'years'],
+          city: ['city', 'location', 'residence', 'address_city', 'home_city', 'tier'],
+          primary_bank: ['primary_bank', 'bank', 'issuer', 'issuing_bank', 'primary bank', 'issuing bank', 'bank_name'],
+          card_network: ['card_network', 'network', 'card network', 'network_type', 'network_name', 'card_network_type'],
+          cibil_score: ['cibil_score', 'cibil', 'credit_score', 'credit score', 'bureau_score', 'bureau score', 'cibil score'],
+          total_credit_limit: ['total_credit_limit', 'credit_limit', 'limit', 'credit limit', 'total limit', 'card_limit'],
+          current_utilization_pct: ['current_utilization_pct', 'utilization', 'utilization_pct', 'utilization%', 'utilization_rate', 'util%', 'card_utilization'],
+          avg_monthly_spend: ['avg_monthly_spend', 'spend', 'average_spend', 'avg spend', 'monthly_spend', 'spending'],
+          debt_to_income_pct: ['debt_to_income_pct', 'dti', 'debt_to_income', 'debt to income', 'dti_pct', 'dti%'],
+          payment_status_m1: ['payment_status_m1', 'm1', 'm1_payment', 'payment m1', 'status m1', 'payment_status_1'],
+          payment_status_m2: ['payment_status_m2', 'm2', 'm2_payment', 'payment m2', 'status m2', 'payment_status_2'],
+          payment_status_m3: ['payment_status_m3', 'm3', 'm3_payment', 'payment m3', 'status m3', 'payment_status_3'],
+          payment_status_m4: ['payment_status_m4', 'm4', 'm4_payment', 'payment m4', 'status m4', 'payment_status_4'],
+          payment_status_m5: ['payment_status_m5', 'm5', 'm5_payment', 'payment m5', 'status m5', 'payment_status_5'],
+          payment_status_m6: ['payment_status_m6', 'm6', 'm6_payment', 'payment m6', 'status m6', 'payment_status_6'],
+          default_6month_label: ['default_6month_label', 'default', 'default_label', 'label', 'defaulted', 'bad_rate']
+        };
+
+        internalFields.forEach(field => {
+          const match = parsedHeaders.find(header => {
+            const normHeader = header.toLowerCase().replace(/[_\-\s%]/g, '');
+            if (normHeader === field.key.replace(/[_\-\s%]/g, '')) return true;
+            const list = synonyms[field.key] || [];
+            return list.some(syn => syn.toLowerCase().replace(/[_\-\s%]/g, '') === normHeader);
+          });
+          if (match) {
+            localMapping[field.key] = match;
+          }
+        });
+        setMapping(localMapping);
+        
+        // Auto detect mappings via API fallback
         try {
           const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
           const res = await fetch(`${apiUrl}/schema-mapper/detect`, {
@@ -152,7 +188,7 @@ export default function PortfolioPage() {
           
           if (res.ok) {
             const data = await res.json();
-            setMapping(data.mapping);
+            setMapping(prev => ({ ...prev, ...data.mapping }));
           }
         } catch (err) {
           console.error("Heuristic auto-detection failed", err);
@@ -375,6 +411,48 @@ export default function PortfolioPage() {
                   <Map className="h-4 w-4 text-[#0066FF] dark:text-[#3B82F6]" />
                   <span>Schema Column Mapper</span>
                 </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const localMapping: Record<string, string> = {};
+                    const synonyms: Record<string, string[]> = {
+                      customer_id: ['customer_id', 'cust_id', 'id', 'customer id', 'cust id', 'pan', 'cardholder_id', 'cardholder id', 'customer_number'],
+                      customer_name: ['customer_name', 'name', 'customer name', 'full_name', 'full name', 'cardholder_name', 'cardholder name', 'client_name'],
+                      age: ['age', 'customer_age', 'customer age', 'dob', 'birth_year', 'years'],
+                      city: ['city', 'location', 'residence', 'address_city', 'home_city', 'tier'],
+                      primary_bank: ['primary_bank', 'bank', 'issuer', 'issuing_bank', 'primary bank', 'issuing bank', 'bank_name'],
+                      card_network: ['card_network', 'network', 'card network', 'network_type', 'network_name', 'card_network_type'],
+                      cibil_score: ['cibil_score', 'cibil', 'credit_score', 'credit score', 'bureau_score', 'bureau score', 'cibil score'],
+                      total_credit_limit: ['total_credit_limit', 'credit_limit', 'limit', 'credit limit', 'total limit', 'card_limit'],
+                      current_utilization_pct: ['current_utilization_pct', 'utilization', 'utilization_pct', 'utilization%', 'utilization_rate', 'util%', 'card_utilization'],
+                      avg_monthly_spend: ['avg_monthly_spend', 'spend', 'average_spend', 'avg spend', 'monthly_spend', 'spending'],
+                      debt_to_income_pct: ['debt_to_income_pct', 'dti', 'debt_to_income', 'debt to income', 'dti_pct', 'dti%'],
+                      payment_status_m1: ['payment_status_m1', 'm1', 'm1_payment', 'payment m1', 'status m1', 'payment_status_1'],
+                      payment_status_m2: ['payment_status_m2', 'm2', 'm2_payment', 'payment m2', 'status m2', 'payment_status_2'],
+                      payment_status_m3: ['payment_status_m3', 'm3', 'm3_payment', 'payment m3', 'status m3', 'payment_status_3'],
+                      payment_status_m4: ['payment_status_m4', 'm4', 'm4_payment', 'payment m4', 'status m4', 'payment_status_4'],
+                      payment_status_m5: ['payment_status_m5', 'm5', 'm5_payment', 'payment m5', 'status m5', 'payment_status_5'],
+                      payment_status_m6: ['payment_status_m6', 'm6', 'm6_payment', 'payment m6', 'status m6', 'payment_status_6'],
+                      default_6month_label: ['default_6month_label', 'default', 'default_label', 'label', 'defaulted', 'bad_rate']
+                    };
+
+                    internalFields.forEach(field => {
+                      const match = headers.find(header => {
+                        const normHeader = header.toLowerCase().replace(/[_\-\s%]/g, '');
+                        if (normHeader === field.key.replace(/[_\-\s%]/g, '')) return true;
+                        const list = synonyms[field.key] || [];
+                        return list.some(syn => syn.toLowerCase().replace(/[_\-\s%]/g, '') === normHeader);
+                      });
+                      if (match) {
+                        localMapping[field.key] = match;
+                      }
+                    });
+                    setMapping(localMapping);
+                  }}
+                  className="rounded-sm bg-[#0066FF]/10 hover:bg-[#0066FF]/20 border border-[#0066FF]/20 px-2 py-0.5 text-[10.5px] font-black text-[#0066FF] dark:text-[#3B82F6] uppercase tracking-wider cursor-pointer transition-all"
+                >
+                  Auto-Select Matching Columns
+                </button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 max-h-[220px] overflow-y-auto pr-1">
                 {internalFields.map((field) => (
