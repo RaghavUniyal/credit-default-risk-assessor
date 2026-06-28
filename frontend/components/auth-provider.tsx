@@ -18,6 +18,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (session) {
         fetchProfile(session.user);
       } else {
+        // Fallback: Check local mock session
+        const mockSessionStr = localStorage.getItem('mock_session');
+        if (mockSessionStr) {
+          try {
+            const { user, profile } = JSON.parse(mockSessionStr);
+            setAuth(user, profile);
+            setAuthLoading(false);
+            return;
+          } catch (e) {
+            console.error("Failed to parse mock session", e);
+          }
+        }
+
         clearAuth();
         setAuthLoading(false);
         if (pathname.startsWith('/dashboard')) {
@@ -35,6 +48,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             router.replace('/dashboard');
           }
         } else {
+          // Fallback: Check local mock session
+          const mockSessionStr = localStorage.getItem('mock_session');
+          if (mockSessionStr) {
+            try {
+              const { user, profile } = JSON.parse(mockSessionStr);
+              setAuth(user, profile);
+              setAuthLoading(false);
+              return;
+            } catch (e) {
+              console.error("Failed to parse mock session", e);
+            }
+          }
+
           clearAuth();
           setAuthLoading(false);
           if (pathname.startsWith('/dashboard')) {

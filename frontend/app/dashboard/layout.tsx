@@ -45,9 +45,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }, []);
 
   const handleSignOut = async () => {
+    localStorage.removeItem('mock_session');
     await supabase.auth.signOut();
     clearAuth();
-    router.replace('/login');
+    router.replace('/');
   };
 
   const handleCommandSearch = (e: React.FormEvent) => {
