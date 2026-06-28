@@ -115,7 +115,7 @@ function LoginPanel() {
           Secure Authenticator
         </h2>
         <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase leading-relaxed">
-          Access credit risk models and portfolio analytics. Authorized personnel only.
+          Access credit risk models and portfolio analytics.
         </p>
       </div>
 
@@ -214,10 +214,10 @@ function MarketingPanel() {
       
       {/* Title */}
       <div className="space-y-2">
-        <h2 className="text-2xl lg:text-3xl font-black tracking-tight text-[#0F172A] dark:text-white leading-none">
+        <h2 className="text-3xl lg:text-4xl font-black tracking-tight text-[#0F172A] dark:text-white leading-none">
           Predict Credit Card Defaults 6 Months in Advance
         </h2>
-        <p className="text-[13px] text-[#64748B] dark:text-[#94A3B8] leading-relaxed max-w-xl font-medium">
+        <p className="text-sm text-[#64748B] dark:text-[#94A3B8] leading-relaxed max-w-xl font-medium">
           Credit Risk Assessor empowers bank risk teams with AI-powered machine learning models that identify high-risk customers before they miss a payment.
         </p>
       </div>
@@ -296,10 +296,10 @@ function MarketingPanel() {
           >
             <CheckCircle2 className="h-4.5 w-4.5 text-emerald-500 shrink-0 mt-0.5" />
             <div className="space-y-0.5">
-              <h3 className="text-xs font-black text-[#0F172A] dark:text-white uppercase leading-none">
+              <h3 className="text-sm font-black text-[#0F172A] dark:text-white uppercase leading-none">
                 {feat.title}
               </h3>
-              <p className="text-[12.5px] text-[#64748B] dark:text-[#94A3B8]">
+              <p className="text-sm text-[#64748B] dark:text-[#94A3B8]">
                 {feat.desc}
               </p>
             </div>
