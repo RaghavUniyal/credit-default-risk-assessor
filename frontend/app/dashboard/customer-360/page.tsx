@@ -5,6 +5,7 @@ import { useStore } from '@/store/useStore';
 import { supabase } from '@/lib/supabase';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { useTheme } from '@/components/theme-provider';
 import { motion } from 'framer-motion';
 import { 
   Search, 
@@ -22,6 +23,7 @@ import {
 
 export default function Customer360Page() {
   const router = useRouter();
+  const { theme } = useTheme();
   const { selectedCustomerId, setSelectedCustomerId } = useStore();
   const [searchInput, setSearchInput] = useState('');
   const [activeSearchId, setActiveSearchId] = useState<string | null>(null);
