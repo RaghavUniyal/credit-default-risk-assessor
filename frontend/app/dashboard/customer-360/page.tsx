@@ -369,7 +369,6 @@ export default function Customer360Page() {
             
             {/* SVG Radial Gauge */}
             <div className="terminal-card text-center flex flex-col items-center justify-center space-y-4 py-6">
-            <div className="terminal-card text-center flex flex-col items-center justify-center space-y-4 py-6">
               <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Continuous Probability of Default</span>
               
               {/* Semi-Circle SVG Gauge */}
