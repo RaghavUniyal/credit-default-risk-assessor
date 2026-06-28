@@ -3,6 +3,8 @@
 html {
   font-size: 17.5px;
 }
+
+@layer base {
   :root {
     --bg-color: #FFFFFF;
     --surface-color: #F4F6FA;
