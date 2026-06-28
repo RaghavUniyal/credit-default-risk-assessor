@@ -506,7 +506,7 @@ export default function PortfolioPage() {
           <div className="border-t border-[#E2E8F0] dark:border-slate-800 pt-3.5 space-y-1.5 font-bold uppercase text-[#64748B] dark:text-[#94A3B8]">
             <span className="block text-emerald-400">✓ Continuous PD [0.0 - 1.0]</span>
             <span className="block text-emerald-400">✓ 3-Tier Risk Verdict mapping</span>
-            <span className="block text-indigo-400">✓ Dynamic Column Name Synonyms</span>
+            <span className="block text-emerald-400">✓ Dynamic Column Name Synonyms</span>
           </div>
         </div>
       </div>
