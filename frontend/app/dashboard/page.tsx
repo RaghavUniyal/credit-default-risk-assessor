@@ -181,7 +181,7 @@ export default function OverviewPage() {
             <Users className="h-4 w-4 text-emerald-400" />
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <h3 className="text-2xl font-black text-white">{data?.totalSize.toLocaleString()}</h3>
+            <h3 className="text-2xl font-black text-white">{data?.totalSize?.toLocaleString() ?? "0"}</h3>
             <span className="text-[9px] font-bold text-slate-500 uppercase">Accounts</span>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function OverviewPage() {
             <Activity className="h-4 w-4 text-rose-400" />
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <h3 className="text-2xl font-black text-rose-400">{(data?.avgPD * 100).toFixed(2)}%</h3>
+            <h3 className="text-2xl font-black text-rose-400">{((data?.avgPD ?? 0) * 100).toFixed(2)}%</h3>
             <span className="inline-flex items-center text-[10px] font-semibold text-rose-400">
               <TrendingUp className="mr-0.5 h-3 w-3" />
               Stress level
@@ -208,7 +208,7 @@ export default function OverviewPage() {
             <Layers className="h-4 w-4 text-cyan-400" />
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <h3 className="text-2xl font-black text-white">{Math.round(data?.avgCibil)}</h3>
+            <h3 className="text-2xl font-black text-white">{Math.round(data?.avgCibil ?? 0)}</h3>
             <span className="inline-flex items-center text-[10px] font-semibold text-emerald-400">
               <TrendingUp className="mr-0.5 h-3 w-3" />
               Prime Avg
@@ -224,7 +224,7 @@ export default function OverviewPage() {
           </div>
           <div className="mt-3 flex items-baseline justify-between">
             <h3 className="text-xl font-black text-white">
-              INR {(data?.totalLimit / 10000000).toFixed(2)} Cr
+              INR {((data?.totalLimit ?? 0) / 10000000).toFixed(2)} Cr
             </h3>
             <span className="text-[9px] font-bold text-slate-500 uppercase">Limit Exposure</span>
           </div>
@@ -238,7 +238,7 @@ export default function OverviewPage() {
           <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-4">Bank Exposure and Average PD %</h3>
           <div className="h-72 w-full text-xs">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data?.bankChartData}>
+              <BarChart data={data?.bankChartData ?? []}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                 <XAxis dataKey="bank" stroke="#64748b" />
                 <YAxis yAxisId="left" stroke="#64748b" label={{ value: 'PD %', angle: -90, position: 'insideLeft', fill: '#64748b' }} />
@@ -260,9 +260,9 @@ export default function OverviewPage() {
               <PieChart>
                 <Pie
                   data={[
-                    { name: 'Low Risk (<15%)', value: data?.counts.lowCount, color: '#10b981' },
-                    { name: 'Medium Risk (15-40%)', value: data?.counts.medCount, color: '#eab308' },
-                    { name: 'High Risk (>=40%)', value: data?.counts.highCount, color: '#ef4444' }
+                    { name: 'Low Risk (<15%)', value: data?.counts?.lowCount ?? 0, color: '#10b981' },
+                    { name: 'Medium Risk (15-40%)', value: data?.counts?.medCount ?? 0, color: '#eab308' },
+                    { name: 'High Risk (>=40%)', value: data?.counts?.highCount ?? 0, color: '#ef4444' }
                   ]}
                   cx="50%"
                   cy="50%"
@@ -282,15 +282,15 @@ export default function OverviewPage() {
           <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-bold border-t border-slate-900 pt-3">
             <div>
               <span className="text-emerald-400 block">LOW</span>
-              <span className="text-slate-400 text-[9px]">{data?.counts.lowCount} Accts</span>
+              <span className="text-slate-400 text-[9px]">{data?.counts?.lowCount ?? 0} Accts</span>
             </div>
             <div>
               <span className="text-yellow-400 block">MEDIUM</span>
-              <span className="text-slate-400 text-[9px]">{data?.counts.medCount} Accts</span>
+              <span className="text-slate-400 text-[9px]">{data?.counts?.medCount ?? 0} Accts</span>
             </div>
             <div>
               <span className="text-rose-400 block">HIGH</span>
-              <span className="text-slate-400 text-[9px]">{data?.counts.highCount} Accts</span>
+              <span className="text-slate-400 text-[9px]">{data?.counts?.highCount ?? 0} Accts</span>
             </div>
           </div>
         </div>
@@ -303,7 +303,7 @@ export default function OverviewPage() {
           <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-4">PD % by Card Network</h3>
           <div className="h-64 w-full text-xs">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data?.networkChartData} layout="vertical">
+              <BarChart data={data?.networkChartData ?? []} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                 <XAxis type="number" stroke="#64748b" />
                 <YAxis dataKey="network" type="category" stroke="#64748b" />
@@ -330,7 +330,7 @@ export default function OverviewPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-900">
-                {data?.topStressed.map((cust: any) => (
+                {data?.topStressed?.map((cust: any) => (
                   <tr key={cust.customer_id} className="hover:bg-slate-900/40 transition-colors">
                     <td className="px-4 py-3 font-mono font-bold text-emerald-400">{cust.customer_id}</td>
                     <td className="px-4 py-3 text-slate-200">{cust.customer_name}</td>
