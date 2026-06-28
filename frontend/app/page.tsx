@@ -79,10 +79,27 @@ function LoginPanel() {
     setLoading(true);
     
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      let { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
+
+      // Auto-register on the fly for ease of demo/viva if credentials are not found
+      if (error && (error.message.includes('Invalid login credentials') || error.message.includes('Email not confirmed'))) {
+        const { error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+        });
+        if (signUpError) throw signUpError;
+        
+        // Retry sign in after successful sign up
+        const { data: retryData, error: retryError } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (retryError) throw retryError;
+        error = null;
+      }
 
       if (error) throw error;
       router.replace('/dashboard');
