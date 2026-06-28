@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useStore } from '@/store/useStore';
 import { supabase } from '@/lib/supabase';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { 
   Search, 
   User, 
@@ -20,6 +21,7 @@ import {
 } from 'lucide-react';
 
 export default function Customer360Page() {
+  const router = useRouter();
   const { searchQuery, setSearchQuery, selectedCustomerId, setSelectedCustomerId } = useStore();
   const [searchInput, setSearchInput] = useState('');
   const [activeSearchId, setActiveSearchId] = useState<string | null>(null);
