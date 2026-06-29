@@ -50,14 +50,22 @@ export default function Customer360Page() {
     queryFn: async () => {
       if (!activeSearchId) return null;
 
-      const { data: custData, error: custErr } = await supabase
-        .from('customers')
-        .select('*')
-        .eq('customer_id', activeSearchId)
-        .limit(1)
-        .maybeSingle();
+      let custData: any = null;
+      try {
+        const { data, error: custErr } = await supabase
+          .from('customers')
+          .select('*')
+          .eq('customer_id', activeSearchId)
+          .limit(1)
+          .maybeSingle();
+        if (custErr) throw custErr;
+        custData = data;
+      } catch (err) {
+        console.warn("Supabase customer fetch failed in 360. Trying local storage fallback.", err);
+        const localCusts = JSON.parse(localStorage.getItem('local_customers') || '[]');
+        custData = localCusts.find((c: any) => c.customer_id === activeSearchId) || null;
+      }
 
-      if (custErr) throw custErr;
       if (!custData) return { notFound: true };
 
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';

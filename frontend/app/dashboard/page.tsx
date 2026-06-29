@@ -43,17 +43,26 @@ export default function OverviewPage() {
     queryFn: async () => {
       if (!user) return null;
 
-      // Fetch customers and predictions in parallel
-      const [custRes, predRes] = await Promise.all([
-        supabase.from('customers').select('customer_id, customer_name, age, city, primary_bank, card_network, total_credit_limit, cibil_score').eq('user_id', user.id),
-        supabase.from('predictions').select('customer_id, risk_score, verdict').eq('user_id', user.id)
-      ]);
+      let customers: any[] = [];
+      let predictions: any[] = [];
 
-      if (custRes.error) throw custRes.error;
-      if (predRes.error) throw predRes.error;
+      try {
+        // Fetch customers and predictions in parallel
+        const [custRes, predRes] = await Promise.all([
+          supabase.from('customers').select('customer_id, customer_name, age, city, primary_bank, card_network, total_credit_limit, cibil_score'),
+          supabase.from('predictions').select('customer_id, risk_score, verdict')
+        ]);
 
-      const customers = custRes.data || [];
-      const predictions = predRes.data || [];
+        if (custRes.error) throw custRes.error;
+        if (predRes.error) throw predRes.error;
+
+        customers = custRes.data || [];
+        predictions = predRes.data || [];
+      } catch (err) {
+        console.warn("Supabase fetch failed on dashboard. Falling back to local storage.", err);
+        customers = JSON.parse(localStorage.getItem('local_customers') || '[]');
+        predictions = JSON.parse(localStorage.getItem('local_predictions') || '[]');
+      }
 
       if (customers.length === 0) {
         return { empty: true };

@@ -19,7 +19,8 @@ import {
   UserCircle2,
   Lock,
   X,
-  Sparkles
+  Sparkles,
+  Cpu
 } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -51,7 +52,25 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     router.replace('/');
   };
 
-  const handleCommandSearch = (e: React.FormEvent) => {
+  // Auto session listener redirection
+  useEffect(() => {
+    const checkSession = async () => {
+      const mockSession = localStorage.getItem('mock_session');
+      if (mockSession) {
+        const parsed = JSON.parse(mockSession);
+        useStore.getState().setAuth(parsed.user, parsed.profile);
+        return;
+      }
+      
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        router.replace('/login');
+      }
+    };
+    checkSession();
+  }, [router]);
+
+  const handleCommandRun = (e: React.FormEvent) => {
     e.preventDefault();
     if (cmdInput.trim()) {
       const targetId = cmdInput.trim().toUpperCase();

@@ -31,3 +31,6 @@ frontend/.env.local
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local viva documentation (not committed to production website)
+viva_docs/
