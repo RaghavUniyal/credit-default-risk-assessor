@@ -228,7 +228,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </button>
               </div>
 
-              <form onSubmit={handleCommandSearch} className="relative mt-3">
+              <form onSubmit={handleCommandRun} className="relative mt-3">
                 <Search className="absolute left-3 top-3 h-4.5 w-4.5 text-[#64748B] dark:text-[#94A3B8]" />
                 <input
                   type="text"
