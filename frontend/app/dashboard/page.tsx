@@ -38,6 +38,8 @@ export default function OverviewPage() {
 
       let customers: any[] = [];
       let predictions: any[] = [];
+      let isDemo = false;
+      let isCustom = false;
 
       try {
         const [custRes, predRes] = await Promise.all([
@@ -54,11 +56,33 @@ export default function OverviewPage() {
         console.warn("Supabase fetch failed on dashboard. Falling back to local storage.", err);
         customers = JSON.parse(localStorage.getItem('local_customers') || '[]');
         predictions = JSON.parse(localStorage.getItem('local_predictions') || '[]');
+        isDemo = localStorage.getItem('is_custom_upload') !== 'true';
+        isCustom = localStorage.getItem('is_custom_upload') === 'true';
       }
 
-      // If database and local storage are empty, return empty state immediately
+      // If database is empty and local cache is empty, auto-seed using scored JSON seed files!
       if (customers.length === 0) {
-        return { empty: true };
+        try {
+          console.log("Portfolio is empty. Fetching local pre-scored seed data...");
+          const [seedCustRes, seedPredRes] = await Promise.all([
+            fetch('/seed_customers.json'),
+            fetch('/seed_predictions.json')
+          ]);
+          if (seedCustRes.ok && seedPredRes.ok) {
+            customers = await seedCustRes.json();
+            predictions = await seedPredRes.json();
+            isDemo = true;
+            
+            // Save to local storage for persistent mock database sessions
+            localStorage.setItem('local_customers', JSON.stringify(customers));
+            localStorage.setItem('local_predictions', JSON.stringify(predictions));
+          } else {
+            return { empty: true };
+          }
+        } catch (seedErr) {
+          console.error("Failed to fetch seed portfolio details", seedErr);
+          return { empty: true };
+        }
       }
 
       // Merge data by customer_id
@@ -156,6 +180,8 @@ export default function OverviewPage() {
 
       return {
         empty: false,
+        isDemo,
+        isCustom,
         totalSize,
         avgPD,
         avgCibil,
@@ -180,28 +206,7 @@ export default function OverviewPage() {
     );
   }
 
-  if (portfolioData?.empty) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[500px] border border-dashed border-slate-800 rounded-lg p-12 text-center bg-slate-950/40">
-        <div className="relative mb-6">
-          <div className="absolute inset-0 bg-teal-500/10 blur-xl rounded-full"></div>
-          <ShieldAlert className="h-16 w-16 text-teal-500 relative" />
-        </div>
-        <h2 className="text-xl font-bold tracking-wide uppercase text-slate-100 mb-2">No active portfolio ingested</h2>
-        <p className="text-sm text-slate-400 max-w-md mb-8">
-          Please upload your credit card default receivables spreadsheet in the Ingestion Hub to run machine learning predictions, explainable AI stress metrics, and compliance audits.
-        </p>
-        <button 
-          onClick={() => window.location.href = '/dashboard/portfolio'}
-          className="px-6 py-3 bg-[var(--brand-color)] hover:bg-blue-600 text-white rounded-md text-xs font-bold uppercase tracking-widest transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
-        >
-          Go to Ingestion Hub
-        </button>
-      </div>
-    );
-  }
-
-  const data = portfolioData;
+  const data = portfolioData?.empty ? getMockPortfolioData() : portfolioData;
 
   const getVerdictStyle = (verdict: string) => {
     switch (verdict) {
@@ -241,6 +246,24 @@ export default function OverviewPage() {
   return (
     <div className="space-y-8">
       
+      {/* Disclaimer Warning Banners */}
+      {data?.isDemo && (
+        <div className="flex items-center space-x-3 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-amber-600 dark:text-amber-400 text-xs font-semibold">
+          <ShieldAlert className="h-5 w-5 flex-shrink-0 animate-pulse text-amber-600 dark:text-amber-400" />
+          <span>
+            <strong>Heads Up:</strong> This dashboard is displaying dummy cardholder records and simulated default probabilities for demonstration purposes.
+          </span>
+        </div>
+      )}
+      {data?.isCustom && (
+        <div className="flex items-center space-x-3 rounded-lg border border-teal-500/20 bg-teal-500/5 px-4 py-3 text-teal-600 dark:text-teal-400 text-xs font-semibold">
+          <ShieldAlert className="h-5 w-5 flex-shrink-0 text-teal-600 dark:text-teal-400" />
+          <span>
+            <strong>Offline Mode:</strong> Displaying custom portfolio CSV upload details.
+          </span>
+        </div>
+      )}
+
       {/* 1. Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[var(--border-color)] pb-4">
         <div>
@@ -251,7 +274,7 @@ export default function OverviewPage() {
             Analyze credit card receivables exposure, average default probabilities, and credit stress matrices.
           </p>
         </div>
-        {portfolioData?.empty && (
+        {data?.isDemo && (
           <span className="inline-flex items-center rounded-md bg-amber-500/10 border border-amber-500/20 px-3 py-1 text-xs font-bold text-amber-500 tracking-wider animate-pulse">
             Demo Mode (Using Fallback Aggregates)
           </span>
@@ -534,6 +557,8 @@ export default function OverviewPage() {
 // Fallback Mock Data Generator for visual elegance in Demo
 function getMockPortfolioData() {
   return {
+    isDemo: true,
+    isCustom: false,
     totalSize: 10000,
     avgPD: 0.0350,
     avgCibil: 762.3,

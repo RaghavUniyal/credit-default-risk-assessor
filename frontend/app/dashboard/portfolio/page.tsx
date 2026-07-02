@@ -371,11 +371,13 @@ export default function PortfolioPage() {
       try {
         localStorage.setItem('local_customers', JSON.stringify(uniqueCusts));
         localStorage.setItem('local_predictions', JSON.stringify(uniquePreds));
+        localStorage.setItem('is_custom_upload', 'true');
       } catch (quotaErr) {
         console.warn("Browser storage quota exceeded. Saving a subset of 1500 accounts in local cache.");
         try {
           localStorage.setItem('local_customers', JSON.stringify(uniqueCusts.slice(0, 1500)));
           localStorage.setItem('local_predictions', JSON.stringify(uniquePreds.slice(0, 1500)));
+          localStorage.setItem('is_custom_upload', 'true');
         } catch (innerErr) {
           console.error("Failed to sync local storage cache", innerErr);
         }
