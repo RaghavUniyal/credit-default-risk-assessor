@@ -88,19 +88,19 @@ Create a new project on [Supabase](https://supabase.com) and execute the SQL mig
 ---
 
 ## 🚀 How to Demo
-
-1. **Sign In**: Open `http://localhost:3000` in your browser. Request access or sign in using a demo email (or use default mock session bypasses).
-2. **Review Empty Dashboard**: Notice the placeholder statistics showing exposure metrics on the main Overview tab, ensuring a beautiful initial layout with zero empty states.
+ 
+1. **Access**: Open `http://localhost:3000` in your browser. The landing and login pages are completely bypassed, automatically logging you in as a guest **"Analyst"**.
+2. **Review Seeded Dashboard**: Notice the exposure metrics and charts populated on the main **Overview** tab. A warning banner at the top clearly states that the dashboard is running on dummy demo data.
 3. **Upload Bureau Portfolio**:
-   - Go to **Portfolio Upload**.
-   - Select the generated demo file [`backend/data/indian_credit_portfolio_demo.csv`](file:///c:/Credit%20Risk%20Assessor/backend/data/indian_credit_portfolio_demo.csv).
-   - Review the **Schema Column Mapper** which auto-detects column names.
-   - Click **Confirm and Start Ingest** and monitor the live progress bar.
-4. **Explore Overview Metrics**: Navigate back to **Overview** to see the chart visual segmentations update instantly using the newly uploaded 10k rows.
+   - Go to the **Portfolio Ingestion** tab.
+   - Click the file area and select the generated demo file [`backend/data/indian_credit_portfolio_demo.csv`](file:///c:/Credit%20Risk%20Assessor/backend/data/indian_credit_portfolio_demo.csv).
+   - Review the **Schema Column Mapper** which auto-detects column names using fuzzy synonym matching.
+   - Click **Confirm and Start Ingest** and monitor the live progress bar (scoring runs in chunks of 200).
+4. **Explore Overview Metrics**: Navigate back to **Overview** to see the charts and KPI metrics update instantly. The warning banner at the top will dynamically switch to confirm you are viewing your uploaded CSV data.
 5. **Customer 360 Search**:
-   - Go to **Customer 360** and search for an ingested ID (e.g. `IND100002` or `IND100003`).
-   - Deep-dive into CIBIL score gauges, credit utilization scales, payment history blocks, the top 3 SHAP drivers showing exactly why their default risk rose or fell, and the 2-sentence Gemini narrative.
-6. **Collections Strategist**: Click the collections navigator shortcut to stream the collections response and EMI recommendations.
-7. **Compliance Chat Simulator**:
+   - Go to **Customer 360** and search for an ingested ID (e.g. `CRD100561` or `CRD102143`).
+   - Deep-dive into CIBIL score gauges, credit utilization scales, payment history timelines, the top 3 explainable AI SHAP indicators, and the 2-sentence Gemini narrative.
+6. **Regulatory Simulator Chat**:
    - Navigate to the **Regulatory Simulator Chat**.
-   - Click a prompt preset (e.g. the 25% RBI risk weight hike query) and watch the chatbot stream a compliance report, analyzing your portfolio's outstanding exposure and CAR impact.
+   - Click a prompt preset (e.g. the 25% RBI risk weight hike query) and watch the chatbot stream a compliance report, analyzing your portfolio's outstanding exposure and Capital Adequacy Ratio (CAR) impact.
+
