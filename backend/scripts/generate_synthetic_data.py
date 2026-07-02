@@ -33,7 +33,7 @@ def generate_data(num_rows=10000, seed=42):
         last = np.random.choice(last_names)
         names.append(f"{first} {last}")
         
-    ages = np.random.randint(21, 66, size=num_rows)
+    ages = np.random.randint(21, 76, size=num_rows)
     
     cities = ['Mumbai', 'Delhi NCR', 'Bengaluru', 'Chennai', 'Hyderabad', 'Kolkata', 'Pune', 'Ahmedabad']
     city_probs = [0.25, 0.22, 0.18, 0.12, 0.10, 0.05, 0.05, 0.03]
@@ -63,34 +63,34 @@ def generate_data(num_rows=10000, seed=42):
         tier = assigned_tiers[i]
         risk = latent_risk[i]
         
-        # Credit Limits correlated with Card Tier
+        # Credit Limits correlated with Card Tier (broadened ranges)
         if tier == 'Signature':
-            limit_range = (500000, 1500000)
+            limit_range = (500000, 2000000)
         elif tier == 'Platinum':
-            limit_range = (200000, 500000)
+            limit_range = (200000, 750000)
         elif tier == 'Gold':
-            limit_range = (100000, 200000)
+            limit_range = (100000, 300000)
         else: # Classic
-            limit_range = (20000, 100000)
+            limit_range = (15000, 100000)
             
         base_limit = np.random.randint(limit_range[0], limit_range[1])
         credit_limits[i] = int(np.round(base_limit / 5000) * 5000)
         
-        # CIBIL Score: negative correlation with latent risk
-        base_cibil = 900 - (risk * 550) - np.random.normal(0, 15)
+        # CIBIL Score: negative correlation with latent risk (full 300-900 range)
+        base_cibil = 900 - (risk * 580) - np.random.normal(0, 18)
         cibil_scores[i] = int(np.clip(base_cibil, 300, 900))
         
-        # Utilization Rate: positive correlation with risk
-        base_util = (risk * 0.82) + np.random.uniform(0.02, 0.20)
-        utilization_pct[i] = float(np.clip(base_util * 100, 0.0, 100.0))
+        # Utilization Rate: positive correlation with risk (extending up to 95%)
+        base_util = (risk * 0.94) + np.random.uniform(0.04, 0.26)
+        utilization_pct[i] = float(np.clip(base_util * 100, 0.0, 96.0))
         
-        # Debt-to-Income (DTI) ratio: positive correlation with risk
-        base_dti = (risk * 55) + np.random.uniform(10, 30)
-        dti_pct[i] = float(np.clip(base_dti, 5.0, 95.0))
+        # Debt-to-Income (DTI) ratio: positive correlation with risk (up to 85%)
+        base_dti = (risk * 65) + np.random.uniform(10, 32)
+        dti_pct[i] = float(np.clip(base_dti, 5.0, 88.0))
         
         # Average monthly spend: correlated with limit and card utilization
         base_spend = credit_limits[i] * (utilization_pct[i] / 100.0) * np.random.uniform(0.12, 0.28)
-        avg_monthly_spend[i] = float(np.clip(base_spend, 1000, credit_limits[i] * 0.90))
+        avg_monthly_spend[i] = float(np.clip(base_spend, 1000, credit_limits[i] * 0.92))
 
     # 4. Markov Chain Roll-Rate payment status transitions (M1 to M6)
     # Statuses: Full (0), MAD (1), Late (2), Missed (3)
