@@ -47,8 +47,8 @@ def map_feature_name(col: str) -> str:
     """
     if col.startswith('city_'):
         return "City of Residence"
-    if col.startswith('primary_bank_'):
-        return "Primary Banking Partner"
+    if col.startswith('card_tier_'):
+        return "Card Tier"
     if col.startswith('card_network_'):
         return "Card Network"
         
@@ -74,7 +74,7 @@ def map_display_value(col: str, orig_val: Any) -> str:
     """
     if col.startswith('city_'):
         return str(orig_val)
-    if col.startswith('primary_bank_'):
+    if col.startswith('card_tier_'):
         return str(orig_val)
     if col.startswith('card_network_'):
         return str(orig_val).replace('_', ' ')
@@ -165,7 +165,7 @@ def predict_single(input_data: CustomerFeatureInput) -> Dict[str, Any]:
         val_contrib = float(shap_vals[x_processed.columns.get_loc(col)])
         
         # Determine original display value
-        is_cat = col.startswith('city_') or col.startswith('primary_bank_') or col.startswith('card_network_')
+        is_cat = col.startswith('city_') or col.startswith('card_tier_') or col.startswith('card_network_')
         if is_cat:
             # For one-hot columns, only explain if it is active (value == 1.0)
             if x_processed[col].iloc[0] != 1.0:

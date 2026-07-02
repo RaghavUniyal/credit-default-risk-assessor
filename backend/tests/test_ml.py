@@ -19,7 +19,7 @@ def test_predict_single_low_risk(setup_ml):
         customer_id="IND_TEST_LOW",
         age=35,
         city="Mumbai",
-        primary_bank="HDFC",
+        card_tier="Signature",
         card_network="Visa",
         cibil_score=850,
         total_credit_limit=500000.0,
@@ -54,7 +54,7 @@ def test_predict_single_high_risk(setup_ml):
         customer_id="IND_TEST_HIGH",
         age=45,
         city="Delhi NCR",
-        primary_bank="SBI",
+        card_tier="Classic",
         card_network="RuPay",
         cibil_score=400,
         total_credit_limit=100000.0,
@@ -85,7 +85,7 @@ def test_predict_batch(setup_ml):
             "customer_id": "IND_TEST_B1",
             "age": 30,
             "city": "Bengaluru",
-            "primary_bank": "ICICI",
+            "card_tier": "Platinum",
             "card_network": "Visa",
             "cibil_score": 750,
             "total_credit_limit": 200000.0,
@@ -103,7 +103,7 @@ def test_predict_batch(setup_ml):
             "customer_id": "IND_TEST_B2",
             "age": 52,
             "city": "Chennai",
-            "primary_bank": "Axis",
+            "card_tier": "Gold",
             "card_network": "Mastercard",
             "cibil_score": 580,
             "total_credit_limit": 50000.0,
@@ -132,7 +132,7 @@ def test_predict_batch(setup_ml):
 def test_suggest_mapping():
     from app.services.ingestion import suggest_mapping
     headers = [
-        "cust_id", "Age", "Home-City", "bank", "network", 
+        "cust_id", "Age", "Home-City", "tier", "network", 
         "cibil score", "credit_limit", "utilization%", "spend", "DTI",
         "m1", "m2", "m3", "m4", "m5", "m6", "defaulted"
     ]
@@ -141,6 +141,7 @@ def test_suggest_mapping():
     assert mapping["customer_id"] == "cust_id"
     assert mapping["age"] == "Age"
     assert mapping["city"] == "Home-City"
+    assert mapping["card_tier"] == "tier"
     assert mapping["cibil_score"] == "cibil score"
     assert mapping["current_utilization_pct"] == "utilization%"
     assert mapping["debt_to_income_pct"] == "DTI"

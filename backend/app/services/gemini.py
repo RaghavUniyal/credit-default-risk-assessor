@@ -128,7 +128,7 @@ async def stream_regulatory_simulation(query: str, portfolio_stats: Dict[str, An
         f"Risk Breakdown: Low Risk ({portfolio_stats.get('low_risk_pct', 40.0):.1f}%), "
         f"Medium Risk ({portfolio_stats.get('med_risk_pct', 30.0):.1f}%), "
         f"High Risk ({portfolio_stats.get('high_risk_pct', 30.0):.1f}%)\n"
-        f"Top Banking Partner exposure: HDFC ({portfolio_stats.get('bank_hdfc', 30)}%), SBI ({portfolio_stats.get('bank_sbi', 20)}%)\n"
+        f"Portfolio Tiers exposure: Signature ({portfolio_stats.get('tier_signature', 15)}%), Platinum ({portfolio_stats.get('tier_platinum', 35)}%)\n"
         f"Unsecured Credit Card Limit Exposure: INR {portfolio_stats.get('total_limit', 2500000000):,}"
     )
 

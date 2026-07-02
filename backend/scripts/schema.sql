@@ -29,7 +29,7 @@ create table public.customers (
     customer_name text not null,
     age integer not null,
     city text not null,
-    primary_bank text not null check (primary_bank in ('HDFC', 'ICICI', 'SBI', 'Axis', 'Yes Bank')),
+    card_tier text not null check (card_tier in ('Signature', 'Platinum', 'Gold', 'Classic')),
     card_network text not null check (card_network in ('Visa', 'Mastercard', 'RuPay', 'RuPay_UPI')),
     cibil_score integer not null check (cibil_score >= 300 and cibil_score <= 900),
     total_credit_limit double precision not null,

@@ -5,7 +5,7 @@ class CustomerFeatureInput(BaseModel):
     customer_id: str = Field(..., description="Unique customer identifier")
     age: int = Field(..., ge=18, le=100, description="Age of the customer")
     city: str = Field(..., description="City of residence")
-    primary_bank: str = Field(..., description="Primary banking partner (HDFC, ICICI, SBI, Axis, Yes Bank)")
+    card_tier: str = Field(..., description="Card Tier (Signature, Platinum, Gold, Classic)")
     card_network: str = Field(..., description="Card network (Visa, Mastercard, RuPay, RuPay_UPI)")
     cibil_score: int = Field(..., ge=300, le=900, description="Bureau CIBIL score")
     total_credit_limit: float = Field(..., ge=0, description="Total credit limit in INR")

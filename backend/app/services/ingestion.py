@@ -19,7 +19,7 @@ def suggest_mapping(headers: List[str]) -> Dict[str, str]:
         'customer_name': ['customer_name', 'name', 'customer name', 'full_name', 'full name', 'cardholder_name', 'cardholder name', 'client_name'],
         'age': ['age', 'customer_age', 'customer age', 'dob', 'birth_year', 'years'],
         'city': ['city', 'location', 'residence', 'address_city', 'home_city', 'tier'],
-        'primary_bank': ['primary_bank', 'bank', 'issuer', 'issuing_bank', 'primary bank', 'issuing bank', 'bank_name'],
+        'card_tier': ['card_tier', 'tier', 'card tier', 'card_grade', 'grade', 'card grade', 'product_tier', 'product tier'],
         'card_network': ['card_network', 'network', 'card network', 'network_type', 'network_name', 'card_network_type'],
         'cibil_score': ['cibil_score', 'cibil', 'credit_score', 'credit score', 'bureau_score', 'bureau score', 'cibil score'],
         'total_credit_limit': ['total_credit_limit', 'credit_limit', 'limit', 'credit limit', 'total limit', 'card_limit'],
@@ -69,7 +69,7 @@ async def process_batch_upload(batch_job_id: str, csv_content_raw: str, mapping:
         
         # Verify schema mapping coverage for mandatory fields
         mandatory_fields = [
-            'customer_id', 'customer_name', 'age', 'city', 'primary_bank', 'card_network', 'cibil_score', 
+            'customer_id', 'customer_name', 'age', 'city', 'card_tier', 'card_network', 'cibil_score', 
             'total_credit_limit', 'current_utilization_pct', 'avg_monthly_spend', 'debt_to_income_pct',
             'payment_status_m1', 'payment_status_m2', 'payment_status_m3', 'payment_status_m4', 
             'payment_status_m5', 'payment_status_m6'
@@ -108,9 +108,9 @@ async def process_batch_upload(batch_job_id: str, csv_content_raw: str, mapping:
                         record[int_field] = str(val).strip() if pd.notna(val) else ""
                 
                 # Check formatting boundary checks
-                record['primary_bank'] = record.get('primary_bank', 'HDFC')
-                if record['primary_bank'] not in ['HDFC', 'ICICI', 'SBI', 'Axis', 'Yes Bank']:
-                    record['primary_bank'] = 'HDFC'
+                record['card_tier'] = record.get('card_tier', 'Signature')
+                if record['card_tier'] not in ['Signature', 'Platinum', 'Gold', 'Classic']:
+                    record['card_tier'] = 'Signature'
                     
                 record['card_network'] = record.get('card_network', 'Visa')
                 if record['card_network'] not in ['Visa', 'Mastercard', 'RuPay', 'RuPay_UPI']:

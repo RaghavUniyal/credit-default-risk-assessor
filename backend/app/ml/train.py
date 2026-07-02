@@ -30,7 +30,7 @@ def train_model():
         X[col] = X[col].map(payment_mapping)
 
     # One-Hot Encode nominal categoricals (city, bank, card_network)
-    cat_cols = ['city', 'primary_bank', 'card_network']
+    cat_cols = ['city', 'card_tier', 'card_network']
     
     encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
     encoded_cats = encoder.fit_transform(X[cat_cols])

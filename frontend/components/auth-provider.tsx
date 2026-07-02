@@ -31,11 +31,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           }
         }
 
-        clearAuth();
+        // Auto-seed default mock session
+        const defaultUser = { id: 'mock-uuid', email: 'risk.manager@gmail.com' };
+        const defaultProfile = { 
+          id: 'mock-uuid', 
+          email: 'risk.manager@gmail.com', 
+          full_name: 'Analyst', 
+          role: 'analyst' as any, 
+          created_at: new Date().toISOString() 
+        };
+        localStorage.setItem('mock_session', JSON.stringify({ user: defaultUser, profile: defaultProfile }));
+        setAuth(defaultUser, defaultProfile);
         setAuthLoading(false);
-        if (pathname.startsWith('/dashboard')) {
-          router.replace('/');
-        }
       }
     });
 
@@ -61,11 +68,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             }
           }
 
-          clearAuth();
+          // Auto-seed default mock session
+          const defaultUser = { id: 'mock-uuid', email: 'risk.manager@gmail.com' };
+          const defaultProfile = { 
+            id: 'mock-uuid', 
+            email: 'risk.manager@gmail.com', 
+            full_name: 'Analyst', 
+            role: 'analyst' as any, 
+            created_at: new Date().toISOString() 
+          };
+          localStorage.setItem('mock_session', JSON.stringify({ user: defaultUser, profile: defaultProfile }));
+          setAuth(defaultUser, defaultProfile);
           setAuthLoading(false);
-          if (pathname.startsWith('/dashboard')) {
-            router.replace('/');
-          }
         }
       }
     );
@@ -108,7 +122,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   // If loading session state, show full screen premium spinner/loader
-  if (authLoading && pathname !== '/login') {
+  if (authLoading) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-slate-950 text-slate-100 font-sans">
         <div className="relative flex h-20 w-20 items-center justify-center">

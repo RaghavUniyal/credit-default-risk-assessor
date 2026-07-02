@@ -96,16 +96,16 @@ def get_portfolio_stats(user_id: str) -> Dict[str, Any]:
         total_customers = cust_count_res.count if cust_count_res.count is not None else 0
         
         if total_customers == 0:
-            # Default fallback data to avoid empty simulator screens during demo
+            # Default fallback data aligned to calibrated generator
             return {
                 "total_customers": 10000,
-                "avg_pd": 0.3275,
-                "avg_cibil": 742.7,
-                "low_risk_pct": 40.0,
-                "med_risk_pct": 30.0,
-                "high_risk_pct": 30.0,
-                "bank_hdfc": 30,
-                "bank_sbi": 20,
+                "avg_pd": 0.0350,
+                "avg_cibil": 762.3,
+                "low_risk_pct": 82.28,
+                "med_risk_pct": 10.95,
+                "high_risk_pct": 6.77,
+                "tier_signature": 15.0,
+                "tier_platinum": 35.0,
                 "total_limit": 2549670000
             }
             
@@ -113,7 +113,7 @@ def get_portfolio_stats(user_id: str) -> Dict[str, Any]:
         pred_res = supabase.table("predictions").select("risk_score, verdict").eq("user_id", user_id).execute()
         preds = pred_res.data
         
-        avg_pd = sum(float(p["risk_score"]) for p in preds) / len(preds) if preds else 0.32
+        avg_pd = sum(float(p["risk_score"]) for p in preds) / len(preds) if preds else 0.035
         
         low_count = sum(1 for p in preds if p["verdict"] == "Low Risk")
         med_count = sum(1 for p in preds if p["verdict"] == "Medium Risk")
@@ -124,21 +124,21 @@ def get_portfolio_stats(user_id: str) -> Dict[str, Any]:
         med_risk_pct = (med_count / total_preds) * 100
         high_risk_pct = (high_count / total_preds) * 100
         
-        # Get credit limits and banks
-        cust_res = supabase.table("customers").select("total_credit_limit, cibil_score, primary_bank").eq("user_id", user_id).execute()
+        # Get credit limits and tiers
+        cust_res = supabase.table("customers").select("total_credit_limit, cibil_score, card_tier").eq("user_id", user_id).execute()
         customers = cust_res.data
         
-        avg_cibil = sum(int(c["cibil_score"]) for c in customers) / len(customers) if customers else 740.0
+        avg_cibil = sum(int(c["cibil_score"]) for c in customers) / len(customers) if customers else 760.0
         total_limit = sum(float(c["total_credit_limit"]) for c in customers) if customers else 250000000.0
         
-        # Bank breakdown
-        bank_counts = {}
+        # Tier breakdown
+        tier_counts = {}
         for c in customers:
-            bank = c["primary_bank"]
-            bank_counts[bank] = bank_counts.get(bank, 0) + 1
+            tier = c.get("card_tier", "Signature")
+            tier_counts[tier] = tier_counts.get(tier, 0) + 1
         total_cust_len = len(customers) or 1
-        bank_hdfc_pct = (bank_counts.get("HDFC", 0) / total_cust_len) * 100
-        bank_sbi_pct = (bank_counts.get("SBI", 0) / total_cust_len) * 100
+        tier_sig_pct = (tier_counts.get("Signature", 0) / total_cust_len) * 100
+        tier_plat_pct = (tier_counts.get("Platinum", 0) / total_cust_len) * 100
         
         return {
             "total_customers": total_customers,
@@ -147,21 +147,21 @@ def get_portfolio_stats(user_id: str) -> Dict[str, Any]:
             "low_risk_pct": low_risk_pct,
             "med_risk_pct": med_risk_pct,
             "high_risk_pct": high_risk_pct,
-            "bank_hdfc": bank_hdfc_pct,
-            "bank_sbi": bank_sbi_pct,
+            "tier_signature": tier_sig_pct,
+            "tier_platinum": tier_plat_pct,
             "total_limit": total_limit
         }
     except Exception as e:
         print(f"Error fetching portfolio stats: {e}")
         return {
             "total_customers": 10000,
-            "avg_pd": 0.3275,
-            "avg_cibil": 742.7,
-            "low_risk_pct": 40.0,
-            "med_risk_pct": 30.0,
-            "high_risk_pct": 30.0,
-            "bank_hdfc": 30,
-            "bank_sbi": 20,
+            "avg_pd": 0.0350,
+            "avg_cibil": 762.3,
+            "low_risk_pct": 82.28,
+            "med_risk_pct": 10.95,
+            "high_risk_pct": 6.77,
+            "tier_signature": 15.0,
+            "tier_platinum": 35.0,
             "total_limit": 2549670000
         }
 

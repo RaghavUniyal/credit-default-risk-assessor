@@ -6,10 +6,7 @@ import { useStore } from '@/store/useStore';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { 
-  TrendingUp, 
-  TrendingDown, 
   ShieldAlert, 
-  Building,
   CreditCard,
   Users,
   Activity,
@@ -23,19 +20,15 @@ import {
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  Legend, 
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell
+  ResponsiveContainer
 } from 'recharts';
 
 export default function OverviewPage() {
   const { user } = useStore();
 
-  // Heatmap highlights state
-  const [hoveredBank, setHoveredBank] = useState<string | null>(null);
-  const [hoveredNetwork, setHoveredNetwork] = useState<string | null>(null);
+  // Heatmap hover states
+  const [hoveredTier, setHoveredTier] = useState<string | null>(null);
+  const [hoveredCibil, setHoveredCibil] = useState<string | null>(null);
 
   // React Query to fetch portfolio data
   const { data: portfolioData, isLoading } = useQuery({
@@ -47,9 +40,8 @@ export default function OverviewPage() {
       let predictions: any[] = [];
 
       try {
-        // Fetch customers and predictions in parallel
         const [custRes, predRes] = await Promise.all([
-          supabase.from('customers').select('customer_id, customer_name, age, city, primary_bank, card_network, total_credit_limit, cibil_score'),
+          supabase.from('customers').select('customer_id, customer_name, age, city, card_tier, card_network, total_credit_limit, cibil_score'),
           supabase.from('predictions').select('customer_id, risk_score, verdict')
         ]);
 
@@ -64,18 +56,38 @@ export default function OverviewPage() {
         predictions = JSON.parse(localStorage.getItem('local_predictions') || '[]');
       }
 
+      // If database is empty and local cache is empty, auto-seed using scored JSON seed files!
       if (customers.length === 0) {
-        return { empty: true };
+        try {
+          console.log("Portfolio is empty. Fetching local pre-scored seed data...");
+          const [seedCustRes, seedPredRes] = await Promise.all([
+            fetch('/seed_customers.json'),
+            fetch('/seed_predictions.json')
+          ]);
+          if (seedCustRes.ok && seedPredRes.ok) {
+            customers = await seedCustRes.json();
+            predictions = await seedPredRes.json();
+            
+            // Save to local storage for persistent mock database sessions
+            localStorage.setItem('local_customers', JSON.stringify(customers));
+            localStorage.setItem('local_predictions', JSON.stringify(predictions));
+          } else {
+            return { empty: true };
+          }
+        } catch (seedErr) {
+          console.error("Failed to fetch seed portfolio details", seedErr);
+          return { empty: true };
+        }
       }
 
-      // Merge data by customer_id (latest prediction)
+      // Merge data by customer_id
       const latestPreds: Record<string, any> = {};
       predictions.forEach(p => {
         latestPreds[p.customer_id] = p;
       });
 
       const merged = customers.map(c => {
-        const pred = latestPreds[c.customer_id] || { risk_score: 0.12, verdict: 'Low Risk' };
+        const pred = latestPreds[c.customer_id] || { risk_score: 0.035, verdict: 'Low Risk' };
         return {
           ...c,
           risk_score: parseFloat(pred.risk_score),
@@ -83,13 +95,12 @@ export default function OverviewPage() {
         };
       });
 
-      // calculations
       const totalSize = merged.length;
       const avgPD = merged.reduce((acc, curr) => acc + curr.risk_score, 0) / totalSize;
       const avgCibil = merged.reduce((acc, curr) => acc + curr.cibil_score, 0) / totalSize;
       const totalLimit = merged.reduce((acc, curr) => acc + curr.total_credit_limit, 0);
 
-      // Counts
+      // Risk level counts
       let lowCount = 0;
       let medCount = 0;
       let highCount = 0;
@@ -99,63 +110,65 @@ export default function OverviewPage() {
         else if (c.verdict === 'High Risk') highCount++;
       });
 
-      // Segment by Bank
-      const bankStats: Record<string, { totalPD: number, count: number, totalLimit: number }> = {};
-      merged.forEach(c => {
-        const bank = c.primary_bank;
-        if (!bankStats[bank]) bankStats[bank] = { totalPD: 0, count: 0, totalLimit: 0 };
-        bankStats[bank].totalPD += c.risk_score;
-        bankStats[bank].count += 1;
-        bankStats[bank].totalLimit += c.total_credit_limit;
+      // Segment by Card Tier (Signature, Platinum, Gold, Classic)
+      const cardTiers = ['Signature', 'Platinum', 'Gold', 'Classic'];
+      const tierStats: Record<string, { totalPD: number, count: number, totalLimit: number }> = {};
+      cardTiers.forEach(t => {
+        tierStats[t] = { totalPD: 0, count: 0, totalLimit: 0 };
       });
-      const bankChartData = Object.keys(bankStats).map(b => ({
-        bank: b,
-        'Avg PD %': parseFloat((bankStats[b].totalPD / bankStats[b].count * 100).toFixed(2)),
-        'Limit exposure (Cr)': parseFloat((bankStats[b].totalLimit / 10000000).toFixed(2))
-      }));
 
-      // Segment by Network
-      const networkStats: Record<string, { totalPD: number, count: number, totalLimit: number }> = {};
       merged.forEach(c => {
-        const net = c.card_network;
-        if (!networkStats[net]) networkStats[net] = { totalPD: 0, count: 0, totalLimit: 0 };
-        networkStats[net].totalPD += c.risk_score;
-        networkStats[net].count += 1;
-        networkStats[net].totalLimit += c.total_credit_limit;
-      });
-      const networkChartData = Object.keys(networkStats).map(n => ({
-        network: n.replace('_', ' '),
-        'Avg PD %': parseFloat((networkStats[n].totalPD / networkStats[n].count * 100).toFixed(2))
-      }));
-
-      // Dynamic Heatmap Data (Bank x Network)
-      const banksList = ['HDFC', 'ICICI', 'SBI', 'Axis', 'Yes Bank'];
-      const networksList = ['Visa', 'Mastercard', 'RuPay', 'RuPay_UPI'];
-      const heatmap: Record<string, Record<string, { totalPD: number, count: number }>> = {};
-      banksList.forEach(b => {
-        heatmap[b] = {};
-        networksList.forEach(n => {
-          heatmap[b][n] = { totalPD: 0, count: 0 };
-        });
-      });
-      merged.forEach(c => {
-        const b = c.primary_bank;
-        const n = c.card_network;
-        if (heatmap[b] && heatmap[b][n]) {
-          heatmap[b][n].totalPD += c.risk_score;
-          heatmap[b][n].count += 1;
+        const tier = c.card_tier || 'Signature';
+        if (tierStats[tier]) {
+          tierStats[tier].totalPD += c.risk_score;
+          tierStats[tier].count += 1;
+          tierStats[tier].totalLimit += c.total_credit_limit;
         }
       });
-      const heatmapGrid = banksList.map(b => {
-        const row: Record<string, any> = { bank: b };
-        networksList.forEach(n => {
-          const stats = heatmap[b][n];
-          row[n] = stats.count > 0 ? parseFloat((stats.totalPD / stats.count * 100).toFixed(1)) : 15.0; // default safe fallback
+
+      const tierChartData = cardTiers.map(t => {
+        const stats = tierStats[t];
+        return {
+          tier: t,
+          'Avg PD %': stats.count > 0 ? parseFloat((stats.totalPD / stats.count * 100).toFixed(2)) : 0.0,
+          'Limit exposure (Cr)': stats.count > 0 ? parseFloat((stats.totalLimit / 10000000).toFixed(2)) : 0.0
+        };
+      });
+
+      // Heatmap data: Card Tier x CIBIL Score brackets
+      const cibilBrackets = ['Poor (<600)', 'Fair (600-700)', 'Good (700-800)', 'Excellent (800+)'];
+      const heatmap: Record<string, Record<string, { totalPD: number, count: number }>> = {};
+      cardTiers.forEach(t => {
+        heatmap[t] = {};
+        cibilBrackets.forEach(b => {
+          heatmap[t][b] = { totalPD: 0, count: 0 };
+        });
+      });
+
+      merged.forEach(c => {
+        const t = c.card_tier || 'Signature';
+        const cibil = c.cibil_score;
+        let bracket = 'Excellent (800+)';
+        if (cibil < 600) bracket = 'Poor (<600)';
+        else if (cibil < 700) bracket = 'Fair (600-700)';
+        else if (cibil < 800) bracket = 'Good (700-800)';
+        
+        if (heatmap[t] && heatmap[t][bracket]) {
+          heatmap[t][bracket].totalPD += c.risk_score;
+          heatmap[t][bracket].count += 1;
+        }
+      });
+
+      const heatmapGrid = cardTiers.map(t => {
+        const row: Record<string, any> = { tier: t };
+        cibilBrackets.forEach(b => {
+          const stats = heatmap[t][b];
+          row[b] = stats.count > 0 ? parseFloat((stats.totalPD / stats.count * 100).toFixed(1)) : 0.0;
         });
         return row;
       });
 
-      // Top High-Risk Customers
+      // Top High-Risk accounts
       const topStressed = [...merged]
         .sort((a, b) => b.risk_score - a.risk_score)
         .slice(0, 5);
@@ -167,8 +180,7 @@ export default function OverviewPage() {
         avgCibil,
         totalLimit,
         counts: { lowCount, medCount, highCount },
-        bankChartData,
-        networkChartData,
+        tierChartData,
         heatmapGrid,
         topStressed
       };
@@ -178,19 +190,10 @@ export default function OverviewPage() {
 
   if (isLoading) {
     return (
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div className="h-6 w-48 rounded bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
-          <div className="h-4 w-32 rounded bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
-        </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-20 rounded bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
-          ))}
-        </div>
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <div className="h-72 rounded bg-slate-200 dark:bg-slate-800 lg:col-span-2 animate-pulse"></div>
-          <div className="h-72 rounded bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
+      <div className="flex h-[400px] items-center justify-center">
+        <div className="flex flex-col items-center space-y-4">
+          <div className="h-7 w-7 animate-spin rounded-sm border-2 border-t-[var(--brand-color)] border-r-transparent border-b-[var(--brand-color)] border-l-transparent"></div>
+          <span className="text-xs font-semibold tracking-wider text-[var(--text-secondary)]">Analyzing portfolio receivables...</span>
         </div>
       </div>
     );
@@ -198,301 +201,329 @@ export default function OverviewPage() {
 
   const data = portfolioData?.empty ? getMockPortfolioData() : portfolioData;
 
-  const getHeatmapColor = (val: number) => {
-    if (val < 25) return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/10';
-    if (val < 35) return 'bg-[#0066FF]/10 text-amber-400 border border-amber-500/10';
-    return 'bg-rose-500/10 text-rose-400 border border-rose-500/10';
-  };
-
   const getVerdictStyle = (verdict: string) => {
     switch (verdict) {
       case 'Low Risk':
-        return 'text-emerald-400 border border-emerald-500/15 bg-emerald-500/5';
+        return 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20';
       case 'Medium Risk':
-        return 'text-amber-400 border border-amber-500/15 bg-blue-500/5';
+        return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20';
       case 'High Risk':
+        return 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20';
       default:
-        return 'text-rose-400 border border-rose-500/15 bg-rose-500/5';
+        return 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20';
     }
   };
 
-  // Stagger animation rules
+  const getHeatmapColor = (val: number) => {
+    if (val === 0) return 'bg-slate-500/5 text-slate-400 border border-transparent';
+    if (val < 3.5) return 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20';
+    if (val < 10.0) return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20';
+    return 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20';
+  };
+
+  // Staggered animations
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.05 }
+      transition: {
+        staggerChildren: 0.05
+      }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 5 },
-    show: { opacity: 1, y: 0 }
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.3 } }
   };
 
   return (
-    <div className="space-y-6 text-[#0F172A] dark:text-[#F8FAFC]">
-      {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 pb-2 border-b border-[#E2E8F0] dark:border-[#334155]">
+    <div className="space-y-8">
+      
+      {/* 1. Page Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[var(--border-color)] pb-4">
         <div>
-          <h2 className="text-lg font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Portfolio Risk Command Center</h2>
-          <p className="text-xs text-[#64748B] dark:text-[#94A3B8] font-bold uppercase mt-0.5">Indian credit cards exposures and dynamic default matrix.</p>
+          <h2 className="terminal-title">
+            Portfolio risk dashboard
+          </h2>
+          <p className="text-sm text-[var(--text-secondary)] mt-1">
+            Analyze credit card receivables exposure, average default probabilities, and credit stress matrices.
+          </p>
         </div>
         {portfolioData?.empty && (
-          <span className="inline-flex items-center rounded-sm bg-[#0066FF]/10 border border-[#0066FF]/20 px-2 py-0.5 text-xs font-black text-amber-400 uppercase tracking-widest animate-pulse">
-            DEMO MODE (Using Fallback Aggregates)
+          <span className="inline-flex items-center rounded-md bg-amber-500/10 border border-amber-500/20 px-3 py-1 text-xs font-bold text-amber-500 tracking-wider animate-pulse">
+            Demo Mode (Using Fallback Aggregates)
           </span>
         )}
       </div>
 
-      {/* 4 Cards Grid - Staggered Motion */}
+      {/* 2. KPI Cards Grid - Large & High Readability */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
       >
-        {/* Metric 1 */}
+        {/* Card 1 */}
         <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Ingested Accounts</span>
-            <Users className="h-4 w-4 text-[#0066FF] dark:text-[#3B82F6]" />
+            <span className="terminal-caption uppercase font-bold tracking-widest text-slate-400 dark:text-slate-500">Active Accounts</span>
+            <Users className="h-4 w-4 text-[var(--text-secondary)]" />
           </div>
-          <div className="mt-2.5 flex items-baseline justify-between">
-            <h3 className="text-xl font-black terminal-text-mono tracking-tight text-[#0F172A] dark:text-white">
+          <div className="mt-3 flex items-baseline justify-between">
+            <h3 className="terminal-kpi-value">
               {data?.totalSize?.toLocaleString() ?? "0"}
             </h3>
-            <span className="text-[11px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">Cardholders</span>
+            <span className="text-xs font-semibold text-[var(--text-secondary)]">Cardholders</span>
           </div>
         </motion.div>
 
-        {/* Metric 2 */}
-        <motion.div variants={itemVariants} className="terminal-card">
+        {/* Card 2: Probability of Default (Highlighted with neutral styling, not danger-red) */}
+        <motion.div 
+          variants={itemVariants} 
+          className="terminal-card border-l-4 border-l-slate-700 dark:border-l-slate-400 bg-slate-500/5"
+        >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Weighted PD</span>
-            <Activity className="h-4 w-4 text-rose-500" />
+            <span className="terminal-caption uppercase font-bold tracking-widest text-slate-500">Average Risk PD</span>
+            <Activity className="h-4 w-4 text-[var(--text-secondary)]" />
           </div>
-          <div className="mt-2.5 flex items-baseline justify-between">
-            <h3 className="text-xl font-black terminal-text-mono text-rose-500">
+          <div className="mt-3 flex items-baseline justify-between">
+            <h3 className="terminal-kpi-value text-slate-800 dark:text-slate-100">
               {((data?.avgPD ?? 0) * 100).toFixed(2)}%
             </h3>
-            <span className="inline-flex items-center text-[11px] font-bold text-rose-400 uppercase">
-              Stress Factor
+            <span className="inline-flex items-center text-xs font-semibold text-[var(--text-secondary)]">
+              Portfolio Mean
             </span>
           </div>
         </motion.div>
 
-        {/* Metric 3 */}
+        {/* Card 3 */}
         <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Avg CIBIL Score</span>
-            <Layers className="h-4 w-4 text-cyan-500" />
+            <span className="terminal-caption uppercase font-bold tracking-widest text-slate-400 dark:text-slate-500">Average Cibil</span>
+            <Layers className="h-4 w-4 text-[var(--text-secondary)]" />
           </div>
-          <div className="mt-2.5 flex items-baseline justify-between">
-            <h3 className="text-xl font-black terminal-text-mono text-[#0F172A] dark:text-white">
+          <div className="mt-3 flex items-baseline justify-between">
+            <h3 className="terminal-kpi-value">
               {Math.round(data?.avgCibil ?? 0)}
             </h3>
-            <span className="inline-flex items-center text-[11px] font-bold text-emerald-400 uppercase">
-              Prime Avg
+            <span className="inline-flex items-center text-xs font-semibold text-[var(--text-secondary)]">
+              Credit Score
             </span>
           </div>
         </motion.div>
 
-        {/* Metric 4 */}
+        {/* Card 4 */}
         <motion.div variants={itemVariants} className="terminal-card">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest">Outstanding Limit</span>
-            <Building className="h-4 w-4 text-indigo-500" />
+            <span className="terminal-caption uppercase font-bold tracking-widest text-slate-400 dark:text-slate-500">Limit Exposure</span>
+            <CreditCard className="h-4 w-4 text-[var(--text-secondary)]" />
           </div>
-          <div className="mt-2.5 flex items-baseline justify-between">
-            <h3 className="text-xl font-black terminal-text-mono text-[#0F172A] dark:text-white">
-              INR {((data?.totalLimit ?? 0) / 10000000).toFixed(2)} Cr
+          <div className="mt-3 flex items-baseline justify-between">
+            <h3 className="terminal-kpi-value">
+              ₹{((data?.totalLimit ?? 0) / 10000000).toFixed(2)} Cr
             </h3>
-            <span className="text-[11px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase">Exposure</span>
+            <span className="text-xs font-semibold text-[var(--text-secondary)]">Total limit</span>
           </div>
         </motion.div>
       </motion.div>
 
-      {/* Main Charts Area */}
+      {/* 3. Actionable High Stressed Receivables Watchlist (Promoted to the top) */}
+      <div className="terminal-card">
+        <div className="flex items-center space-x-2 mb-4">
+          <ShieldAlert className="h-5 w-5 text-rose-500" />
+          <h3 className="terminal-card-title">Stressed accounts watchlist</h3>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-slate-500/5 text-xs font-bold text-[var(--text-secondary)] uppercase tracking-wider border-b border-[var(--border-color)]">
+              <tr>
+                <th className="px-4 py-3">Cardholder ID</th>
+                <th className="px-4 py-3">Customer Name</th>
+                <th className="px-4 py-3 text-right">CIBIL Score</th>
+                <th className="px-4 py-3">Card Tier</th>
+                <th className="px-4 py-3 text-right">Credit Limit</th>
+                <th className="px-4 py-3 text-right">Probability of Default</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--border-color)]">
+              {data?.topStressed?.map((cust: any) => (
+                <tr key={cust.customer_id} className="terminal-table-row">
+                  <td className="px-4 py-3 font-mono font-bold text-[var(--text-primary)]">{cust.customer_id}</td>
+                  <td className="px-4 py-3 font-semibold text-[var(--text-primary)]">{cust.customer_name}</td>
+                  <td className="px-4 py-3 text-right font-semibold terminal-text-mono">{cust.cibil_score}</td>
+                  <td className="px-4 py-3 font-semibold uppercase text-xs text-[var(--text-secondary)]">{cust.card_tier}</td>
+                  <td className="px-4 py-3 text-right font-semibold terminal-text-mono">₹{cust.total_credit_limit.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-right font-black">
+                    <span className={`inline-flex rounded-md px-2.5 py-0.5 text-xs font-bold ${getVerdictStyle(cust.risk_score >= 0.4 ? 'High Risk' : cust.risk_score >= 0.15 ? 'Medium Risk' : 'Low Risk')}`}>
+                      {(cust.risk_score * 100).toFixed(1)}%
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 4. Split Bar Charts + Risk Stat Cards (Side-by-side layout) */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Left Chart: Bank Exposure */}
-        <div className="terminal-card lg:col-span-2 !p-4">
-          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-4">Bank Exposure and Average PD %</h3>
-          <div className="h-64 w-full text-xs">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data?.bankChartData ?? []}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" className="dark:stroke-slate-800" />
-                <XAxis dataKey="bank" stroke="#94A3B8" />
-                <YAxis yAxisId="left" stroke="#94A3B8" />
-                <YAxis yAxisId="right" orientation="right" stroke="#3B82F6" />
-                <Tooltip contentStyle={{ backgroundColor: '#1E293B', borderColor: '#334155', borderRadius: '0.125rem' }} />
-                <Legend />
-                <Bar yAxisId="left" dataKey="Avg PD %" fill="#EF4444" name="Avg PD %" radius={[1, 1, 0, 0]} isAnimationActive={true} />
-                <Bar yAxisId="right" dataKey="Limit exposure (Cr)" fill="#3B82F6" name="Exposure (Cr)" radius={[1, 1, 0, 0]} isAnimationActive={true} />
-              </BarChart>
-            </ResponsiveContainer>
+        {/* Left Side: Side-by-side Card Tier Risk Charts */}
+        <div className="terminal-card lg:col-span-2 space-y-6">
+          <h3 className="terminal-card-title border-b border-[var(--border-color)] pb-2.5">
+            Card tier metrics distribution
+          </h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Chart A: Limit Exposure (Teal) */}
+            <div className="space-y-2">
+              <span className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider block">Limit Exposure (Cr)</span>
+              <div className="h-44 w-full text-xs">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={data?.tierChartData ?? []}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
+                    <XAxis dataKey="tier" stroke="var(--text-secondary)" />
+                    <YAxis stroke="var(--text-secondary)" />
+                    <Tooltip contentStyle={{ backgroundColor: 'var(--surface-color)', borderColor: 'var(--border-color)', borderRadius: '0.375rem' }} />
+                    <Bar dataKey="Limit exposure (Cr)" fill="var(--exposure-color)" radius={[2, 2, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Chart B: Average PD % (Navy/Slate) */}
+            <div className="space-y-2">
+              <span className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider block">Average Risk PD %</span>
+              <div className="h-44 w-full text-xs">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={data?.tierChartData ?? []}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
+                    <XAxis dataKey="tier" stroke="var(--text-secondary)" />
+                    <YAxis stroke="var(--text-secondary)" />
+                    <Tooltip contentStyle={{ backgroundColor: 'var(--surface-color)', borderColor: 'var(--border-color)', borderRadius: '0.375rem' }} />
+                    <Bar dataKey="Avg PD %" fill="var(--neutral-series)" radius={[2, 2, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right Chart: Risk segment distribution */}
-        <div className="terminal-card flex flex-col !p-4">
-          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-4">Risk Distribution</h3>
-          <div className="flex-1 flex items-center justify-center h-48">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={[
-                    { name: 'Low Risk (<15%)', value: data?.counts?.lowCount ?? 0, color: '#10B981' },
-                    { name: 'Medium Risk (15-40%)', value: data?.counts?.medCount ?? 0, color: '#F59E0B' },
-                    { name: 'High Risk (>=40%)', value: data?.counts?.highCount ?? 0, color: '#EF4444' }
-                  ]}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={50}
-                  outerRadius={65}
-                  paddingAngle={5}
-                  dataKey="value"
-                  isAnimationActive={true}
-                >
-                  <Cell fill="#10B981" />
-                  <Cell fill="#F59E0B" />
-                  <Cell fill="#EF4444" />
-                </Pie>
-                <Tooltip contentStyle={{ backgroundColor: '#1E293B', borderColor: '#334155', borderRadius: '0.125rem' }} />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="grid grid-cols-3 gap-2 text-center text-xs font-bold border-t border-[#E2E8F0] dark:border-slate-800 pt-3">
-            <div>
-              <span className="text-emerald-400 block">LOW</span>
-              <span className="text-slate-400 terminal-text-mono">{data?.counts?.lowCount} Accts</span>
+        {/* Right Side: Risk Segment Stat Cards (Replacing the donut chart) */}
+        <div className="terminal-card flex flex-col justify-between">
+          <h3 className="terminal-card-title border-b border-[var(--border-color)] pb-2.5">
+            Risk segment volume
+          </h3>
+          
+          <div className="flex-1 flex flex-col justify-center space-y-4 py-2">
+            {/* Low Risk Card */}
+            <div className="flex items-center justify-between p-3.5 rounded-md bg-emerald-500/5 border border-emerald-500/10">
+              <div>
+                <span className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Low Risk (&lt;15%)</span>
+                <span className="block text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-1">
+                  {data?.counts?.lowCount?.toLocaleString() ?? "0"}
+                </span>
+              </div>
+              <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-sm">
+                Safe
+              </span>
             </div>
-            <div>
-              <span className="text-yellow-400 block">MEDIUM</span>
-              <span className="text-slate-400 terminal-text-mono">{data?.counts?.medCount} Accts</span>
+
+            {/* Medium Risk Card */}
+            <div className="flex items-center justify-between p-3.5 rounded-md bg-amber-500/5 border border-amber-500/10">
+              <div>
+                <span className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider">Medium Risk (15-40%)</span>
+                <span className="block text-xl font-bold text-amber-600 dark:text-amber-400 mt-1">
+                  {data?.counts?.medCount?.toLocaleString() ?? "0"}
+                </span>
+              </div>
+              <span className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-sm">
+                Watch
+              </span>
             </div>
-            <div>
-              <span className="text-rose-400 block">HIGH</span>
-              <span className="text-slate-400 terminal-text-mono">{data?.counts?.highCount} Accts</span>
+
+            {/* High Risk Card */}
+            <div className="flex items-center justify-between p-3.5 rounded-md bg-rose-500/5 border border-rose-500/10">
+              <div>
+                <span className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider">High Risk (&gt;=40%)</span>
+                <span className="block text-xl font-bold text-rose-600 dark:text-rose-400 mt-1">
+                  {data?.counts?.highCount?.toLocaleString() ?? "0"}
+                </span>
+              </div>
+              <span className="text-xs font-mono font-bold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded-sm">
+                Critical
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Row 3: Interactive Heatmap + High-Risk table */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        
-        {/* Heatmap Card */}
-        <div className="terminal-card !p-4 flex flex-col">
-          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-            <Sparkles className="h-4 w-4 text-[#0066FF] dark:text-[#3B82F6]" />
-            <span>Bank x Network Risk Heatmap</span>
-          </h3>
-          <p className="text-[10.5px] text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wide mb-4">
-            Cross-hair highlights on hover. Cell indicates avg PD %.
-          </p>
+      {/* 5. Deep-dive Heatmap Grid (Lowest-urgency at bottom) */}
+      <div className="terminal-card">
+        <div className="flex items-center space-x-2 mb-2">
+          <Sparkles className="h-5 w-5 text-teal-600 dark:text-teal-400" />
+          <h3 className="terminal-card-title">Card tier vs. bureau CIBIL matrix</h3>
+        </div>
+        <p className="text-sm text-[var(--text-secondary)] mb-6">
+          Aggregated default risk metrics across credit score brackets and product lines.
+        </p>
 
-          <div className="flex-1 flex flex-col justify-between">
-            <table className="w-full text-xs text-center border-collapse">
-              <thead>
-                <tr className="border-b border-[#E2E8F0] dark:border-slate-800">
-                  <th className="py-2 text-[#64748B] dark:text-[#94A3B8] text-left uppercase text-[10px] font-bold">Bank</th>
-                  {['Visa', 'Mastercard', 'RuPay', 'RuPay_UPI'].map(net => (
-                    <th 
-                      key={net} 
-                      className={`py-2 uppercase text-[10px] font-bold transition-all ${
-                        hoveredNetwork === net ? 'text-[#0066FF] dark:text-[#3B82F6] bg-blue-500/5' : 'text-[#64748B] dark:text-[#94A3B8]'
-                      }`}
-                    >
-                      {net.replace('_', ' ')}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {data?.heatmapGrid?.map((row: any) => (
-                  <tr 
-                    key={row.bank} 
-                    className={`transition-all ${
-                      hoveredBank === row.bank ? 'bg-blue-500/5' : ''
+        <div className="max-w-4xl mx-auto">
+          <table className="w-full text-sm text-center border-collapse">
+            <thead>
+              <tr className="border-b border-[var(--border-color)]">
+                <th className="py-3 text-[var(--text-secondary)] text-left uppercase text-xs font-bold w-1/4">Product Line</th>
+                {['Poor (<600)', 'Fair (600-700)', 'Good (700-800)', 'Excellent (800+)'].map(bracket => (
+                  <th 
+                    key={bracket} 
+                    className={`py-3 uppercase text-xs font-bold transition-all ${
+                      hoveredCibil === bracket ? 'text-[var(--text-primary)] bg-slate-500/5' : 'text-[var(--text-secondary)]'
                     }`}
                   >
-                    <td className={`py-2 text-left font-bold border-r border-[#E2E8F0] dark:border-slate-800 text-[11px] uppercase ${
-                      hoveredBank === row.bank ? 'text-[#0066FF] dark:text-[#3B82F6]' : 'text-slate-400'
-                    }`}>
-                      {row.bank}
-                    </td>
-                    {['Visa', 'Mastercard', 'RuPay', 'RuPay_UPI'].map(net => {
-                      const val = row[net] || 15.0;
-                      return (
-                        <td
-                          key={net}
-                          onMouseEnter={() => {
-                            setHoveredBank(row.bank);
-                            setHoveredNetwork(net);
-                          }}
-                          onMouseLeave={() => {
-                            setHoveredBank(null);
-                            setHoveredNetwork(null);
-                          }}
-                          className={`p-1 font-bold terminal-text-mono transition-all duration-150 cursor-crosshair border ${
-                            hoveredBank === row.bank && hoveredNetwork === net 
-                              ? 'scale-105 border-[#0066FF] dark:border-[#3B82F6] shadow-sm z-10' 
-                              : 'border-transparent'
-                          }`}
-                        >
-                          <div className={`py-1.5 rounded-sm ${getHeatmapColor(val)}`}>
-                            {val.toFixed(1)}%
-                          </div>
-                        </td>
-                      );
-                    })}
-                  </tr>
+                    {bracket.split(' ')[0]}
+                  </th>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* High Risk Table */}
-        <div className="terminal-card lg:col-span-2 !p-4">
-          <h3 className="text-xs font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-wider mb-4 flex items-center space-x-1.5">
-            <ShieldAlert className="h-4.5 w-4.5 text-rose-500" />
-            <span>High Stressed Receivables (Highest default PD)</span>
-          </h3>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs text-left">
-              <thead className="bg-[#F8FAFC]/80 dark:bg-slate-950/80 text-[10px] font-bold text-[#64748B] dark:text-[#94A3B8] uppercase tracking-widest border-b border-[#E2E8F0] dark:border-slate-800">
-                <tr>
-                  <th className="px-3 py-2">Cust ID</th>
-                  <th className="px-3 py-2">Name</th>
-                  <th className="px-3 py-2">CIBIL</th>
-                  <th className="px-3 py-2">Bank</th>
-                  <th className="px-3 py-2">Limit</th>
-                  <th className="px-3 py-2 text-right">Probability of Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.heatmapGrid?.map((row: any) => (
+                <tr 
+                  key={row.tier} 
+                  className={`transition-all ${
+                    hoveredTier === row.tier ? 'bg-slate-500/5' : ''
+                  }`}
+                >
+                  <td className={`py-3 text-left font-semibold border-r border-[var(--border-color)] text-sm uppercase ${
+                    hoveredTier === row.tier ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'
+                  }`}>
+                    {row.tier}
+                  </td>
+                  {['Poor (<600)', 'Fair (600-700)', 'Good (700-800)', 'Excellent (800+)'].map(bracket => {
+                    const val = row[bracket] || 0.0;
+                    return (
+                      <td
+                        key={bracket}
+                        onMouseEnter={() => {
+                          setHoveredTier(row.tier);
+                          setHoveredCibil(bracket);
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredTier(null);
+                          setHoveredCibil(null);
+                        }}
+                        className="p-1.5 font-bold terminal-text-mono transition-all duration-150 border border-transparent"
+                      >
+                        <div className={`py-2.5 rounded-md text-sm font-bold ${getHeatmapColor(val)}`}>
+                          {val.toFixed(1)}%
+                        </div>
+                      </td>
+                    );
+                  })}
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-[#E2E8F0] dark:divide-slate-900">
-                {data?.topStressed?.map((cust: any) => (
-                  <tr key={cust.customer_id} className="terminal-table-row">
-                    <td className="px-3 py-2 font-mono font-bold text-[#0066FF] dark:text-[#3B82F6]">{cust.customer_id}</td>
-                    <td className="px-3 py-2 font-bold text-[#0F172A] dark:text-slate-200">{cust.customer_name}</td>
-                    <td className="px-3 py-2 font-bold terminal-text-mono">{cust.cibil_score}</td>
-                    <td className="px-3 py-2 font-bold">{cust.primary_bank}</td>
-                    <td className="px-3 py-2 font-semibold terminal-text-mono">INR {cust.total_credit_limit.toLocaleString()}</td>
-                    <td className="px-3 py-2 text-right font-black">
-                      <span className={`inline-flex rounded-sm px-2 py-0.5 text-[11px] font-extrabold ${getVerdictStyle(cust.risk_score >= 0.4 ? 'High Risk' : cust.risk_score >= 0.15 ? 'Medium Risk' : 'Low Risk')}`}>
-                        {(cust.risk_score * 100).toFixed(1)}%
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
-
       </div>
     </div>
   );
@@ -502,40 +533,32 @@ export default function OverviewPage() {
 function getMockPortfolioData() {
   return {
     totalSize: 10000,
-    avgPD: 0.3275,
-    avgCibil: 742.7,
+    avgPD: 0.0350,
+    avgCibil: 762.3,
     totalLimit: 2549670000,
     counts: {
-      lowCount: 4015,
-      medCount: 2985,
-      highCount: 3000
+      lowCount: 8228,
+      medCount: 1095,
+      highCount: 677
     },
-    bankChartData: [
-      { bank: 'HDFC', 'Avg PD %': 28.5, 'Limit exposure (Cr)': 76.5 },
-      { bank: 'ICICI', 'Avg PD %': 31.2, 'Limit exposure (Cr)': 63.8 },
-      { bank: 'SBI', 'Avg PD %': 38.6, 'Limit exposure (Cr)': 51.0 },
-      { bank: 'Axis', 'Avg PD %': 34.0, 'Limit exposure (Cr)': 38.2 },
-      { bank: 'Yes Bank', 'Avg PD %': 36.4, 'Limit exposure (Cr)': 25.5 },
-    ],
-    networkChartData: [
-      { network: 'Visa', 'Avg PD %': 31.8 },
-      { network: 'Mastercard', 'Avg PD %': 33.5 },
-      { network: 'RuPay', 'Avg PD %': 35.1 },
-      { network: 'RuPay UPI', 'Avg PD %': 34.0 }
+    tierChartData: [
+      { tier: 'Signature', 'Avg PD %': 3.63, 'Limit exposure (Cr)': 76.5 },
+      { tier: 'Platinum', 'Avg PD %': 3.51, 'Limit exposure (Cr)': 63.8 },
+      { tier: 'Gold', 'Avg PD %': 3.50, 'Limit exposure (Cr)': 51.0 },
+      { tier: 'Classic', 'Avg PD %': 3.38, 'Limit exposure (Cr)': 38.2 }
     ],
     heatmapGrid: [
-      { bank: 'HDFC', Visa: 26.2, Mastercard: 28.1, RuPay: 31.0, RuPay_UPI: 29.5 },
-      { bank: 'ICICI', Visa: 29.5, Mastercard: 32.0, RuPay: 33.4, RuPay_UPI: 31.2 },
-      { bank: 'SBI', Visa: 36.4, Mastercard: 39.0, RuPay: 41.2, RuPay_UPI: 39.5 },
-      { bank: 'Axis', Visa: 32.1, Mastercard: 34.5, RuPay: 36.0, RuPay_UPI: 35.1 },
-      { bank: 'Yes Bank', Visa: 34.0, Mastercard: 36.5, RuPay: 39.2, RuPay_UPI: 37.8 }
+      { tier: 'Signature', 'Poor (<600)': 42.5, 'Fair (600-700)': 12.8, 'Good (700-800)': 2.5, 'Excellent (800+)': 0.8 },
+      { tier: 'Platinum', 'Poor (<600)': 45.1, 'Fair (600-700)': 14.2, 'Good (700-800)': 2.8, 'Excellent (800+)': 0.9 },
+      { tier: 'Gold', 'Poor (<600)': 43.8, 'Fair (600-700)': 13.9, 'Good (700-800)': 2.6, 'Excellent (800+)': 0.8 },
+      { tier: 'Classic', 'Poor (<600)': 40.2, 'Fair (600-700)': 11.5, 'Good (700-800)': 2.1, 'Excellent (800+)': 0.6 }
     ],
     topStressed: [
-      { customer_id: 'IND100561', customer_name: 'Amit Sharma', cibil_score: 412, primary_bank: 'SBI', total_credit_limit: 150000, risk_score: 0.945 },
-      { customer_id: 'IND102143', customer_name: 'Priya Iyer', cibil_score: 385, primary_bank: 'Yes Bank', total_credit_limit: 95000, risk_score: 0.912 },
-      { customer_id: 'IND100094', customer_name: 'Vikram Singh', cibil_score: 462, primary_bank: 'ICICI', total_credit_limit: 250000, risk_score: 0.884 },
-      { customer_id: 'IND107812', customer_name: 'Anjali Verma', cibil_score: 512, primary_bank: 'Axis', total_credit_limit: 100000, risk_score: 0.856 },
-      { customer_id: 'IND103004', customer_name: 'Manish Gupta', cibil_score: 488, primary_bank: 'HDFC', total_credit_limit: 500000, risk_score: 0.821 }
+      { customer_id: 'CRD100561', customer_name: 'Amit Sharma', cibil_score: 412, card_tier: 'Classic', total_credit_limit: 80000, risk_score: 0.845 },
+      { customer_id: 'CRD102143', customer_name: 'Priya Iyer', cibil_score: 385, card_tier: 'Gold', total_credit_limit: 150000, risk_score: 0.812 },
+      { customer_id: 'CRD100094', customer_name: 'Vikram Singh', cibil_score: 462, card_tier: 'Platinum', total_credit_limit: 350000, risk_score: 0.784 },
+      { customer_id: 'CRD107812', customer_name: 'Anjali Verma', cibil_score: 512, card_tier: 'Signature', total_credit_limit: 800000, risk_score: 0.756 },
+      { customer_id: 'CRD103004', customer_name: 'Manish Gupta', cibil_score: 488, card_tier: 'Signature', total_credit_limit: 1200000, risk_score: 0.721 }
     ]
   };
 }

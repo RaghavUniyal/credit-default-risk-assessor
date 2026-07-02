@@ -20,7 +20,8 @@ import {
   Lock,
   X,
   Sparkles,
-  Cpu
+  Cpu,
+  RefreshCw
 } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -46,8 +47,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }, []);
 
   const handleSignOut = async () => {
-    localStorage.removeItem('mock_session');
-    await supabase.auth.signOut();
+    localStorage.clear();
+    try {
+      await supabase.auth.signOut();
+    } catch (e) {}
     clearAuth();
     router.replace('/');
   };
@@ -64,7 +67,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        router.replace('/login');
+        router.replace('/');
       }
     };
     checkSession();
@@ -85,27 +88,30 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Customer 360', href: '/dashboard/customer-360', icon: UsersRound },
     { name: 'Portfolio Upload', href: '/dashboard/portfolio', icon: DatabaseBackup },
-    { name: 'Collections & Simulator', href: '/dashboard/collections', icon: BrainCircuit },
   ];
 
   return (
-    <div className="flex h-screen bg-white dark:bg-black text-[#0F172A] dark:text-[#F8FAFC] overflow-hidden font-sans">
+    <div className="flex h-screen bg-[var(--bg-color)] text-[var(--text-primary)] overflow-hidden font-sans">
       
       {/* Sidebar Navigation */}
-      <aside className="hidden md:flex md:w-60 md:flex-col shrink-0 border-r border-[#E2E8F0] dark:border-[#334155] bg-[#F4F6FA] dark:bg-[#0D0D0D]">
+      <aside className="hidden md:flex md:w-60 md:flex-col shrink-0 border-r border-[var(--border-color)] bg-[var(--surface-color)]">
         {/* Brand Logo */}
-        <div className="flex h-14 items-center px-4 border-b border-[#E2E8F0] dark:border-[#334155] space-x-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#0066FF] dark:bg-[#3B82F6] text-white font-black shadow-md shadow-blue-500/10">
-            <span className="text-xs tracking-tighter">CD</span>
+        <div className="flex h-14 items-center px-4 border-b border-[var(--border-color)] space-x-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#0F172A] dark:bg-[#F5F5F5] text-white dark:text-black font-black">
+            <span className="text-xs">CD</span>
           </div>
           <div>
-            <h1 className="text-xs font-black tracking-wider uppercase text-[#0F172A] dark:text-white">Risk Assessor</h1>
-            <p className="text-[10.5px] tracking-widest text-[#0066FF] dark:text-[#3B82F6] font-bold uppercase">B2B Command Center</p>
+            <h1 className="text-xs font-black tracking-wider uppercase font-mono text-[var(--text-primary)]">
+              Credit Risk Assessor
+            </h1>
+            <p className="text-[8px] tracking-widest text-[var(--text-secondary)] font-bold uppercase">
+              Command Center
+            </p>
           </div>
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex-1 space-y-1 px-3 py-4 overflow-y-auto">
+        <nav className="flex-1 space-y-1.5 px-3 py-4 overflow-y-auto">
           {navLinks.map((item) => {
             const active = pathname === item.href;
             const Icon = item.icon;
@@ -113,10 +119,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center space-x-3.5 border px-3.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-150 rounded-sm ${
+                className={`flex items-center space-x-3 px-3 py-2 text-sm font-semibold transition-all duration-150 rounded-md border ${
                   active
-                    ? 'bg-[#0066FF]/10 dark:bg-[#0066FF]/10 text-[#0066FF] dark:text-[#3B82F6] border-[#0066FF]/20 dark:border-[#0066FF]/20'
-                    : 'text-[#64748B] dark:text-[#94A3B8] border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/50'
+                    ? 'bg-slate-500/10 dark:bg-slate-400/5 text-[var(--text-primary)] border-[var(--border-color)] font-bold shadow-xs'
+                    : 'text-[var(--text-secondary)] border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/40'
                 }`}
               >
                 <Icon className="h-4 w-4 shrink-0" />
@@ -127,24 +133,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         {/* User Account Info Footer */}
-        <div className="border-t border-[#E2E8F0] dark:border-[#334155] p-3 space-y-2 bg-[#E2E8F0]/30 dark:bg-[#0B0F19]/40">
-          <div className="flex items-center space-x-2">
-            <UserCircle2 className="h-7 w-7 text-[#64748B] dark:text-[#94A3B8]" />
+        <div className="border-t border-[var(--border-color)] p-4 space-y-3 bg-slate-500/5">
+          <div className="flex items-center space-x-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs uppercase">
+              {(profile?.full_name && profile.full_name.toLowerCase() !== 'tt') ? profile.full_name.charAt(0) : 'A'}
+            </div>
             <div className="min-w-0 flex-1">
-              <p className="text-[11px] font-bold truncate text-[#0F172A] dark:text-white">
-                {profile?.full_name || 'Risk Manager'}
+              <p className="text-xs font-semibold truncate text-[var(--text-primary)]">
+                {(profile?.full_name && profile.full_name.toLowerCase() !== 'tt') ? profile.full_name : 'Analyst'}
               </p>
-              <p className="text-[10px] truncate text-[#64748B] dark:text-[#94A3B8] uppercase font-bold tracking-wider">
-                {profile?.role?.replace('_', ' ') || 'analyst'}
+              <p className="text-[10px] truncate text-[var(--text-secondary)] font-medium capitalize">
+                {profile?.role || 'analyst'}
               </p>
             </div>
           </div>
           <button
             onClick={handleSignOut}
-            className="flex w-full items-center justify-center space-x-1.5 rounded-sm border border-[#E2E8F0] dark:border-[#334155] hover:border-[#EF4444]/30 bg-white dark:bg-[#1E293B] hover:bg-rose-500/10 hover:text-rose-400 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8] transition-all cursor-pointer"
+            className="flex w-full items-center justify-center space-x-1.5 rounded-md border border-[var(--border-color)] hover:border-rose-500/30 bg-[var(--bg-color)] hover:bg-rose-500/5 hover:text-rose-500 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[var(--text-secondary)] transition-all cursor-pointer"
           >
-            <LogOut className="h-3 w-3" />
-            <span>Sign Out</span>
+            <RefreshCw className="h-3 w-3" />
+            <span>Reset Session</span>
           </button>
         </div>
       </aside>
@@ -152,15 +160,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main Content Pane */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top Header Bar */}
-        <header className="flex h-14 items-center justify-between px-6 border-b border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-black backdrop-blur-md z-10 shrink-0">
+        <header className="flex h-14 items-center justify-between px-6 border-b border-[var(--border-color)] bg-[var(--bg-color)] backdrop-blur-md z-10 shrink-0">
           {/* Cmd+K Search trigger input */}
           <div 
             onClick={() => setIsOpen(true)}
-            className="flex items-center space-x-2.5 w-64 rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-[#F4F6FA] dark:bg-[#0D0D0D] px-3 py-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] cursor-pointer hover:border-[#0066FF] dark:hover:border-[#3B82F6] transition-colors"
+            className="flex items-center space-x-2.5 w-72 rounded-md border-2 border-[var(--border-color)] bg-[var(--surface-color)] shadow-sm px-3.5 py-1.5 text-xs text-[var(--text-secondary)] cursor-pointer hover:border-[var(--brand-color)] transition-all"
           >
             <Search className="h-3.5 w-3.5" />
             <span className="flex-1 text-xs font-semibold">Search Cardholder ID...</span>
-            <kbd className="hidden sm:inline-block rounded bg-[#E2E8F0] dark:bg-[#1E293B] px-1.5 py-0.5 font-mono text-[9px] font-bold border border-slate-300 dark:border-slate-800 uppercase tracking-widest text-[#0F172A] dark:text-slate-400">
+            <kbd className="hidden sm:inline-block rounded bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 font-mono text-[9px] font-bold border border-slate-300 dark:border-slate-800 uppercase tracking-widest text-[var(--text-primary)]">
               Ctrl+K
             </kbd>
           </div>
@@ -170,7 +178,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="rounded-sm border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] p-1.5 text-[#64748B] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-white transition-colors cursor-pointer"
+              className="rounded-md border border-[var(--border-color)] bg-[var(--surface-color)] p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
               title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
               {theme === 'dark' ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
