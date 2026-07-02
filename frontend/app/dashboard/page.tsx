@@ -56,28 +56,9 @@ export default function OverviewPage() {
         predictions = JSON.parse(localStorage.getItem('local_predictions') || '[]');
       }
 
-      // If database is empty and local cache is empty, auto-seed using scored JSON seed files!
+      // If database and local storage are empty, return empty state immediately
       if (customers.length === 0) {
-        try {
-          console.log("Portfolio is empty. Fetching local pre-scored seed data...");
-          const [seedCustRes, seedPredRes] = await Promise.all([
-            fetch('/seed_customers.json'),
-            fetch('/seed_predictions.json')
-          ]);
-          if (seedCustRes.ok && seedPredRes.ok) {
-            customers = await seedCustRes.json();
-            predictions = await seedPredRes.json();
-            
-            // Save to local storage for persistent mock database sessions
-            localStorage.setItem('local_customers', JSON.stringify(customers));
-            localStorage.setItem('local_predictions', JSON.stringify(predictions));
-          } else {
-            return { empty: true };
-          }
-        } catch (seedErr) {
-          console.error("Failed to fetch seed portfolio details", seedErr);
-          return { empty: true };
-        }
+        return { empty: true };
       }
 
       // Merge data by customer_id
@@ -199,7 +180,28 @@ export default function OverviewPage() {
     );
   }
 
-  const data = portfolioData?.empty ? getMockPortfolioData() : portfolioData;
+  if (portfolioData?.empty) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[500px] border border-dashed border-slate-800 rounded-lg p-12 text-center bg-slate-950/40">
+        <div className="relative mb-6">
+          <div className="absolute inset-0 bg-teal-500/10 blur-xl rounded-full"></div>
+          <ShieldAlert className="h-16 w-16 text-teal-500 relative" />
+        </div>
+        <h2 className="text-xl font-bold tracking-wide uppercase text-slate-100 mb-2">No active portfolio ingested</h2>
+        <p className="text-sm text-slate-400 max-w-md mb-8">
+          Please upload your credit card default receivables spreadsheet in the Ingestion Hub to run machine learning predictions, explainable AI stress metrics, and compliance audits.
+        </p>
+        <button 
+          onClick={() => window.location.href = '/dashboard/portfolio'}
+          className="px-6 py-3 bg-[var(--brand-color)] hover:bg-blue-600 text-white rounded-md text-xs font-bold uppercase tracking-widest transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
+        >
+          Go to Ingestion Hub
+        </button>
+      </div>
+    );
+  }
+
+  const data = portfolioData;
 
   const getVerdictStyle = (verdict: string) => {
     switch (verdict) {
