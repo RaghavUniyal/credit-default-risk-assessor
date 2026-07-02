@@ -88,12 +88,17 @@ export default function Customer360Page() {
         payment_status_m6: custData.payment_status_m6,
       };
 
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+
       try {
         const response = await fetch(`${apiUrl}/predict-single`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(apiPayload),
+          signal: controller.signal
         });
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
           throw new Error('Prediction API failed');
@@ -106,7 +111,8 @@ export default function Customer360Page() {
           prediction
         };
       } catch (err) {
-        console.warn("Prediction API connection failed. Using local storage fallback prediction stats.", err);
+        clearTimeout(timeoutId);
+        console.warn("Prediction API connection failed or timed out. Using local storage fallback prediction stats.", err);
         const localPreds = JSON.parse(localStorage.getItem('local_predictions') || '[]');
         let matchedPred = localPreds.find((p: any) => p.customer_id === activeSearchId);
         

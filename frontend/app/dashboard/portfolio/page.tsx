@@ -296,13 +296,18 @@ export default function PortfolioPage() {
       for (let offset = 0; offset < parsedRecords.length; offset += chunkSize) {
         const chunk = parsedRecords.slice(offset, offset + chunkSize);
         
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
         try {
           // POST to backend API for prediction scoring
           const res = await fetch(`${apiUrl}/predict-batch`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(chunk)
+            body: JSON.stringify(chunk),
+            signal: controller.signal
           });
+          clearTimeout(timeoutId);
           
           if (!res.ok) throw new Error('Scoring batch rejected');
           const scoredBatch = await res.json();
@@ -332,6 +337,7 @@ export default function PortfolioPage() {
             console.warn("DB Write failed. Storing in local memory buffer.");
           }
         } catch (apiErr) {
+          clearTimeout(timeoutId);
           console.warn("API batch prediction failed. Falling back to local offline pre-scorer.", apiErr);
           // Local scoring mock fallback
           const scoredBatch = chunk.map(c => {
