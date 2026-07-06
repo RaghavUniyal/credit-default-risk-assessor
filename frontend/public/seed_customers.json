@@ -17,7 +17,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100001",
@@ -37,7 +37,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100002",
@@ -57,7 +57,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100003",
@@ -97,7 +97,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100005",
@@ -117,7 +117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100006",
@@ -257,7 +257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100013",
@@ -277,7 +277,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100014",
@@ -377,7 +377,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100019",
@@ -417,7 +417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100021",
@@ -477,7 +477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100024",
@@ -557,7 +557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100028",
@@ -597,7 +597,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100030",
@@ -617,7 +617,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100031",
@@ -637,7 +637,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100032",
@@ -657,7 +657,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100033",
@@ -697,7 +697,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100035",
@@ -717,7 +717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100036",
@@ -737,7 +737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100037",
@@ -797,7 +797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100040",
@@ -817,7 +817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100041",
@@ -837,7 +837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100042",
@@ -877,7 +877,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100044",
@@ -897,7 +897,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100045",
@@ -957,7 +957,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100048",
@@ -997,7 +997,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100050",
@@ -1077,7 +1077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100054",
@@ -1097,7 +1097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100055",
@@ -1117,7 +1117,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100056",
@@ -1137,7 +1137,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100057",
@@ -1157,7 +1157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100058",
@@ -1217,7 +1217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100061",
@@ -1297,7 +1297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100065",
@@ -1357,7 +1357,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100068",
@@ -1397,7 +1397,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100070",
@@ -1477,7 +1477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100074",
@@ -1557,7 +1557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100078",
@@ -1597,7 +1597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100080",
@@ -1637,7 +1637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100082",
@@ -1677,7 +1677,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100084",
@@ -1717,7 +1717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100086",
@@ -1777,7 +1777,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100089",
@@ -1817,7 +1817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100091",
@@ -1877,7 +1877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100094",
@@ -1937,7 +1937,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100097",
@@ -1977,7 +1977,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100099",
@@ -1997,7 +1997,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100100",
@@ -2017,7 +2017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100101",
@@ -2217,7 +2217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100111",
@@ -2257,7 +2257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100113",
@@ -2297,7 +2297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100115",
@@ -2337,7 +2337,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100117",
@@ -2377,7 +2377,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100119",
@@ -2397,7 +2397,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100120",
@@ -2417,7 +2417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100121",
@@ -2437,7 +2437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100122",
@@ -2457,7 +2457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100123",
@@ -2477,7 +2477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100124",
@@ -2597,7 +2597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100130",
@@ -2677,7 +2677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100134",
@@ -2697,7 +2697,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100135",
@@ -2717,7 +2717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100136",
@@ -2737,7 +2737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100137",
@@ -2817,7 +2817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100141",
@@ -2837,7 +2837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100142",
@@ -2897,7 +2897,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100145",
@@ -2957,7 +2957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100148",
@@ -2977,7 +2977,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100149",
@@ -3057,7 +3057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100153",
@@ -3077,7 +3077,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100154",
@@ -3097,7 +3097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100155",
@@ -3117,7 +3117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100156",
@@ -3197,7 +3197,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100160",
@@ -3217,7 +3217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100161",
@@ -3237,7 +3237,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100162",
@@ -3377,7 +3377,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100169",
@@ -3437,7 +3437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100172",
@@ -3477,7 +3477,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100174",
@@ -3517,7 +3517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100176",
@@ -3557,7 +3557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100178",
@@ -3597,7 +3597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100180",
@@ -3637,7 +3637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100182",
@@ -3677,7 +3677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100184",
@@ -3737,7 +3737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100187",
@@ -3797,7 +3797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100190",
@@ -3817,7 +3817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100191",
@@ -3837,7 +3837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100192",
@@ -3857,7 +3857,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100193",
@@ -3877,7 +3877,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100194",
@@ -3917,7 +3917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100196",
@@ -3937,7 +3937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100197",
@@ -4037,7 +4037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100202",
@@ -4057,7 +4057,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100203",
@@ -4097,7 +4097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100205",
@@ -4197,7 +4197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100210",
@@ -4217,7 +4217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100211",
@@ -4237,7 +4237,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100212",
@@ -4257,7 +4257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100213",
@@ -4297,7 +4297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100215",
@@ -4317,7 +4317,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100216",
@@ -4357,7 +4357,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100218",
@@ -4377,7 +4377,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100219",
@@ -4437,7 +4437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100222",
@@ -4517,7 +4517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100226",
@@ -4557,7 +4557,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100228",
@@ -4617,7 +4617,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100231",
@@ -4637,7 +4637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100232",
@@ -4657,7 +4657,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100233",
@@ -4737,7 +4737,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100237",
@@ -4757,7 +4757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100238",
@@ -4777,7 +4777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100239",
@@ -4797,7 +4797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100240",
@@ -4857,7 +4857,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100243",
@@ -4897,7 +4897,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100245",
@@ -4957,7 +4957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100248",
@@ -5037,7 +5037,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100252",
@@ -5077,7 +5077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100254",
@@ -5097,7 +5097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100255",
@@ -5117,7 +5117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100256",
@@ -5157,7 +5157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100258",
@@ -5217,7 +5217,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100261",
@@ -5237,7 +5237,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100262",
@@ -5257,7 +5257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100263",
@@ -5277,7 +5277,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100264",
@@ -5357,7 +5357,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100268",
@@ -5457,7 +5457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100273",
@@ -5477,7 +5477,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100274",
@@ -5517,7 +5517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100276",
@@ -5537,7 +5537,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100277",
@@ -5557,7 +5557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100278",
@@ -5677,7 +5677,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100284",
@@ -5777,7 +5777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100289",
@@ -5817,7 +5817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100291",
@@ -5837,7 +5837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100292",
@@ -5877,7 +5877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100294",
@@ -5937,7 +5937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100297",
@@ -5957,7 +5957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100298",
@@ -5977,7 +5977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100299",
@@ -6017,7 +6017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100301",
@@ -6057,7 +6057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100303",
@@ -6117,7 +6117,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100306",
@@ -6137,7 +6137,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100307",
@@ -6217,7 +6217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100311",
@@ -6257,7 +6257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100313",
@@ -6277,7 +6277,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100314",
@@ -6297,7 +6297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100315",
@@ -6317,7 +6317,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100316",
@@ -6397,7 +6397,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100320",
@@ -6417,7 +6417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100321",
@@ -6437,7 +6437,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100322",
@@ -6457,7 +6457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100323",
@@ -6497,7 +6497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100325",
@@ -6577,7 +6577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100329",
@@ -6597,7 +6597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100330",
@@ -6637,7 +6637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100332",
@@ -6677,7 +6677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100334",
@@ -6737,7 +6737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100337",
@@ -6777,7 +6777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100339",
@@ -6817,7 +6817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100341",
@@ -6897,7 +6897,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100345",
@@ -6917,7 +6917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100346",
@@ -6977,7 +6977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100349",
@@ -7037,7 +7037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100352",
@@ -7057,7 +7057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100353",
@@ -7077,7 +7077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100354",
@@ -7097,7 +7097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100355",
@@ -7157,7 +7157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100358",
@@ -7217,7 +7217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100361",
@@ -7237,7 +7237,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100362",
@@ -7257,7 +7257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100363",
@@ -7337,7 +7337,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100367",
@@ -7357,7 +7357,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100368",
@@ -7377,7 +7377,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100369",
@@ -7417,7 +7417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100371",
@@ -7437,7 +7437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100372",
@@ -7497,7 +7497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100375",
@@ -7537,7 +7537,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100377",
@@ -7557,7 +7557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100378",
@@ -7617,7 +7617,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100381",
@@ -7637,7 +7637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100382",
@@ -7657,7 +7657,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100383",
@@ -7697,7 +7697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100385",
@@ -7757,7 +7757,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100388",
@@ -7857,7 +7857,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100393",
@@ -7877,7 +7877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100394",
@@ -7917,7 +7917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100396",
@@ -7937,7 +7937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100397",
@@ -7957,7 +7957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100398",
@@ -7977,7 +7977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100399",
@@ -8017,7 +8017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100401",
@@ -8037,7 +8037,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100402",
@@ -8117,7 +8117,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100406",
@@ -8177,7 +8177,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100409",
@@ -8197,7 +8197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100410",
@@ -8257,7 +8257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100413",
@@ -8297,7 +8297,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100415",
@@ -8337,7 +8337,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100417",
@@ -8357,7 +8357,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100418",
@@ -8377,7 +8377,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100419",
@@ -8397,7 +8397,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100420",
@@ -8417,7 +8417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100421",
@@ -8437,7 +8437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100422",
@@ -8457,7 +8457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100423",
@@ -8497,7 +8497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100425",
@@ -8577,7 +8577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100429",
@@ -8597,7 +8597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100430",
@@ -8657,7 +8657,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100433",
@@ -8677,7 +8677,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100434",
@@ -8697,7 +8697,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100435",
@@ -8717,7 +8717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100436",
@@ -8737,7 +8737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100437",
@@ -8757,7 +8757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100438",
@@ -8777,7 +8777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100439",
@@ -8797,7 +8797,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100440",
@@ -8837,7 +8837,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100442",
@@ -8857,7 +8857,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100443",
@@ -8977,7 +8977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100449",
@@ -9037,7 +9037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100452",
@@ -9137,7 +9137,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100457",
@@ -9157,7 +9157,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100458",
@@ -9177,7 +9177,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100459",
@@ -9197,7 +9197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100460",
@@ -9217,7 +9217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100461",
@@ -9337,7 +9337,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100467",
@@ -9377,7 +9377,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100469",
@@ -9417,7 +9417,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100471",
@@ -9457,7 +9457,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100473",
@@ -9477,7 +9477,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100474",
@@ -9537,7 +9537,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100477",
@@ -9557,7 +9557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100478",
@@ -9597,7 +9597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100480",
@@ -9617,7 +9617,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100481",
@@ -9637,7 +9637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100482",
@@ -9657,7 +9657,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100483",
@@ -9677,7 +9677,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100484",
@@ -9697,7 +9697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100485",
@@ -9737,7 +9737,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100487",
@@ -9777,7 +9777,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100489",
@@ -9837,7 +9837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100492",
@@ -9857,7 +9857,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100493",
@@ -9877,7 +9877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100494",
@@ -9957,7 +9957,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100498",
@@ -9977,7 +9977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100499",
@@ -10037,7 +10037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100502",
@@ -10057,7 +10057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100503",
@@ -10117,7 +10117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100506",
@@ -10137,7 +10137,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100507",
@@ -10177,7 +10177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100509",
@@ -10197,7 +10197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100510",
@@ -10237,7 +10237,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100512",
@@ -10317,7 +10317,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100516",
@@ -10337,7 +10337,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100517",
@@ -10357,7 +10357,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100518",
@@ -10417,7 +10417,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100521",
@@ -10437,7 +10437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100522",
@@ -10457,7 +10457,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100523",
@@ -10497,7 +10497,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100525",
@@ -10517,7 +10517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100526",
@@ -10537,7 +10537,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100527",
@@ -10577,7 +10577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100529",
@@ -10597,7 +10597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100530",
@@ -10617,7 +10617,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100531",
@@ -10637,7 +10637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100532",
@@ -10677,7 +10677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100534",
@@ -10717,7 +10717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100536",
@@ -10757,7 +10757,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100538",
@@ -10817,7 +10817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100541",
@@ -10837,7 +10837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100542",
@@ -10937,7 +10937,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100547",
@@ -10977,7 +10977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100549",
@@ -11037,7 +11037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100552",
@@ -11057,7 +11057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100553",
@@ -11077,7 +11077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100554",
@@ -11097,7 +11097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100555",
@@ -11117,7 +11117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100556",
@@ -11137,7 +11137,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100557",
@@ -11157,7 +11157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100558",
@@ -11177,7 +11177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100559",
@@ -11197,7 +11197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100560",
@@ -11217,7 +11217,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100561",
@@ -11237,7 +11237,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100562",
@@ -11297,7 +11297,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100565",
@@ -11417,7 +11417,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100571",
@@ -11457,7 +11457,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100573",
@@ -11517,7 +11517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100576",
@@ -11537,7 +11537,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100577",
@@ -11557,7 +11557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100578",
@@ -11577,7 +11577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100579",
@@ -11597,7 +11597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100580",
@@ -11677,7 +11677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100584",
@@ -11697,7 +11697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100585",
@@ -11717,7 +11717,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100586",
@@ -11757,7 +11757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100588",
@@ -11797,7 +11797,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100590",
@@ -11837,7 +11837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100592",
@@ -11877,7 +11877,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100594",
@@ -11957,7 +11957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100598",
@@ -12037,7 +12037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100602",
@@ -12057,7 +12057,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100603",
@@ -12077,7 +12077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100604",
@@ -12097,7 +12097,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100605",
@@ -12117,7 +12117,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100606",
@@ -12177,7 +12177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100609",
@@ -12197,7 +12197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100610",
@@ -12217,7 +12217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100611",
@@ -12237,7 +12237,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100612",
@@ -12257,7 +12257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100613",
@@ -12297,7 +12297,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100615",
@@ -12437,7 +12437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100622",
@@ -12457,7 +12457,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100623",
@@ -12477,7 +12477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100624",
@@ -12517,7 +12517,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100626",
@@ -12537,7 +12537,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100627",
@@ -12577,7 +12577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100629",
@@ -12617,7 +12617,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100631",
@@ -12637,7 +12637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100632",
@@ -12677,7 +12677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100634",
@@ -12717,7 +12717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100636",
@@ -12797,7 +12797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100640",
@@ -12897,7 +12897,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100645",
@@ -12917,7 +12917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100646",
@@ -12937,7 +12937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100647",
@@ -13017,7 +13017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100651",
@@ -13077,7 +13077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100654",
@@ -13117,7 +13117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100656",
@@ -13197,7 +13197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100660",
@@ -13277,7 +13277,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100664",
@@ -13337,7 +13337,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100667",
@@ -13397,7 +13397,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100670",
@@ -13437,7 +13437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100672",
@@ -13477,7 +13477,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100674",
@@ -13497,7 +13497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100675",
@@ -13517,7 +13517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100676",
@@ -13537,7 +13537,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100677",
@@ -13577,7 +13577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100679",
@@ -13677,7 +13677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100684",
@@ -13717,7 +13717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100686",
@@ -13757,7 +13757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100688",
@@ -13777,7 +13777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100689",
@@ -13797,7 +13797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100690",
@@ -13817,7 +13817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100691",
@@ -13937,7 +13937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100697",
@@ -13957,7 +13957,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100698",
@@ -13997,7 +13997,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100700",
@@ -14037,7 +14037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100702",
@@ -14097,7 +14097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100705",
@@ -14157,7 +14157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100708",
@@ -14177,7 +14177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100709",
@@ -14257,7 +14257,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100713",
@@ -14297,7 +14297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100715",
@@ -14317,7 +14317,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100716",
@@ -14357,7 +14357,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100718",
@@ -14397,7 +14397,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100720",
@@ -14557,7 +14557,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100728",
@@ -14597,7 +14597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100730",
@@ -14637,7 +14637,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100732",
@@ -14697,7 +14697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100735",
@@ -14737,7 +14737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100737",
@@ -14797,7 +14797,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100740",
@@ -14817,7 +14817,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100741",
@@ -14837,7 +14837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100742",
@@ -14857,7 +14857,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100743",
@@ -14877,7 +14877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100744",
@@ -14937,7 +14937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100747",
@@ -14957,7 +14957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100748",
@@ -14977,7 +14977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100749",
@@ -15037,7 +15037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100752",
@@ -15077,7 +15077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100754",
@@ -15097,7 +15097,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100755",
@@ -15157,7 +15157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100758",
@@ -15177,7 +15177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100759",
@@ -15237,7 +15237,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100762",
@@ -15277,7 +15277,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100764",
@@ -15297,7 +15297,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100765",
@@ -15357,7 +15357,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100768",
@@ -15397,7 +15397,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100770",
@@ -15417,7 +15417,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100771",
@@ -15477,7 +15477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100774",
@@ -15497,7 +15497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100775",
@@ -15577,7 +15577,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100779",
@@ -15597,7 +15597,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100780",
@@ -15637,7 +15637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100782",
@@ -15677,7 +15677,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100784",
@@ -15697,7 +15697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100785",
@@ -15717,7 +15717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100786",
@@ -15737,7 +15737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100787",
@@ -15757,7 +15757,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100788",
@@ -15817,7 +15817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100791",
@@ -15837,7 +15837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100792",
@@ -15877,7 +15877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100794",
@@ -15897,7 +15897,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100795",
@@ -15917,7 +15917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100796",
@@ -15957,7 +15957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100798",
@@ -16017,7 +16017,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100801",
@@ -16057,7 +16057,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100803",
@@ -16177,7 +16177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100809",
@@ -16217,7 +16217,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100811",
@@ -16237,7 +16237,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100812",
@@ -16297,7 +16297,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100815",
@@ -16377,7 +16377,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100819",
@@ -16397,7 +16397,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100820",
@@ -16457,7 +16457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100823",
@@ -16477,7 +16477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100824",
@@ -16517,7 +16517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100826",
@@ -16657,7 +16657,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100833",
@@ -16697,7 +16697,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100835",
@@ -16717,7 +16717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100836",
@@ -16757,7 +16757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100838",
@@ -16777,7 +16777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100839",
@@ -16797,7 +16797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100840",
@@ -16817,7 +16817,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100841",
@@ -16837,7 +16837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100842",
@@ -16857,7 +16857,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100843",
@@ -16957,7 +16957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100848",
@@ -16977,7 +16977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100849",
@@ -16997,7 +16997,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100850",
@@ -17017,7 +17017,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100851",
@@ -17037,7 +17037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100852",
@@ -17057,7 +17057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100853",
@@ -17077,7 +17077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100854",
@@ -17137,7 +17137,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100857",
@@ -17157,7 +17157,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100858",
@@ -17177,7 +17177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100859",
@@ -17197,7 +17197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100860",
@@ -17257,7 +17257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100863",
@@ -17337,7 +17337,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100867",
@@ -17377,7 +17377,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100869",
@@ -17397,7 +17397,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100870",
@@ -17457,7 +17457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100873",
@@ -17517,7 +17517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100876",
@@ -17557,7 +17557,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100878",
@@ -17577,7 +17577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100879",
@@ -17597,7 +17597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100880",
@@ -17617,7 +17617,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100881",
@@ -17657,7 +17657,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100883",
@@ -17717,7 +17717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100886",
@@ -17757,7 +17757,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100888",
@@ -17857,7 +17857,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100893",
@@ -17937,7 +17937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100897",
@@ -17977,7 +17977,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100899",
@@ -17997,7 +17997,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100900",
@@ -18017,7 +18017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100901",
@@ -18077,7 +18077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100904",
@@ -18097,7 +18097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100905",
@@ -18117,7 +18117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100906",
@@ -18137,7 +18137,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100907",
@@ -18277,7 +18277,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100914",
@@ -18297,7 +18297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100915",
@@ -18317,7 +18317,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100916",
@@ -18417,7 +18417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100921",
@@ -18457,7 +18457,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100923",
@@ -18477,7 +18477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100924",
@@ -18497,7 +18497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100925",
@@ -18577,7 +18577,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100929",
@@ -18657,7 +18657,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100933",
@@ -18697,7 +18697,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100935",
@@ -18717,7 +18717,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100936",
@@ -18737,7 +18737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100937",
@@ -18877,7 +18877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100944",
@@ -18897,7 +18897,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100945",
@@ -18917,7 +18917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100946",
@@ -18937,7 +18937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100947",
@@ -19017,7 +19017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100951",
@@ -19057,7 +19057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100953",
@@ -19077,7 +19077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100954",
@@ -19197,7 +19197,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100960",
@@ -19237,7 +19237,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100962",
@@ -19257,7 +19257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100963",
@@ -19277,7 +19277,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100964",
@@ -19297,7 +19297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100965",
@@ -19317,7 +19317,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100966",
@@ -19377,7 +19377,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100969",
@@ -19457,7 +19457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100973",
@@ -19477,7 +19477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100974",
@@ -19557,7 +19557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100978",
@@ -19637,7 +19637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100982",
@@ -19657,7 +19657,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100983",
@@ -19677,7 +19677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100984",
@@ -19697,7 +19697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100985",
@@ -19717,7 +19717,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100986",
@@ -19757,7 +19757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD100988",
@@ -19777,7 +19777,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100989",
@@ -19817,7 +19817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100991",
@@ -19857,7 +19857,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100993",
@@ -19917,7 +19917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100996",
@@ -19937,7 +19937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100997",
@@ -19957,7 +19957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD100998",
@@ -20017,7 +20017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101001",
@@ -20157,7 +20157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101008",
@@ -20177,7 +20177,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101009",
@@ -20257,7 +20257,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101013",
@@ -20337,7 +20337,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101017",
@@ -20397,7 +20397,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101020",
@@ -20417,7 +20417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101021",
@@ -20437,7 +20437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101022",
@@ -20517,7 +20517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101026",
@@ -20597,7 +20597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101030",
@@ -20637,7 +20637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101032",
@@ -20657,7 +20657,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101033",
@@ -20677,7 +20677,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101034",
@@ -20717,7 +20717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101036",
@@ -20757,7 +20757,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101038",
@@ -20777,7 +20777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101039",
@@ -20817,7 +20817,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101041",
@@ -20837,7 +20837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101042",
@@ -20857,7 +20857,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD101043",
@@ -20897,7 +20897,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101045",
@@ -20957,7 +20957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101048",
@@ -20977,7 +20977,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101049",
@@ -21017,7 +21017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101051",
@@ -21057,7 +21057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101053",
@@ -21137,7 +21137,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101057",
@@ -21177,7 +21177,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101059",
@@ -21197,7 +21197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101060",
@@ -21237,7 +21237,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101062",
@@ -21317,7 +21317,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101066",
@@ -21337,7 +21337,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101067",
@@ -21377,7 +21377,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101069",
@@ -21417,7 +21417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101071",
@@ -21477,7 +21477,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101074",
@@ -21517,7 +21517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101076",
@@ -21537,7 +21537,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101077",
@@ -21557,7 +21557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101078",
@@ -21677,7 +21677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101084",
@@ -21697,7 +21697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101085",
@@ -21737,7 +21737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101087",
@@ -21857,7 +21857,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101093",
@@ -21897,7 +21897,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101095",
@@ -21937,7 +21937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101097",
@@ -21977,7 +21977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101099",
@@ -21997,7 +21997,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101100",
@@ -22037,7 +22037,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101102",
@@ -22057,7 +22057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101103",
@@ -22077,7 +22077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101104",
@@ -22097,7 +22097,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD101105",
@@ -22117,7 +22117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101106",
@@ -22177,7 +22177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101109",
@@ -22257,7 +22257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101113",
@@ -22337,7 +22337,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101117",
@@ -22377,7 +22377,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101119",
@@ -22457,7 +22457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101123",
@@ -22477,7 +22477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101124",
@@ -22537,7 +22537,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101127",
@@ -22577,7 +22577,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101129",
@@ -22697,7 +22697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101135",
@@ -22777,7 +22777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD101139",
@@ -22797,7 +22797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD101140",
@@ -22877,7 +22877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101144",
@@ -22937,7 +22937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101147",
@@ -22957,7 +22957,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101148",
@@ -22997,7 +22997,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101150",
@@ -23017,7 +23017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101151",
@@ -23037,7 +23037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101152",
@@ -23097,7 +23097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101155",
@@ -23217,7 +23217,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD101161",
@@ -23257,7 +23257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101163",
@@ -23277,7 +23277,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101164",
@@ -23297,7 +23297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101165",
@@ -23317,7 +23317,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101166",
@@ -23457,7 +23457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101173",
@@ -23477,7 +23477,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101174",
@@ -23517,7 +23517,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101176",
@@ -23537,7 +23537,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101177",
@@ -23577,7 +23577,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101179",
@@ -23637,7 +23637,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101182",
@@ -23657,7 +23657,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101183",
@@ -23677,7 +23677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101184",
@@ -23757,7 +23757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101188",
@@ -23817,7 +23817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101191",
@@ -23877,7 +23877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101194",
@@ -23897,7 +23897,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101195",
@@ -23917,7 +23917,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101196",
@@ -23937,7 +23937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101197",
@@ -23997,7 +23997,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101200",
@@ -24057,7 +24057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101203",
@@ -24077,7 +24077,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101204",
@@ -24117,7 +24117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101206",
@@ -24177,7 +24177,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101209",
@@ -24217,7 +24217,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101211",
@@ -24257,7 +24257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101213",
@@ -24297,7 +24297,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101215",
@@ -24337,7 +24337,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101217",
@@ -24377,7 +24377,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101219",
@@ -24437,7 +24437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101222",
@@ -24457,7 +24457,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101223",
@@ -24477,7 +24477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101224",
@@ -24497,7 +24497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101225",
@@ -24697,7 +24697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101235",
@@ -24757,7 +24757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101238",
@@ -25017,7 +25017,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101251",
@@ -25037,7 +25037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101252",
@@ -25077,7 +25077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101254",
@@ -25117,7 +25117,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101256",
@@ -25197,7 +25197,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101260",
@@ -25297,7 +25297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101265",
@@ -25337,7 +25337,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101267",
@@ -25397,7 +25397,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101270",
@@ -25477,7 +25477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101274",
@@ -25497,7 +25497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101275",
@@ -25537,7 +25537,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101277",
@@ -25697,7 +25697,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101285",
@@ -25717,7 +25717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD101286",
@@ -25737,7 +25737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101287",
@@ -25777,7 +25777,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101289",
@@ -25817,7 +25817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101291",
@@ -25857,7 +25857,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101293",
@@ -25937,7 +25937,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101297",
@@ -25957,7 +25957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101298",
@@ -25977,7 +25977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101299",
@@ -25997,7 +25997,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101300",
@@ -26137,7 +26137,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101307",
@@ -26157,7 +26157,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101308",
@@ -26197,7 +26197,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101310",
@@ -26237,7 +26237,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101312",
@@ -26277,7 +26277,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101314",
@@ -26317,7 +26317,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101316",
@@ -26377,7 +26377,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101319",
@@ -26397,7 +26397,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101320",
@@ -26417,7 +26417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101321",
@@ -26457,7 +26457,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101323",
@@ -26557,7 +26557,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101328",
@@ -26577,7 +26577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101329",
@@ -26677,7 +26677,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101334",
@@ -26717,7 +26717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101336",
@@ -26757,7 +26757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101338",
@@ -26797,7 +26797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101340",
@@ -26877,7 +26877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101344",
@@ -26897,7 +26897,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101345",
@@ -26957,7 +26957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101348",
@@ -26977,7 +26977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101349",
@@ -27017,7 +27017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101351",
@@ -27057,7 +27057,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101353",
@@ -27097,7 +27097,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101355",
@@ -27137,7 +27137,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101357",
@@ -27177,7 +27177,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101359",
@@ -27217,7 +27217,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101361",
@@ -27237,7 +27237,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101362",
@@ -27377,7 +27377,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101369",
@@ -27417,7 +27417,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101371",
@@ -27437,7 +27437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 1
+    "default_6month_label": 0
   },
   {
     "customer_id": "CRD101372",
@@ -27457,7 +27457,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101373",
@@ -27577,7 +27577,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101379",
@@ -27597,7 +27597,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101380",
@@ -27697,7 +27697,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101385",
@@ -27737,7 +27737,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101387",
@@ -27757,7 +27757,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101388",
@@ -27777,7 +27777,7 @@
     "payment_status_m4": "Missed",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101389",
@@ -27837,7 +27837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101392",
@@ -27957,7 +27957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101398",
@@ -27977,7 +27977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101399",
@@ -28017,7 +28017,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101401",
@@ -28037,7 +28037,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101402",
@@ -28057,7 +28057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101403",
@@ -28157,7 +28157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101408",
@@ -28177,7 +28177,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101409",
@@ -28237,7 +28237,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101412",
@@ -28257,7 +28257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101413",
@@ -28277,7 +28277,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101414",
@@ -28297,7 +28297,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101415",
@@ -28317,7 +28317,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101416",
@@ -28337,7 +28337,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Late",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101417",
@@ -28437,7 +28437,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101422",
@@ -28477,7 +28477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101424",
@@ -28517,7 +28517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101426",
@@ -28537,7 +28537,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101427",
@@ -28577,7 +28577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101429",
@@ -28637,7 +28637,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101432",
@@ -28717,7 +28717,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101436",
@@ -28757,7 +28757,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101438",
@@ -28797,7 +28797,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101440",
@@ -28837,7 +28837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101442",
@@ -28897,7 +28897,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101445",
@@ -28917,7 +28917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101446",
@@ -28937,7 +28937,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101447",
@@ -28977,7 +28977,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101449",
@@ -28997,7 +28997,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101450",
@@ -29017,7 +29017,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101451",
@@ -29057,7 +29057,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101453",
@@ -29077,7 +29077,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101454",
@@ -29137,7 +29137,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Late",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101457",
@@ -29157,7 +29157,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101458",
@@ -29197,7 +29197,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Late",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101460",
@@ -29217,7 +29217,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101461",
@@ -29237,7 +29237,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101462",
@@ -29257,7 +29257,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101463",
@@ -29477,7 +29477,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101474",
@@ -29497,7 +29497,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101475",
@@ -29517,7 +29517,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101476",
@@ -29537,7 +29537,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Missed",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101477",
@@ -29577,7 +29577,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101479",
@@ -29617,7 +29617,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101481",
@@ -29717,7 +29717,7 @@
     "payment_status_m4": "MAD",
     "payment_status_m5": "Full",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101486",
@@ -29777,7 +29777,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101489",
@@ -29817,7 +29817,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101491",
@@ -29837,7 +29837,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "MAD",
     "payment_status_m6": "MAD",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101492",
@@ -29877,7 +29877,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Missed",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101494",
@@ -29917,7 +29917,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101496",
@@ -29937,7 +29937,7 @@
     "payment_status_m4": "Late",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101497",
@@ -29957,7 +29957,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101498",
@@ -29977,7 +29977,7 @@
     "payment_status_m4": "Full",
     "payment_status_m5": "Full",
     "payment_status_m6": "Full",
-    "default_6month_label": 0
+    "default_6month_label": 1
   },
   {
     "customer_id": "CRD101499",
