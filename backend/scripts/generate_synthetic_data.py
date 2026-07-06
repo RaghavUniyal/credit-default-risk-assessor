@@ -148,7 +148,7 @@ def generate_data(num_rows=10000, seed=42):
     for i in range(num_rows):
         # Base logit centered around -4.0 (low baseline default rate)
         # We adjust weights to ensure realistic correlation coefficients
-        logit = -4.5
+        logit = -0.3
         
         # CIBIL score effect (CIBIL 750+ reduces probability, <650 increases it)
         logit -= (cibil_scores[i] - 700) * 0.007
