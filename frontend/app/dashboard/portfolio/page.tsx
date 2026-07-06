@@ -272,13 +272,42 @@ export default function PortfolioPage() {
       }
 
       setJobStatus('processing');
-      setJobProgress(40);
+      setJobProgress(10);
 
       // Chunks loop trigger
       const chunkSize = 200;
       const localCustomers: any[] = [];
       const localPredictions: any[] = [];
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+      // Warm up the cloud backend if it is asleep (Render container cold starts)
+      let isServerAwake = false;
+      let retries = 0;
+      const maxRetries = 15; // 15 retries * 2.5 seconds = ~37.5 seconds
+      
+      while (!isServerAwake && retries < maxRetries) {
+        try {
+          const pingController = new AbortController();
+          const pingTimeout = setTimeout(() => pingController.abort(), 2000);
+          
+          const pingRes = await fetch(`${apiUrl}/health`, { 
+            signal: pingController.signal 
+          });
+          clearTimeout(pingTimeout);
+          
+          if (pingRes.ok) {
+            isServerAwake = true;
+            break;
+          }
+        } catch (e) {
+          console.log(`Waking up backend server (Attempt ${retries + 1}/${maxRetries})...`);
+        }
+        retries++;
+        setJobProgress(10 + Math.round((retries / maxRetries) * 30));
+        await new Promise(r => setTimeout(r, 2500));
+      }
+
+      setJobProgress(40);
 
       try {
         // Upload batch job log first (if DB is active)
@@ -523,7 +552,12 @@ export default function PortfolioPage() {
           {jobStatus !== 'idle' && (
             <div className="w-full max-w-md p-6 text-center space-y-4">
               <div className="flex justify-between items-center text-xs font-semibold text-[var(--text-secondary)]">
-                <span className="capitalize">{jobStatus} cardholder records...</span>
+                <span className="capitalize">
+                  {jobStatus === 'processing' && jobProgress < 40 
+                    ? 'Waking up cloud server...' 
+                    : `${jobStatus} cardholder records...`
+                  }
+                </span>
                 <span>{jobProgress}%</span>
               </div>
               
