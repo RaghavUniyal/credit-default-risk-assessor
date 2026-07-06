@@ -116,18 +116,21 @@ export default function Customer360Page() {
         const localPreds = JSON.parse(localStorage.getItem('local_predictions') || '[]');
         let matchedPred = localPreds.find((p: any) => p.customer_id === activeSearchId);
         
-        if (!matchedPred) {
+        if (!matchedPred || !matchedPred.shap_drivers || matchedPred.shap_drivers.length === 0) {
+          const riskScore = matchedPred?.risk_score ?? (custData.default_6month_label === 1 ? 0.65 : 0.035);
+          const verdict = matchedPred?.verdict ?? (riskScore >= 0.40 ? 'High Risk' : riskScore >= 0.15 ? 'Medium Risk' : 'Low Risk');
+          
           matchedPred = {
             customer_id: activeSearchId,
-            risk_score: custData.default_6month_label === 1 ? 0.65 : 0.035,
-            verdict: custData.default_6month_label === 1 ? 'High Risk' : 'Low Risk',
+            risk_score: riskScore,
+            verdict: verdict,
             shap_drivers: [
-              { feature: "Utilization Rate", contribution: 0.12, display_value: `${custData.current_utilization_pct}%` },
-              { feature: "CIBIL Score", contribution: -0.05, display_value: String(custData.cibil_score) },
-              { feature: "Payment History", contribution: 0.08, display_value: custData.payment_status_m1 }
+              { feature: "Credit Utilization", contribution: custData.current_utilization_pct > 50 ? 0.12 : 0.03, display_value: `${custData.current_utilization_pct}%` },
+              { feature: "Bureau CIBIL Score", contribution: (750 - custData.cibil_score) * 0.0008, display_value: String(custData.cibil_score) },
+              { feature: "Recent Payment Status (M-1)", contribution: ['Late', 'Missed'].includes(custData.payment_status_m1) ? 0.09 : -0.02, display_value: custData.payment_status_m1 }
             ],
-            risk_narrative: "Predictive model evaluation suggests a stable repayment outlook. Sub-optimal credit utilization and payment records are primary parameters.",
-            collection_strategy: "Implement standard contact procedures, monitor monthly utilisation boundaries, and schedule routine credit health check reminders."
+            risk_narrative: matchedPred?.risk_narrative || `Predictive evaluation indicates a default probability of ${(riskScore * 100).toFixed(1)}%. Current credit usage and score parameters are primary factors.`,
+            collection_strategy: matchedPred?.collection_strategy || "Implement regular contact procedures, monitor monthly utilisation boundaries, and schedule routine credit reminders."
           };
         }
         
@@ -406,7 +409,7 @@ export default function Customer360Page() {
               </div>
               
               <div className="space-y-4 text-xs">
-                {customerRiskData.prediction.shap_drivers.map((driver: any, idx: number) => {
+                {(customerRiskData.prediction.shap_drivers || []).map((driver: any, idx: number) => {
                   const isPositive = driver.contribution > 0;
                   const pctVal = Math.min(Math.abs(driver.contribution) * 100, 100);
                   
